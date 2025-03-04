@@ -1,16 +1,13 @@
-/* 🔥 TEMAS VISUALES - Sin imágenes externas, solo CSS */
+/* 🔥 TEMAS VISUALES */
 
 /* 🌌 ESPACIO - Efecto de estrellas */
 .tema-espacio {
-    background: radial-gradient(circle, #000428, #004e92);
-    color: #ffffff;
-    border: 2px solid #00ffea;
     position: relative;
     overflow: hidden;
 }
 .tema-espacio::after {
     content: "";
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
@@ -21,22 +18,20 @@
 
 /* ⚠️ RADIOACTIVO - Partículas verdes brillantes */
 .tema-radioactivo {
-    background: #101010;
-    color: #0f0;
-    border: 2px solid #0f0;
     position: relative;
     overflow: hidden;
 }
 .tema-radioactivo::after {
     content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
     top: 0;
     left: 0;
     background: radial-gradient(circle, rgba(0, 255, 0, 0.3) 5%, transparent 50%);
     animation: particulas-radioactivo 3s infinite linear;
     pointer-events: none;
+    z-index: -1;
 }
 @keyframes particulas-radioactivo {
     0% { opacity: 0.2; transform: scale(1); }
@@ -46,39 +41,34 @@
 
 /* ❄️ NIEVE - Pequeñas partículas cayendo */
 .tema-nieve {
-    background: #1e3a5f;
-    color: #fff;
-    border: 2px solid #cfe2f3;
     position: relative;
     overflow: hidden;
 }
 .tema-nieve::after {
     content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
     top: 0;
     left: 0;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
     animation: nieve 5s linear infinite;
     pointer-events: none;
+    z-index: -1;
 }
 @keyframes nieve {
     0% { transform: translateY(0); opacity: 0.5; }
-    100% { transform: translateY(100px); opacity: 0; }
+    100% { transform: translateY(100vh); opacity: 0; }
 }
 
 /* 🌫 HUMO - Neblina estática */
 .tema-humo {
-    background: #1a1a1a;
-    color: white;
-    border: 2px solid #555;
     position: relative;
     overflow: hidden;
 }
 .tema-humo::before {
     content: "";
-    position: absolute;
+    position: fixed;
     width: 150%;
     height: 150%;
     top: -50%;
@@ -86,53 +76,14 @@
     background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
     animation: humo 5s infinite alternate ease-in-out;
     pointer-events: none;
+    z-index: -1;
 }
 @keyframes humo {
     0% { transform: translateY(-10px); opacity: 0.2; }
     100% { transform: translateY(10px); opacity: 0.4; }
 }
 
-/* 🏰 MEDIEVAL - Bordes dorados, textura de pergamino */
-.tema-medieval {
-    background: linear-gradient(to bottom, #4b3621, #1a1a1a);
-    color: #e4c16f;
-    border: 3px solid gold;
-    position: relative;
-    overflow: hidden;
-}
-.tema-medieval::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 10px, transparent 20px);
-    pointer-events: none;
-}
-
-/* 🎴 JAPONÉS - Bordes rojos, efecto de papel antiguo */
-.tema-japones {
-    background: #f4e2c8;
-    color: #b71c1c;
-    border: 3px solid red;
-    position: relative;
-    overflow: hidden;
-}
-.tema-japones::before {
-    content: "⛩";
-    font-size: 3rem;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    color: rgba(255, 0, 0, 0.3);
-    pointer-events: none;
-}
-
-/* 🔺 GLITCH - Sin animación, solo efecto RGB */
+/* 🔺 GLITCH - Solo efecto RGB, sin animación */
 .tema-glitch {
-    background: black;
-    color: white;
     text-shadow: 2px 0 red, -2px 0 cyan;
-    border: 2px solid rgba(255, 0, 0, 0.5);
 }
