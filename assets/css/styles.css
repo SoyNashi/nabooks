@@ -100,7 +100,7 @@ main {
 
 .book img {
     width: 100%;
-    height: 60%;  /* 📌 Imagen ocupa el 60% de la tarjeta */
+    height: auto;  /* 📌 Imagen ocupa el 60% de la tarjeta */
     object-fit: cover; /* 📌 Evita deformaciones */
     border-radius: 10px;
 }

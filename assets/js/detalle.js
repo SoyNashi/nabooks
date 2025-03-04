@@ -44,13 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function cargarLibrosRelacionados(libro, libros) {
+    const contenedor = document.querySelector(".relacionados-container");
+    contenedor.innerHTML = ""; // 🔹 Limpia antes de agregar nuevos
+
+    // 📌 Filtrar los libros relacionados (misma colección o palabras clave similares)
     const relacionados = libros.filter(l => 
         (l.coleccion === libro.coleccion || libro.palabras_clave.some(k => l.palabras_clave.includes(k))) &&
         l.id !== libro.id // 🔹 Evita mostrar el mismo libro
     );
-
-    const contenedor = document.querySelector(".relacionados-container");
-    contenedor.innerHTML = ""; // 🔹 Limpia antes de agregar nuevos
 
     if (relacionados.length === 0) {
         contenedor.innerHTML = "<p>No hay libros relacionados.</p>";
@@ -59,29 +60,14 @@ function cargarLibrosRelacionados(libro, libros) {
 
     relacionados.forEach(lib => {
         let libroHTML = document.createElement("div");
-        libroHTML.classList.add("book", `tema-${lib.tema}`); // 🔹 Aplica el tema
+        libroHTML.classList.add("book");
         libroHTML.innerHTML = `
             <a href="detalle.html?id=${lib.id}">
                 <img src="${lib.imagen}" alt="${lib.titulo}" class="portada">
             </a>
-            <h2>${lib.titulo}</h2>
+            <h3>${lib.titulo}</h3>
             <p>${lib.subtitulo}</p>
         `;
         contenedor.appendChild(libroHTML);
-
-        // 📌 Extraer color de la portada y aplicarlo como fondo
-        const img = libroHTML.querySelector(".portada");
-        img.crossOrigin = "anonymous";
-        img.onload = function () {
-            try {
-                const colorThief = new ColorThief();
-                const color = colorThief.getColor(img);
-                const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                libroHTML.style.backgroundColor = rgbColor;
-                libroHTML.style.boxShadow = `0px 0px 10px ${rgbColor}`;
-            } catch (error) {
-                console.error("Error al extraer color con Color Thief:", error);
-            }
-        };
     });
 }
