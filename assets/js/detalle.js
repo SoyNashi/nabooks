@@ -8,7 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
     ])
     .then(([libros, grupos]) => {
         const libro = libros.find(l => l.id === libroId);
-        if (!libro) return;
+        if (!libro) {
+            console.error("Libro no encontrado");
+            return;
+        }
 
         document.getElementById("portada").src = libro.imagen;
         document.getElementById("titulo").textContent = libro.titulo;
@@ -21,10 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // 📌 Mostrar sinopsis si existe
         let sinopsisElemento = document.getElementById("sinopsis");
         if (libro.sinopsis) {
-            sinopsisElemento.textContent = libro.sinopsis;
+            sinopsisElemento.innerHTML = libro.sinopsis.replace(/\n/g, "<br>"); // 🔹 Reemplaza saltos de línea
         } else {
-            sinopsisElemento.style.display = "none"; // 🔹 Ocultar si no hay sinopsis
+            document.getElementById("sinopsis-container").style.display = "none"; // 🔹 Ocultar si no hay sinopsis
         }
+
 
         // 📌 Mostrar colección si existe
         let grupo = grupos.find(g => g.libros_id.includes(libro.id));
@@ -34,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             coleccionElemento.innerHTML = 
                 `Colección: <a href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>`;
         } else {
-            coleccionElemento.style.display = "none"; // 🔹 Si no tiene colección, ocultar
+            coleccionElemento.style.display = "none"; // 🔹 Ocultar si no tiene colección
         }
 
         // 📌 Cargar libros relacionados
