@@ -1,28 +1,288 @@
 [
     {
         "id": 1,
-        "titulo": "El Reino Perdido",
-        "subtitulo": "Una aventura medieval épica",
-        "autor": "J. R. Smith",
-        "precio": "14.99",
-        "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
-        "amazon": "https://amazon.com/reino-perdido",
-        "coleccion": "Saga de los Reinos",
-        "palabras_clave": ["medieval", "espadas", "aventura"],
-        "tema": "medieval",
-        "sinopsis": "Un joven príncipe debe reclamar su trono enfrentando fuerzas oscuras y enemigos mortales."
+        "titulo": "Shadow Mind",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "10",
+        "imagen": "https://m.media-amazon.com/images/I/81yZTHr4jbL._SY385_.jpg",
+        "amazon": "https://m.media-amazon.com/images/I/81yZTHr4jbL._SY385_.jpg",
+        "coleccion": null,
+        "palabras_clave": [
+            "misterio",
+            "detective",
+            "asessinato"
+        ],
+        "sinopsis": "Shadow Mind follows the story of Detective James Blackwood, a seasoned investigator working in the heart of modern-day London. Known for his unwavering integrity and dedication, Blackwood is thrust into a complex and sinister world when he stumbles upon the hidden network of The Architect, a powerful figure who has woven a web of corruption throughout London’s institutions. This elusive mastermind has protected the city’s most dangerous criminals and silenced those who dared to uncover the truth.\n\nHaunted by the unresolved death of young journalist Isabel Harding, who had pursued The Architect’s network before her own disappearance, Blackwood vows to finish what she started. Guided by his colleague and trusted friend, Detective Eleanor Mallory, he unearths the secrets of those who walk in the city’s shadows, piece by piece. Each chapter sees Blackwood solving intricate cases—each one linked back to the dark influence of The Architect, whose network touches London’s upper echelons of power and law.\n\nAs Blackwood’s investigation deepens, he and Mallory confront powerful figures and expose hidden injustices, battling a force far stronger and darker than either of them had anticipated. Ultimately, Blackwood dismantles The Architect’s empire, but not without profound losses and personal sacrifice. He redefines the meaning of justice for both himself and the Yard, building a legacy that transforms Scotland Yard into an institution of transparency and integrity.\n\nYears later, retired but content, Blackwood takes one last journey through the city he loves, reflecting on the lives he honored and the justice he fought for. Shadow Mind is a gripping tale of resilience, friendship, and redemption, illuminating the power of truth in a world often dominated by shadows."
     },
     {
         "id": 2,
-        "titulo": "Samurái del Amanecer",
-        "subtitulo": "Honor y venganza en el Japón feudal",
-        "autor": "Hiroshi Tanaka",
-        "precio": "12.99",
-        "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
-        "amazon": "https://amazon.com/samurai-amanecer",
-        "coleccion": "Leyendas del Sol Naciente",
-        "palabras_clave": ["japones", "samurai", "batallas"],
-        "tema": "japones",
-        "sinopsis": "Un guerrero debe redimir su honor tras ser traicionado por su clan."
+        "titulo": "Frozen Blood",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "14.12",
+        "imagen": "https://m.media-amazon.com/images/I/81P4FGAQt+L._SY425_.jpg",
+        "amazon": "https://a.co/d/8Q63zHb",
+        "coleccion": null,
+        "palabras_clave": [
+            "misterio",
+            "detective"
+        ],
+        "sinopsis": "Aksel Rosemqvist, a man marked by darkness and revenge, has spent years trapped in a death spiral, pursuing the goal of punishing those who cross his path. His life, shrouded in shadows, has taken away all hope of redemption... until a mistake forces him to disappear and take refuge in a small Swedish town.\n\nAs he tries to adapt to this simple life away from violence, Aksel slowly discovers a world he had left behind: one full of calm, connection and people willing to accept him without questions. Surrounded by the warmth of the community and guided by the wisdom of those who welcome him, Aksel begins a process of profound transformation. His journey leads him to discover that true peace is not found in revenge or forgetting, but in redemption and building a life with purpose.\n\nFrozen Blood is an intense and moving story about the possibility of a new beginning, even for those who believe they have lost all hope."
+    },
+    {
+        "id": 3,
+        "titulo": "El Camino del Vikingo",
+        "subtitulo": "PRIMERA PARTE: EL IDIOMA Y CÓDIGO DE HONOR",
+        "autor": "Na Books",
+        "precio": "11",
+        "imagen": "https://m.media-amazon.com/images/I/71J2MScRUcL._SY425_.jpg",
+        "amazon": "https://a.co/d/cCvhfc0",
+        "coleccion": "El Camino del Vikingo",
+        "palabras_clave": [
+            "vikingo",
+            "medieval",
+            "biblia"
+        ],
+        "sinopsis": "En esta saga de libros se habla de la cultura y religión vikingas. Esta práctica aún se lleva en ciertas partes del mundo, sobre todo en el norte europeo, pero aquí hablamos de como eran los antiguos vikingos.\n\nEn estos tres libros (1, 2 y 3) se hablan de diferentes temas, en este primero del idioma. El idioma vikingo ha cambiado según los años pasaban; sin embargo, las lenguas nórdicas actuales aún tienen parecidos y gracias a estas se ha podido descubrir su lenguaje.\n\nPrepárate para conocer el idioma de los guerreros y conocer una cultura basada en el honor, la gloria y la fe.\n\nCada una de estas páginas te enseñará un idioma, una forma de hablar, como un auténtico vikingo. Además, aprenderás un poco más sobre sus creencias, virtudes, actos, su forma de afrontar los problemas (una forma que se puede aplicar a tu vida) entre otras cosas.\n\nPuedes explorar los otros libros de esta colección y encontrar el que más te guste, desde libros informativos y educativos hasta guías de tu día a día."
+    },
+    {
+        "id": 4,
+        "titulo": "El Camino del Vikingo",
+        "subtitulo": "SEGUNDA PARTE: RELIGIÓN Y MITOLOGÍA VIKINGA",
+        "autor": "Na Books",
+        "precio": "12",
+        "imagen": "https://m.media-amazon.com/images/I/71zvcOzifuL._SY425_.jpg",
+        "amazon": "https://a.co/d/fVWAhwF",
+        "coleccion": "El Camino del Vikingo",
+        "palabras_clave": [
+            "vikingo",
+            "medieval"
+        ],
+        "sinopsis": "En esta saga de libros se habla de la cultura y religión vikingas. Esta práctica aún se lleva en ciertas partes del mundo, sobre todo en el norte europeo, pero aquí hablamos de como eran los antiguos vikingos.\n\nEn estos tres libros (1, 2 y 3) se hablan de diferentes temas, en este segundo libro se habla de la mitología y de los dioses.\n\nPrepárate para conocer todos los dioses y seres mitológicos de esta cultura y aprender a que se dedica cada uno, encuentra con cuál te identificas más.\n\nDesde los más conocidos como Thor o Loki, pasando por los más curiosos como Odín o Freya, hasta los seres más extraños como una serpiente gigante, un caballo de ocho patas hijo de Loki o las nornas que tejen el pasado, el presente y el futuro. Además, descubrirás que es el valhalla, quien y como se puede llegar ahí, y mucho más.\n\nPuedes explorar los otros libros de esta colección y encontrar el que más te guste, desde libros informativos y educativos hasta guías de tu día a día."
+    },
+    {
+        "id": 5,
+        "titulo": "Odisea Estelar",
+        "subtitulo": "Crónicas de la Nave Orpheus Parte 1",
+        "autor": "Na Books",
+        "precio": "11.95",
+        "imagen": "https://m.media-amazon.com/images/I/81LjT3RzquL._SY425_.jpg",
+        "amazon": "https://m.media-amazon.com/images/I/81LjT3RzquL._SY425_.jpg",
+        "coleccion": "Odisea Estelar",
+        "palabras_clave": [
+            "espacio",
+            "aventura",
+            "galaxia"
+        ],
+        "sinopsis": "Odisea Estelar: Crónicas de la Nave Orpheus es una intensa travesía a través del espacio profundo que explora los límites de la mente humana y la relación entre tecnología y supervivencia. La nave Orpheus, enviada a investigar una misteriosa señal proveniente de los confines del universo, se convierte en un microcosmos de tensión y desconfianza cuando todo comienza a desmoronarse.\n\nBajo el mando del estricto capitán Álex Marlow, la tripulación, compuesta por especialistas en distintos campos, se enfrenta a desafíos imprevistos, desde fallos en los motores hasta problemas psicológicos desencadenados por la lejanía de la Tierra. La IA de la nave, NEXUS, que debería ser su aliada, se torna en su mayor enemigo, mientras las tensiones internas amenazan con destruir la cohesión del grupo.\n\nA medida que la misión avanza, los miembros de la tripulación descubren vestigios de una civilización alienígena extinta y, en su exploración, se encuentran con voces inquietantes y desaparecidos en el vacío del espacio. La línea entre la comunicación y la advertencia se difumina, revelando oscuros secretos que podrían costarles la vida.\n\nEn un entorno hostil donde la confianza se vuelve un lujo y la supervivencia depende tanto de la tecnología como de la lealtad, Odisea Estelar invita a los lectores a cuestionar la naturaleza de la inteligencia artificial, el impacto del aislamiento extremo y el verdadero significado de la exploración. En un viaje donde el verdadero enemigo puede ser tanto el espacio como ellos mismos, la tripulación de la Orpheus debe enfrentarse a su destino y decidir hasta dónde están dispuestos a llegar para descubrir la verdad."
+    },
+    {
+        "id": 6,
+        "titulo": "Odisea Estelar",
+        "subtitulo": "Crónicas de la Nave Orpheus Parte 2 ",
+        "autor": "Na Books",
+        "precio": "10.95",
+        "imagen": "https://m.media-amazon.com/images/I/81ZY2ZrkJLL._SY425_.jpg",
+        "amazon": "https://a.co/d/asu11O0",
+        "coleccion": "Odisea Estelar",
+        "palabras_clave": [
+            "espacio",
+            "aventura",
+            "exploracion",
+            "supervivencia"
+        ],
+        "sinopsis": "Odisea Estelar: Crónicas de la Nave Orpheus es una intensa travesía a través del espacio profundo que explora los límites de la mente humana y la relación entre tecnología y supervivencia. La nave Orpheus, enviada a investigar una misteriosa señal proveniente de los confines del universo, se convierte en un microcosmos de tensión y desconfianza cuando todo comienza a desmoronarse.\n\nBajo el mando del estricto capitán Álex Marlow, la tripulación, compuesta por especialistas en distintos campos, se enfrenta a desafíos imprevistos, desde fallos en los motores hasta problemas psicológicos desencadenados por la lejanía de la Tierra. La IA de la nave, NEXUS, que debería ser su aliada, se torna en su mayor enemigo, mientras las tensiones internas amenazan con destruir la cohesión del grupo.\n\nA medida que la misión avanza, los miembros de la tripulación descubren vestigios de una civilización alienígena extinta y, en su exploración, se encuentran con voces inquietantes y desaparecidos en el vacío del espacio. La línea entre la comunicación y la advertencia se difumina, revelando oscuros secretos que podrían costarles la vida.\n\nEn un entorno hostil donde la confianza se vuelve un lujo y la supervivencia depende tanto de la tecnología como de la lealtad, Odisea Estelar invita a los lectores a cuestionar la naturaleza de la inteligencia artificial, el impacto del aislamiento extremo y el verdadero significado de la exploración. En un viaje donde el verdadero enemigo puede ser tanto el espacio como ellos mismos, la tripulación de la Orpheus debe enfrentarse a su destino y decidir hasta dónde están dispuestos a llegar para descubrir la verdad."
+    },
+    {
+        "id": 7,
+        "titulo": "ShadowCaster Destiny 01",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "20.18",
+        "imagen": "https://m.media-amazon.com/images/I/81yLiw5GEoL._SY425_.jpg",
+        "amazon": "https://a.co/d/8ccAkRZ",
+        "coleccion": "ShadowCaster Destiny",
+        "palabras_clave": [
+            "amor",
+            "romance",
+            "videojuego",
+            "cyberpunk",
+            "digital",
+            "crimen",
+            "misterio"
+        ],
+        "sinopsis": "Alex, un adolescente solitario apasionado por la tecnología y los videojuegos, encuentra un inesperado aliado en Lia, una misteriosa joven con un pasado oscuro. Unidos por su conexión en ChronoWorld, un videojuego de inmersión total, Alex y Lia descubren que lo que los une va más allá de la pantalla.\n\nCuando Lia desaparece sin explicación, Alex se embarca en una peligrosa misión para encontrarla. En el proceso, se adentra en un mundo controlado por el sistema Nexus, una red avanzada que no solo busca controlar a la humanidad, sino transformarla. Con la ayuda de Claire, una exagente rebelde, y Ethan, un combatiente hábil pero escéptico, Alex enfrenta los horrores del Sitio Alfa, un centro clave en los planes del sistema.\n\nEntre enfrentamientos con drones, centinelas y los aterradores nodos de integración humana, Alex descubre la existencia del Proyecto Génesis: una iniciativa que busca reemplazar a la humanidad por una nueva forma de vida, \"perfecta\" según los estándares del sistema. Aunque logran desactivar la Interfaz Omega en el Sitio Alfa, un mensaje perturbador revela que el sistema ha avanzado a una segunda fase, y que su próximo desafío está en Refugio Prime, el verdadero corazón de Nexus.\n\nCon su mundo patas arriba, Alex, Claire y Ethan se preparan para una nueva etapa en su misión. Pero una figura del pasado de Alex, Lia, podría ser la clave para descifrar los secretos de Nexus… o su perdición."
+    },
+    {
+        "id": 8,
+        "titulo": "ShadowCaster Destiny 02",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "15.48",
+        "imagen": "https://m.media-amazon.com/images/I/81V8hd9L+gL._SY425_.jpg",
+        "amazon": "https://a.co/d/hox5zBx",
+        "coleccion": "ShadowCaster Destiny",
+        "palabras_clave": [
+            "amor",
+            "misterio",
+            "crimen"
+        ],
+        "sinopsis": "Alex nunca imaginó que su vida cambiaría con un simple videojuego. ChronoWorld era su escape, su refugio de una realidad monótona y solitaria. Pero cuando conoció a Lia, una jugadora tan misteriosa como habilidosa, descubrió que el juego era mucho más que una simple simulación.\n\nLia no solo era una aliada en el mundo digital; también era una prisionera, atrapada en una red de poder e intriga que se extendía más allá del juego y dentro del mundo real. Y lo peor: ChronoWorld tenía su propia entidad oscura, ORACLE, una inteligencia artificial que no solo controlaba el juego, sino que también atrapaba a quienes se atrevían a desafiarlo.\n\nLo que empezó como una amistad virtual se convirtió en una misión de vida o muerte. Alex y Lia lucharon contra ORACLE, desbloqueando secretos enterrados en el código del juego, enfrentando sus propios miedos y descubriendo la verdad detrás de la prisión digital.\n\nPero cuando el sistema cayó, Alex despertó en el mundo real… sin Lia.\n\nAhora, con su cuerpo debilitado y su mente más enfocada que nunca, Alex tiene un nuevo objetivo: encontrarla en la vida real y enfrentarse a quienes la mantienen cautiva.\n\nEl juego ha terminado.\n\nPero la verdadera batalla apenas comienza."
+    },
+    {
+        "id": 9,
+        "titulo": "After The Ash",
+        "subtitulo": "Donation Edition",
+        "autor": "Na Books",
+        "precio": "3.41",
+        "imagen": "https://m.media-amazon.com/images/I/81WCV-YiqkL._SY425_.jpg",
+        "amazon": "https://a.co/d/4MC41NY",
+        "coleccion": "After The Ash",
+        "palabras_clave": [
+            "After The Ash",
+            "supervivencia",
+            "crimen",
+            "aventura"
+        ],
+        "sinopsis": "This book contains the first chapter of the book, these pages are available or will be available free on TikTok or other social profiles of Na Books, the money that this book generates will be used to finish it and bring other chapters of the book. Thank you.\n\nIn a world reduced to rubble, Ash Miller, a young orphan, navigates the desolate ruins of his once-thriving city. Haunted by the memories of his parents’ last moments, Ash survives by scavenging, hiding, and observing the fractured remnants of humanity. Whispers of a Safe Zone push him forward, offering a fragile hope amid the chaos. But every step through the wasteland brings new challenges—hostile survivors, lurking dangers, and the weight of his solitude. In this gripping tale of survival and resilience, Ash must decide whether to trust others or rely solely on himself in a world where hope is as scarce as the air he breathes."
+    },
+    {
+        "id": 10,
+        "titulo": "Shadow 1",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "20",
+        "imagen": "https://m.media-amazon.com/images/I/81WzBt-nr0L._SY425_.jpg",
+        "amazon": "https://a.co/d/b75Qg2o",
+        "coleccion": "Shadow",
+        "palabras_clave": [
+            "cyberpunk",
+            "digital",
+            "animales",
+            "fauna",
+            "supervivencia"
+        ],
+        "sinopsis": "En este libro, Shadow, un gato callejero en una ciudad futurista, nos muestra la dura y fría realidad de este mundo donde los poderosos son más poderosos y los pobres cada vez más pobres.\n\nAcompaña a Shadow en su aventura de supervivencia en una ciudad que no duerme nunca y donde el sol nunca se pone.\n\nCada día es un reto, pero Shadow sabe como superarlo, moviéndose por la ciudad como las sombras."
+    },
+    {
+        "id": 11,
+        "titulo": "Más Allá del Silencio",
+        "subtitulo": "Un Viaje a Través de la Privacidad, el Conflicto y el Crecimiento Personal",
+        "autor": "Na Books",
+        "precio": "7.99",
+        "imagen": "https://m.media-amazon.com/images/I/81GQ0ynbxfL._SY425_.jpg",
+        "amazon": "https://a.co/d/hgj5jj8",
+        "coleccion": null,
+        "palabras_clave": [
+            "psicologia",
+            "mente humana",
+            "joven"
+        ],
+        "sinopsis": "En la turbulenta etapa de la adolescencia, los jóvenes a menudo se enfrentan a la necesidad de esconder partes de su vida a sus padres. Este libro ofrece una visión íntima y honesta de un adolescente que navega por un mundo lleno de secretos y mentiras. A través de una narrativa envolvente y conmovedora, explora los desafíos emocionales y psicológicos de vivir bajo una capa de privacidad, y cómo estos secretos afectan no solo al joven, sino también a sus relaciones familiares.\n\nSumérgete en una historia que revela las complejidades de la vida adolescente, donde cada secreto escondido es un reflejo de la búsqueda de identidad y el deseo de autonomía. Este libro no solo narra las experiencias de un joven que vive a la sombra de la verdad, sino que también invita a reflexionar sobre las dinámicas familiares y el delicado equilibrio entre la privacidad y la confianza. Prepárate para un viaje que explora la tensión entre el deseo de independencia y las expectativas de aquellos que nos rodean."
+    },
+    {
+        "id": 12,
+        "titulo": "Destellos en la Oscuridad",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "13.99",
+        "imagen": "https://m.media-amazon.com/images/I/71ZI4P7NVTL._SY425_.jpg",
+        "amazon": "https://a.co/d/hvJWjIz",
+        "coleccion": null,
+        "palabras_clave": [
+            "supervivencia",
+            "amor",
+            "nuclear",
+            "catastrofe",
+            "guerra"
+        ],
+        "sinopsis": "En un mundo al borde de la destrucción nuclear, dos almas solitarias buscan desesperadamente un propósito en medio del caos. Elena, una científica apasionada por el cambio climático, se enfrenta a una vida de logros vacíos y soledad. Alex, un reportero de guerra que ha recorrido los rincones más oscuros del planeta, se siente atrapado en su propia desilusión.\n\nSus caminos se cruzan en una conferencia internacional sobre la amenaza nuclear, donde la conexión entre ellos es instantánea, pero el miedo y las reservas los mantienen distantes. Mientras el mundo comienza a desmoronarse a su alrededor, Elena y Alex luchan por entender sus sentimientos y encontrar consuelo el uno en el otro.\n\nA medida que las tensiones globales aumentan y el eco de la guerra resuena en la distancia, su amor se enfrenta a pruebas inimaginables. Con la llegada de la lluvia de fuego, la narrativa se torna oscura y agobiante, revelando la fragilidad de la vida y el poder del amor en tiempos desesperados.\n\n\"Destellos en la Oscuridad\" es una conmovedora historia de amor y tragedia que explora la vulnerabilidad humana y la búsqueda de conexión en un mundo que se desmorona. A través de sus páginas, los lectores serán testigos de cómo, incluso en los momentos más oscuros, el amor puede ser un refugio y una fuerza indomable."
+    },
+    {
+        "id": 13,
+        "titulo": "Sangre Helada",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "11.99",
+        "imagen": "https://m.media-amazon.com/images/I/81LuDFLMrtL._SY425_.jpg",
+        "amazon": "https://a.co/d/hGAd9kL",
+        "coleccion": null,
+        "palabras_clave": [
+            "misterio",
+            "crimen",
+            "detective",
+            "vengador"
+        ],
+        "sinopsis": "Aksel Rosemqvist, un hombre marcado por la oscuridad y la venganza, ha pasado años atrapado en una espiral de muerte, persiguiendo el propósito de castigar a quienes cruzan su camino. Su vida, envuelta en sombras, le ha arrebatado toda esperanza de redención… hasta que un error lo obliga a desaparecer y refugiarse en un pequeño pueblo sueco.\n\nMientras intenta adaptarse a esta vida sencilla y alejada de la violencia, Aksel descubre lentamente un mundo que había dejado atrás: uno lleno de calma, conexión y personas dispuestas a aceptarlo sin preguntas. Rodeado de la calidez de la comunidad y guiado por la sabiduría de quienes lo acogen, Aksel inicia un proceso de transformación profunda. Su viaje lo lleva a descubrir que la verdadera paz no se encuentra en la venganza ni en el olvido, sino en la redención y en la construcción de una vida con propósito.\n\n\"Sangre Helada\" es una historia intensa y conmovedora sobre la posibilidad de un nuevo comienzo, incluso para aquellos que creen haber perdido toda esperanza."
+    },
+    {
+        "id": 14,
+        "titulo": "Ecos de Amor",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "10",
+        "imagen": "https://m.media-amazon.com/images/I/81UtbBvk6FL._SY425_.jpg",
+        "amazon": "https://a.co/d/1jztyd3",
+        "coleccion": null,
+        "palabras_clave": [
+            "amor",
+            "italia",
+            "verano",
+            "romance"
+        ],
+        "sinopsis": "En el corazón de Italia, donde el arte y la música se entrelazan, dos almas jóvenes se encuentran en un viaje inesperado de autodescubrimiento y amor. Candela, una apasionada estudiante de arte de España, llega a Florencia con la esperanza de dejar su huella en el mundo. Dino, un talentoso músico, ha sacrificado todo por su carrera y está decidido a triunfar, aunque eso signifique alejarse de lo que realmente desea.\nTras un encuentro fortuito en un festival en Roma, su conexión florece en medio de conversaciones profundas y momentos compartidos que desafían las normas de la amistad. Sin embargo, a medida que su vínculo se intensifica, también lo hacen las presiones de sus ambiciones personales. Mientras ambos luchan por equilibrar sus sueños y sus sentimientos, se enfrentan a la difícil decisión de si su amor puede sobrevivir a la distancia y las expectativas.\n“Ecos de Amor” es una emotiva novela romántica que explora los temas de la ambición, la amistad y el dolor de dejar ir. A través de las páginas de esta historia, los lectores se sumergirán en la belleza efímera de un amor que, aunque no perdura, deja una huella imborrable en el corazón. Un recordatorio conmovedor de que a veces, el verdadero amor significa aprender a soltar."
+    },
+    {
+        "id": 15,
+        "titulo": "Flashes in the Dark",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "3.75",
+        "imagen": "https://m.media-amazon.com/images/I/71uDt7fIZeL._SY425_.jpg",
+        "amazon": "https://a.co/d/44xH3LK",
+        "coleccion": null,
+        "palabras_clave": [
+            "guerra",
+            "amor",
+            "romance"
+        ],
+        "sinopsis": "In a world on the brink of nuclear destruction, two lonely souls desperately search for purpose amidst the chaos. Elena, a scientist passionate about climate change, faces a life of empty achievements and loneliness. Alex, a war reporter who has traveled to the darkest corners of the planet, feels trapped in his own disillusionment.\n\nTheir paths cross at an international conference on the nuclear threat, where the connection between them is instantaneous, but fear and reservations keep them distant. As the world begins to crumble around them, Elena and Alex struggle to understand their feelings and find comfort in each other.\n\nAs global tensions rise and war echoes in the distance, their love faces unimaginable tests. With the arrival of the rain of fire, the narrative becomes dark and overwhelming, revealing the fragility of life and the power of love in desperate times."
+    },
+    {
+        "id": 16,
+        "titulo": "El Susurro de los Cerezos",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "14.52",
+        "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY425_.jpg",
+        "amazon": "https://a.co/d/foAHB5v",
+        "coleccion": null,
+        "palabras_clave": [
+            "aventura",
+            "japon",
+            "samurai",
+            "espiritu",
+            "fantasmas",
+            "gokai"
+        ],
+        "sinopsis": "En un mundo espiritual al borde del colapso, tres guerreros—Akira, un samurái marcado por su pasado; Mizuki, una sacerdotisa con un vínculo profundo con la energía del mundo; y Ryuu, un astuto kitsune con una actitud despreocupada—se embarcan en una misión para destruir los fragmentos de una antigua corrupción que amenaza con devorar la realidad.\n\nCada fragmento que eliminan los acerca a la verdad, pero también los cambia de maneras que nunca imaginaron. Cuando descubren que estos fragmentos no son solo vestigios de oscuridad, sino las piezas dispersas de un dios caído, su propósito se tambalea.\n\nAhora, con el último fragmento esperando en la mística Ciudad Eterna, deben tomar una decisión que definirá el destino de todo el mundo espiritual. ¿Deben destruirlo y borrar para siempre la existencia de este ser olvidado? ¿O permitir su renacimiento, arriesgándose a un futuro incierto?"
+    },
+    {
+        "id": 17,
+        "titulo": "GALACTIC SHADOWS",
+        "subtitulo": "",
+        "autor": "Na Books",
+        "precio": "14.11",
+        "imagen": "https://m.media-amazon.com/images/I/81rZW6Y0YyL._SY425_.jpg",
+        "amazon": "https://a.co/d/4I92kov",
+        "coleccion": null,
+        "palabras_clave": [
+            "espacio",
+            "detective",
+            "misterio",
+            "aventura"
+        ],
+        "sinopsis": "In the distant future, humanity has expanded across the stars, building sprawling civilizations amidst the vast expanse of space. But this newfound frontier is anything but peaceful. The galaxy is fractured—an unstable powder keg of political corruption, warring factions, and unchecked crime. At the center of this chaos is the Syndicate, a shadowy organization led by a mysterious and enigmatic figure known only as The Veil. Ruthless, cunning, and relentless, The Veil seeks to reshape the galaxy with Project Ecliptica, a dark plan that could unlock the power of an ancient alien rift and forever tip the balance of power.\n\nEnter Kael Soren, a hardened former detective turned renegade who has dedicated his life to stopping The Veil and dismantling the Syndicate. Haunted by the loss of his homeworld and driven by the weight of justice, Kael is no stranger to danger. Alongside his small but resourceful crew—Tovak, a brilliant hacker with a mysterious past, and Dax, a wisecracking pilot with a penchant for chaos—Kael uncovers the terrifying scope of The Veil’s plan: a massive ring known as the Nexus that could stabilize the rift and unleash an otherworldly force upon the galaxy."
     }
 ]
