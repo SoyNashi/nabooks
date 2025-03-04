@@ -1,11 +1,9 @@
-/* 🔥 TEMAS VISUALES */
-
 /* 🌌 ESPACIO - Efecto de estrellas */
 .tema-espacio {
     position: relative;
     overflow: hidden;
 }
-.tema-espacio::after {
+.tema-espacio::before {
     content: "";
     position: fixed;
     width: 100%;
@@ -13,7 +11,7 @@
     top: 0;
     left: 0;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
-    pointer-events: none;
+    z-index: -1;
 }
 
 /* ⚠️ RADIOACTIVO - Partículas verdes brillantes */
@@ -21,22 +19,24 @@
     position: relative;
     overflow: hidden;
 }
-.tema-radioactivo::after {
+.tema-radioactivo::before {
     content: "";
     position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background: radial-gradient(circle, rgba(0, 255, 0, 0.3) 5%, transparent 50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #0f0;
+    box-shadow: 
+        10vw 10vh 5px #0f0,
+        20vw 30vh 8px #0f0,
+        50vw 60vh 6px #0f0,
+        80vw 20vh 7px #0f0;
     animation: particulas-radioactivo 3s infinite linear;
-    pointer-events: none;
     z-index: -1;
 }
 @keyframes particulas-radioactivo {
-    0% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.1); }
-    100% { opacity: 0.2; transform: scale(1); }
+    0% { transform: translateY(0); opacity: 0.3; }
+    100% { transform: translateY(50px); opacity: 0; }
 }
 
 /* ❄️ NIEVE - Pequeñas partículas cayendo */
@@ -44,16 +44,19 @@
     position: relative;
     overflow: hidden;
 }
-.tema-nieve::after {
+.tema-nieve::before {
     content: "";
     position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 
+        10vw 10vh 3px #fff,
+        20vw 30vh 4px #fff,
+        50vw 60vh 3px #fff,
+        80vw 20vh 5px #fff;
     animation: nieve 5s linear infinite;
-    pointer-events: none;
     z-index: -1;
 }
 @keyframes nieve {
@@ -69,21 +72,15 @@
 .tema-humo::before {
     content: "";
     position: fixed;
-    width: 150%;
-    height: 150%;
+    width: 200%;
+    height: 200%;
     top: -50%;
-    left: -25%;
+    left: -50%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
     animation: humo 5s infinite alternate ease-in-out;
-    pointer-events: none;
     z-index: -1;
 }
 @keyframes humo {
     0% { transform: translateY(-10px); opacity: 0.2; }
     100% { transform: translateY(10px); opacity: 0.4; }
-}
-
-/* 🔺 GLITCH - Solo efecto RGB, sin animación */
-.tema-glitch {
-    text-shadow: 2px 0 red, -2px 0 cyan;
 }
