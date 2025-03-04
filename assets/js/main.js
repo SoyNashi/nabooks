@@ -34,7 +34,7 @@ function mostrarLibros(libros, grupos) {
             ${coleccionHTML}
             <p>${book.subtitulo}</p>
             <p><strong>$${book.precio}</strong></p>
-            <a href="detalle.html?id=${book.id}" class="btn-ver-mas">Ver más</a>
+            <a href="detalle.html?id=${book.id}" class="btn-ver-mas xd">Ver más</a>
         `;
         bookList.appendChild(bookItem);
 
