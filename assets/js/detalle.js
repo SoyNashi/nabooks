@@ -23,12 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // 📌 Extraer color de portada y aplicarlo como fondo
             const img = document.getElementById("portada");
+            img.src = libro.imagen;
+            img.crossOrigin = "anonymous"; // 🔹 SOLUCIÓN para el error de CORS
             img.onload = function () {
-                const colorThief = new ColorThief();
-                const color = colorThief.getColor(img);
-                const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                document.body.style.backgroundColor = rgbColor;
-                document.body.style.boxShadow = `inset 0px 0px 100px ${rgbColor}`;
+                try {
+                    const colorThief = new ColorThief();
+                    const color = colorThief.getColor(img);
+                    const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                    document.body.style.backgroundColor = rgbColor;
+                    document.body.style.boxShadow = `inset 0px 0px 100px ${rgbColor}`;
+                } catch (error) {
+                    console.error("Error al extraer color con Color Thief:", error);
+                }
             };
 
             // 📌 Aplicar efecto dinámico

@@ -29,14 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
             bookList.appendChild(bookItem);
 
             // 📌 Aplicar color de portada
-            const img = bookItem.querySelector(".portada");
-            img.onload = function () {
-                const colorThief = new ColorThief();
-                const color = colorThief.getColor(img);
-                const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                bookItem.style.backgroundColor = rgbColor;
-                bookItem.style.boxShadow = `0px 0px 10px ${rgbColor}`;
-            };
+                           const img = bookItem.querySelector(".portada");
+                img.crossOrigin = "anonymous"; // 🔹 SOLUCIÓN para evitar CORS
+                img.onload = function () {
+                    try {
+                        const colorThief = new ColorThief();
+                        const color = colorThief.getColor(img);
+                        const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                        bookItem.style.backgroundColor = rgbColor;
+                        bookItem.style.boxShadow = `0px 0px 10px ${rgbColor}`;
+                    } catch (error) {
+                        console.error("Error al extraer color con Color Thief:", error);
+                    }
+                };
         });
     }
 
