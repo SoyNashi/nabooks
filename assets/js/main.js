@@ -1,9 +1,12 @@
+let books = []; // 🔹 Definir la variable global
+
 document.addEventListener("DOMContentLoaded", () => {
     Promise.all([
         fetch("data/books.json").then(response => response.json()),
         fetch("data/grupos.json").then(response => response.json())
     ])
     .then(([libros, grupos]) => {
+        books = libros; // 🔹 Guardar los libros en la variable global
         mostrarLibros(libros, grupos);
     })
     .catch(error => console.error("Error al cargar datos:", error));
@@ -18,9 +21,23 @@ function mostrarLibros(libros, grupos) {
         // Encontrar la colección a la que pertenece el libro
         let grupo = grupos.find(g => g.libros_id.includes(book.id));
         let coleccionHTML = grupo 
-            ? `<p class="coleccion">Colección: <a href="grupos.html?id=${grupo.id}">${grupo.nombre}</a></p>` 
+            ? `<a class="coleccion" href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>` 
             : "";
 
+        const img = bookItem.querySelector(".portada");
+        img.crossOrigin = "anonymous";
+        img.onload = function () {
+            try {
+                const colorThief = new ColorThief();
+                const color = colorThief.getColor(img);
+                const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                bookItem.style.backgroundColor = rgbColor;
+                bookItem.style.boxShadow = `0px 0px 10px ${rgbColor}`;
+            } catch (error) {
+                console.error("Error al extraer color con Color Thief:", error);
+            }
+        };
+        
         const bookItem = document.createElement("div");
         bookItem.classList.add("book", `tema-${book.tema}`);
         bookItem.innerHTML = `
@@ -36,26 +53,28 @@ function mostrarLibros(libros, grupos) {
 }
 
 
-    // Filtros de búsqueda
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        const filteredBooks = books.filter(book => 
-            book.titulo.toLowerCase().includes(query) || 
-            book.subtitulo.toLowerCase().includes(query)
-        );
-        displayBooks(filteredBooks);
-    });
+// 📌 Buscar libros
+document.getElementById("search").addEventListener("input", () => {
+    const query = document.getElementById("search").value.toLowerCase();
+    const filteredBooks = books.filter(book => 
+        book.titulo.toLowerCase().includes(query) || 
+        book.subtitulo.toLowerCase().includes(query)
+    );
+    mostrarLibros(filteredBooks, []); // 🔹 Se mantiene vacío el segundo parámetro
+});
 
-    // Ordenar libros
-    filterSelect.addEventListener("change", () => {
-        const sortedBooks = [...books];
-        if (filterSelect.value === "titulo") {
-            sortedBooks.sort((a, b) => a.titulo.localeCompare(b.titulo));
-        } else if (filterSelect.value === "precio") {
-            sortedBooks.sort((a, b) => parseFloat(a.precio) - parseFloat(b.precio));
-        } else {
-            sortedBooks.sort((a, b) => b.id - a.id); // Orden por fecha (ID)
-        }
-        displayBooks(sortedBooks);
-    });
-
+// 📌 Ordenar libros
+document.getElementById("filter").addEventListener("change", () => {
+    const sortedBooks = [...books];
+    const filterValue = document.getElementById("filter").value;
+    
+    if (filterValue === "titulo") {
+        sortedBooks.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    } else if (filterValue === "precio") {
+        sortedBooks.sort((a, b) => parseFloat(a.precio) - parseFloat(b.precio));
+    } else {
+        sortedBooks.sort((a, b) => b.id - a.id); // Orden por fecha (ID)
+    }
+    
+    mostrarLibros(sortedBooks, []); // 🔹 Se mantiene vacío el segundo parámetro
+});
