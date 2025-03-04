@@ -1,4 +1,4 @@
-let books = []; // 🔹 Definir la variable global
+let books = []; // 🔹 Variable global para almacenar los libros
 
 document.addEventListener("DOMContentLoaded", () => {
     Promise.all([
@@ -24,6 +24,20 @@ function mostrarLibros(libros, grupos) {
             ? `<a class="coleccion" href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>` 
             : "";
 
+        // 📌 Crear la tarjeta del libro
+        const bookItem = document.createElement("div");
+        bookItem.classList.add("book", `tema-${book.tema}`);
+        bookItem.innerHTML = `
+            <img src="${book.imagen}" alt="${book.titulo}" class="portada">
+            <h2>${book.titulo}</h2>
+            ${coleccionHTML}  <!-- Solo se muestra si hay colección -->
+            <p>${book.subtitulo}</p>
+            <p><strong>$${book.precio}</strong></p>
+            <a href="detalle.html?id=${book.id}" class="btn-ver-mas">Ver más</a>
+        `;
+        bookList.appendChild(bookItem);
+
+        // 📌 Aplicar `Color Thief` después de que la imagen cargue
         const img = bookItem.querySelector(".portada");
         img.crossOrigin = "anonymous";
         img.onload = function () {
@@ -37,30 +51,17 @@ function mostrarLibros(libros, grupos) {
                 console.error("Error al extraer color con Color Thief:", error);
             }
         };
-        
-        const bookItem = document.createElement("div");
-        bookItem.classList.add("book", `tema-${book.tema}`);
-        bookItem.innerHTML = `
-            <img src="${book.imagen}" alt="${book.titulo}" class="portada">
-            <h2>${book.titulo}</h2>
-            ${coleccionHTML}  <!-- Solo se muestra si hay colección -->
-            <p>${book.subtitulo}</p>
-            <p><strong>$${book.precio}</strong></p>
-            <a href="detalle.html?id=${book.id}" class="btn-ver-mas">Ver más</a>
-        `;
-        bookList.appendChild(bookItem);
     });
 }
 
-
-// 📌 Buscar libros
+// 📌 Buscar libros en tiempo real
 document.getElementById("search").addEventListener("input", () => {
     const query = document.getElementById("search").value.toLowerCase();
     const filteredBooks = books.filter(book => 
         book.titulo.toLowerCase().includes(query) || 
         book.subtitulo.toLowerCase().includes(query)
     );
-    mostrarLibros(filteredBooks, []); // 🔹 Se mantiene vacío el segundo parámetro
+    mostrarLibros(filteredBooks, books); // 🔹 Se pasa la lista de libros correcta
 });
 
 // 📌 Ordenar libros
@@ -76,5 +77,5 @@ document.getElementById("filter").addEventListener("change", () => {
         sortedBooks.sort((a, b) => b.id - a.id); // Orden por fecha (ID)
     }
     
-    mostrarLibros(sortedBooks, []); // 🔹 Se mantiene vacío el segundo parámetro
+    mostrarLibros(sortedBooks, books); // 🔹 Se mantiene la referencia correcta
 });
