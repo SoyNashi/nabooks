@@ -261,7 +261,7 @@ footer a:hover {
 }
 
 /* 📱 Diseño para pantallas pequeñas */
-@media screen and (max-width: 768px) {
+@media screen and (max-device-width: 768px) {
     body {
         text-align: center;
         padding: 10px;
