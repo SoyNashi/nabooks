@@ -1,5 +1,5 @@
-let books = []; // 🔹 Variable global para almacenar los libros
-let grupos = []; // 🔹 Variable global para almacenar los grupos
+let books = [];
+let grupos = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     Promise.all([
@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("data/grupos.json").then(response => response.json())
     ])
     .then(([libros, gruposData]) => {
-        books = libros;  // 🔹 Guardar los libros en la variable global
-        grupos = gruposData;  // 🔹 Guardar los grupos en la variable global
+        books = libros;
+        grupos = gruposData;
         mostrarLibros(books, grupos);
     })
     .catch(error => console.error("Error al cargar datos:", error));
@@ -17,27 +17,28 @@ document.addEventListener("DOMContentLoaded", () => {
 // 📌 Mostrar libros en `index.html`
 function mostrarLibros(libros, grupos) {
     const bookList = document.getElementById("book-list");
+    if (!bookList) return; // 🔹 Evita errores si `book-list` no existe
     bookList.innerHTML = "";
 
     libros.forEach(book => {
-        // Encontrar la colección a la que pertenece el libro
         let grupo = grupos.find(g => g.libros_id.includes(book.id));
         let coleccionHTML = grupo 
             ? `<a class="coleccion-link" href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>` 
             : "";
 
-        // 📌 Crear la tarjeta del libro
         const bookItem = document.createElement("div");
         bookItem.classList.add("book", `tema-${book.tema}`);
         bookItem.innerHTML = `
             <img src="${book.imagen}" alt="${book.titulo}" class="portada">
             <h2>${book.titulo}</h2>
-            ${coleccionHTML}  <!-- Solo se muestra si hay colección -->
+            ${coleccionHTML}
             <p>${book.subtitulo}</p>
             <p><strong>$${book.precio}</strong></p>
             <a href="detalle.html?id=${book.id}" class="btn-ver-mas">Ver más</a>
         `;
         bookList.appendChild(bookItem);
+
+
 
         // 📌 Aplicar `Color Thief` después de que la imagen cargue
         const img = bookItem.querySelector(".portada");
