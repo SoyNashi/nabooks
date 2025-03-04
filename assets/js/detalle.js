@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Cargar detalles
             document.getElementById("book-title").textContent = book.titulo;
-            document.getElementById("book-image").src = `assets/img/${book.imagen}`;
+            document.getElementById("book-image").src = `${book.imagen}`;
             document.getElementById("book-subtitle").textContent = book.subtitulo;
             document.getElementById("book-description").textContent = book.descripcion || "Descripción no disponible.";
             document.getElementById("book-price").textContent = book.precio;
