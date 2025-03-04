@@ -14,19 +14,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     // Mostrar libros en la página
-    function displayBooks(bookArray) {
+  function displayBooks(bookArray) {
         bookList.innerHTML = ""; // Limpiar lista antes de mostrar
         bookArray.forEach(book => {
             const bookItem = document.createElement("div");
             bookItem.classList.add("book");
             bookItem.innerHTML = `
-                <img src="${book.imagen}" alt="${book.titulo}">
+                <img src="${book.imagen}" alt="${book.titulo}" class="portada">
                 <h2>${book.titulo}</h2>
                 <p>${book.subtitulo}</p>
                 <p><strong>$${book.precio}</strong></p>
                 <a href="detalle.html?id=${book.id}">Ver más</a>
             `;
             bookList.appendChild(bookItem);
+
+            // 📌 Aplicar color de portada
+            const img = bookItem.querySelector(".portada");
+            img.onload = function () {
+                const colorThief = new ColorThief();
+                const color = colorThief.getColor(img);
+                const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                bookItem.style.backgroundColor = rgbColor;
+                bookItem.style.boxShadow = `0px 0px 10px ${rgbColor}`;
+            };
         });
     }
 
