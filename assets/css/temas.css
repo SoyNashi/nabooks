@@ -1,4 +1,4 @@
-/* 🌌 ESPACIO - Efecto de estrellas */
+/* 🌌 ESPACIO - Muchas estrellas */
 .tema-espacio {
     position: relative;
     overflow: hidden;
@@ -6,15 +6,27 @@
 .tema-espacio::before {
     content: "";
     position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 
+        10vw 5vh 2px white,
+        20vw 15vh 3px white,
+        30vw 40vh 2px white,
+        50vw 70vh 3px white,
+        60vw 10vh 4px white,
+        80vw 80vh 2px white,
+        90vw 50vh 3px white;
+    animation: estrellas 10s linear infinite;
     z-index: -1;
 }
+@keyframes estrellas {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
 
-/* ⚠️ RADIOACTIVO - Partículas verdes brillantes */
+/* ⚠️ RADIOACTIVO - Más partículas verdes brillantes */
 .tema-radioactivo {
     position: relative;
     overflow: hidden;
@@ -27,19 +39,24 @@
     border-radius: 50%;
     background: #0f0;
     box-shadow: 
-        10vw 10vh 5px #0f0,
-        20vw 30vh 8px #0f0,
-        50vw 60vh 6px #0f0,
-        80vw 20vh 7px #0f0;
+        5vw 10vh 4px #0f0,
+        15vw 20vh 5px #0f0,
+        25vw 30vh 6px #0f0,
+        35vw 40vh 7px #0f0,
+        50vw 50vh 8px #0f0,
+        65vw 60vh 5px #0f0,
+        75vw 70vh 6px #0f0,
+        85vw 80vh 7px #0f0,
+        95vw 90vh 8px #0f0;
     animation: particulas-radioactivo 3s infinite linear;
     z-index: -1;
 }
 @keyframes particulas-radioactivo {
     0% { transform: translateY(0); opacity: 0.3; }
-    100% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(100vh); opacity: 0; }
 }
 
-/* ❄️ NIEVE - Pequeñas partículas cayendo */
+/* ❄️ NIEVE - Más copos de nieve */
 .tema-nieve {
     position: relative;
     overflow: hidden;
@@ -52,19 +69,25 @@
     border-radius: 50%;
     background: #fff;
     box-shadow: 
-        10vw 10vh 3px #fff,
-        20vw 30vh 4px #fff,
-        50vw 60vh 3px #fff,
-        80vw 20vh 5px #fff;
-    animation: nieve 5s linear infinite;
+        10vw 5vh 3px #fff,
+        20vw 10vh 4px #fff,
+        30vw 20vh 5px #fff,
+        40vw 30vh 6px #fff,
+        50vw 40vh 7px #fff,
+        60vw 50vh 8px #fff,
+        70vw 60vh 5px #fff,
+        80vw 70vh 6px #fff,
+        90vw 80vh 7px #fff,
+        95vw 90vh 8px #fff;
+    animation: nieve 7s linear infinite;
     z-index: -1;
 }
 @keyframes nieve {
-    0% { transform: translateY(0); opacity: 0.5; }
+    0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
 
-/* 🌫 HUMO - Neblina estática */
+/* 🌫 HUMO - Más denso */
 .tema-humo {
     position: relative;
     overflow: hidden;
@@ -76,11 +99,12 @@
     height: 200%;
     top: -50%;
     left: -50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
     animation: humo 5s infinite alternate ease-in-out;
+    opacity: 0.5;
     z-index: -1;
 }
 @keyframes humo {
-    0% { transform: translateY(-10px); opacity: 0.2; }
-    100% { transform: translateY(10px); opacity: 0.4; }
+    0% { transform: translateY(-20px); opacity: 0.3; }
+    100% { transform: translateY(20px); opacity: 0.5; }
 }
