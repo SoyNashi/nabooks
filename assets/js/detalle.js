@@ -20,15 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 📌 Encontrar la colección a la que pertenece el libro
         let grupo = grupos.find(g => g.libros_id.includes(libro.id));
+        let coleccionElemento = document.getElementById("coleccion");
+
         if (grupo) {
-            document.getElementById("coleccion").innerHTML = 
+            coleccionElemento.innerHTML = 
                 `Colección: <a href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>`;
         } else {
-            document.getElementById("coleccion").textContent = "Colección: Independiente";
+            coleccionElemento.style.display = "none"; // 🔹 Si no tiene colección, ocultar
         }
     })
     .catch(error => console.error("Error al cargar los datos:", error));
 });
+
 
 
 
