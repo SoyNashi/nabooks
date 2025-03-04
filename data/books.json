@@ -1,5 +1,5 @@
 [
-  {
+{
     "id": 1,
     "titulo": "El Reino Perdido",
     "subtitulo": "Una aventura medieval épica",
@@ -9,102 +9,8 @@
     "amazon": "https://amazon.com/reino-perdido",
     "coleccion": "Saga de los Reinos",
     "palabras_clave": ["medieval", "espadas", "aventura"],
-    "tema": "espacio"
-  },
-  {
-    "id": 2,
-    "titulo": "Samurái del Amanecer",
-    "subtitulo": "Honor y venganza en el Japón feudal",
-    "autor": "Hiroshi Tanaka",
-    "precio": "12.99",
-    "imagen": "https://m.media-amazon.com/images/I/81WzBt-nr0L._SY466_.jpg",
-    "amazon": "https://amazon.com/samurai-amanecer",
-    "coleccion": "Leyendas del Sol Naciente",
-    "palabras_clave": ["japones", "samurai", "batallas"],
-    "tema": "radioactivo"
-  },
-  {
-    "id": 3,
-    "titulo": "Samurái del Amanecer",
-    "subtitulo": "Honor y venganza en el Japón feudal",
-    "autor": "Hiroshi Tanaka",
-    "precio": "12.99",
-    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
-    "amazon": "https://amazon.com/samurai-amanecer",
-    "coleccion": "Leyendas del Sol Naciente",
-    "palabras_clave": ["japones", "samurai", "batallas"],
-    "tema": "nieve"
-  },
-  {
-    "id": 4,
-    "titulo": "Samurái del Amanecer",
-    "subtitulo": "Honor y venganza en el Japón feudal",
-    "autor": "Hiroshi Tanaka",
-    "precio": "12.99",
-    "imagen": "https://m.media-amazon.com/images/I/81WzBt-nr0L._SY466_.jpg",
-    "amazon": "https://amazon.com/samurai-amanecer",
-    "coleccion": "Leyendas del Sol Naciente",
-    "palabras_clave": ["japones", "samurai", "batallas"],
-    "tema": "humo"
-  },
-  {
-    "id": 6,
-    "titulo": "Samurái del Amanecer",
-    "subtitulo": "Honor y venganza en el Japón feudal",
-    "autor": "Hiroshi Tanaka",
-    "precio": "12.99",
-    "imagen": "https://m.media-amazon.com/images/I/81WzBt-nr0L._SY466_.jpg",
-    "amazon": "https://amazon.com/samurai-amanecer",
-    "coleccion": "Leyendas del Sol Naciente",
-    "palabras_clave": ["japones", "samurai", "batallas"],
-    "tema": "japones"
-  },
-  {
-    "id": 5,
-    "titulo": "El Reino Perdido",
-    "subtitulo": "Una aventura medieval épica",
-    "autor": "J. R. Smith",
-    "precio": "14.99",
-    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
-    "amazon": "https://amazon.com/reino-perdido",
-    "coleccion": "Saga de los Reinos",
-    "palabras_clave": ["medieval", "espadas", "aventura"],
-    "tema": "medieval"
-  },
-  {
-    "id": 15,
-    "titulo": "El Reino Perdido",
-    "subtitulo": "Una aventura medieval épica",
-    "autor": "J. R. Smith",
-    "precio": "14.99",
-    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
-    "amazon": "https://amazon.com/reino-perdido",
-    "coleccion": "Saga de los Reinos",
-    "palabras_clave": ["medieval", "espadas", "aventura"],
-    "tema": "glitch"
-  },
-  {
-    "id": 25,
-    "titulo": "El Reino Perdido",
-    "subtitulo": "Una aventura medieval épica",
-    "autor": "J. R. Smith",
-    "precio": "14.99",
-    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
-    "amazon": "https://amazon.com/reino-perdido",
-    "coleccion": "Saga de los Reinos",
-    "palabras_clave": ["medieval", "espadas", "aventura"],
-    "tema": "medieval"
-  },
-  {
-    "id": 35,
-    "titulo": "El Reino Perdido",
-    "subtitulo": "Una aventura medieval épica",
-    "autor": "J. R. Smith",
-    "precio": "14.99",
-    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
-    "amazon": "https://amazon.com/reino-perdido",
-    "coleccion": "Saga de los Reinos",
-    "palabras_clave": ["medieval", "espadas", "aventura"],
-    "tema": "medieval"
-  }
+    "tema": "espacio",
+    "sinopsis": "En un mundo olvidado por el tiempo, un joven príncipe debe reclamar su trono enfrentando fuerzas oscuras y enemigos mortales. ¿Podrá restaurar el Reino Perdido?"
+},
+
 ]

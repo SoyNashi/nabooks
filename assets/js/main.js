@@ -1,13 +1,15 @@
 let books = []; // 🔹 Variable global para almacenar los libros
+let grupos = []; // 🔹 Variable global para almacenar los grupos
 
 document.addEventListener("DOMContentLoaded", () => {
     Promise.all([
         fetch("data/books.json").then(response => response.json()),
         fetch("data/grupos.json").then(response => response.json())
     ])
-    .then(([libros, grupos]) => {
-        books = libros; // 🔹 Guardar los libros en la variable global
-        mostrarLibros(libros, grupos);
+    .then(([libros, gruposData]) => {
+        books = libros;  // 🔹 Guardar los libros en la variable global
+        grupos = gruposData;  // 🔹 Guardar los grupos en la variable global
+        mostrarLibros(books, grupos);
     })
     .catch(error => console.error("Error al cargar datos:", error));
 });
@@ -30,8 +32,8 @@ function mostrarLibros(libros, grupos) {
         bookItem.innerHTML = `
             <img src="${book.imagen}" alt="${book.titulo}" class="portada">
             <h2>${book.titulo}</h2>
-            <p>${book.subtitulo}</p>
             ${coleccionHTML}  <!-- Solo se muestra si hay colección -->
+            <p>${book.subtitulo}</p>
             <p><strong>$${book.precio}</strong></p>
             <a href="detalle.html?id=${book.id}" class="btn-ver-mas">Ver más</a>
         `;
@@ -61,12 +63,12 @@ document.getElementById("search").addEventListener("input", () => {
         book.titulo.toLowerCase().includes(query) || 
         book.subtitulo.toLowerCase().includes(query)
     );
-    mostrarLibros(filteredBooks, books); // 🔹 Se pasa la lista de libros correcta
+    mostrarLibros(filteredBooks, grupos); // 🔹 Se pasa `grupos` correctamente
 });
 
 // 📌 Ordenar libros
 document.getElementById("filter").addEventListener("change", () => {
-    const sortedBooks = [...books];
+    const sortedBooks = [...books]; // Copia del array original
     const filterValue = document.getElementById("filter").value;
     
     if (filterValue === "titulo") {
@@ -77,5 +79,5 @@ document.getElementById("filter").addEventListener("change", () => {
         sortedBooks.sort((a, b) => b.id - a.id); // Orden por fecha (ID)
     }
     
-    mostrarLibros(sortedBooks, books); // 🔹 Se mantiene la referencia correcta
+    mostrarLibros(sortedBooks, grupos); // 🔹 Se pasa `grupos` correctamente
 });

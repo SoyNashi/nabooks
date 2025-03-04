@@ -335,7 +335,16 @@ footer a:hover {
 }
 
 
-
+/* 📌 Sinopsis del libro */
+#sinopsis {
+    font-size: 1rem;
+    color: #ddd;
+    text-align: justify;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
 
 
 

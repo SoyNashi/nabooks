@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de JSON (Libros y Grupos)</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #121212; color: white; text-align: center; }
+        input, button, textarea { margin: 5px; padding: 8px; border-radius: 5px; border: none; }
+        button { cursor: pointer; background: #00ffea; color: black; }
+        button:hover { background: #00b7c3; }
+        textarea { width: 80%; height: 150px; background: #222; color: #00ffea; }
+        .container { display: flex; justify-content: space-around; margin-top: 20px; }
+        .section { width: 45%; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>📚 Editor de `books.json` y `grupos.json`</h1>
+
+    <div class="container">
+        <!-- 📖 Sección de Libros -->
+        <div class="section">
+            <h2>Añadir Libro</h2>
+            <input type="text" id="titulo" placeholder="Título">
+            <input type="text" id="subtitulo" placeholder="Subtítulo">
+            <input type="text" id="autor" placeholder="Autor">
+            <input type="text" id="precio" placeholder="Precio (Ej: 14.99)">
+            <input type="text" id="imagen" placeholder="URL de la imagen">
+            <input type="text" id="amazon" placeholder="URL de Amazon">
+            <input type="text" id="coleccion" placeholder="Colección (Opcional)">
+            <input type="text" id="tema" placeholder="Tema (Ej: medieval, japonés)">
+            <input type="text" id="palabras" placeholder="Palabras clave (Ej: aventura, magia)">
+            <textarea id="sinopsis" placeholder="Sinopsis del libro"></textarea>
+            <button onclick="agregarLibro()">Añadir Libro</button>
+            <h3>📄 books.json</h3>
+            <textarea id="books-json" readonly></textarea>
+            <button onclick="descargarJSON('books.json', books)">Descargar books.json</button>
+        </div>
+
+        <!-- 📂 Sección de Grupos -->
+        <div class="section">
+            <h2>Añadir Grupo</h2>
+            <input type="text" id="nombreGrupo" placeholder="Nombre del Grupo">
+            <input type="text" id="temaGrupo" placeholder="Tema del Grupo">
+            <input type="text" id="librosGrupo" placeholder="IDs de libros (Ej: 1,2,3)">
+            <button onclick="agregarGrupo()">Añadir Grupo</button>
+            <h3>📄 grupos.json</h3>
+            <textarea id="grupos-json" readonly></textarea>
+            <button onclick="descargarJSON('grupos.json', grupos)">Descargar grupos.json</button>
+        </div>
+    </div>
+
+    <script>
+        let books = [];
+        let grupos = [];
+
+        function agregarLibro() {
+            let nuevoLibro = {
+                id: books.length + 1,
+                titulo: document.getElementById("titulo").value,
+                subtitulo: document.getElementById("subtitulo").value,
+                autor: document.getElementById("autor").value,
+                precio: document.getElementById("precio").value,
+                imagen: document.getElementById("imagen").value,
+                amazon: document.getElementById("amazon").value,
+                coleccion: document.getElementById("coleccion").value || null,
+                palabras_clave: document.getElementById("palabras").value.split(",").map(p => p.trim()),
+                tema: document.getElementById("tema").value,
+                sinopsis: document.getElementById("sinopsis").value
+            };
+            books.push(nuevoLibro);
+            document.getElementById("books-json").value = JSON.stringify(books, null, 4);
+            limpiarCamposLibro();
+        }
+
+        function limpiarCamposLibro() {
+            document.getElementById("titulo").value = "";
+            document.getElementById("subtitulo").value = "";
+            document.getElementById("autor").value = "";
+            document.getElementById("precio").value = "";
+            document.getElementById("imagen").value = "";
+            document.getElementById("amazon").value = "";
+            document.getElementById("coleccion").value = "";
+            document.getElementById("tema").value = "";
+            document.getElementById("palabras").value = "";
+            document.getElementById("sinopsis").value = "";
+        }
+
+        function agregarGrupo() {
+            let nuevoGrupo = {
+                id: grupos.length + 1,
+                nombre: document.getElementById("nombreGrupo").value,
+                tema: document.getElementById("temaGrupo").value,
+                libros_id: document.getElementById("librosGrupo").value.split(",").map(id => parseInt(id.trim()))
+            };
+            grupos.push(nuevoGrupo);
+            document.getElementById("grupos-json").value = JSON.stringify(grupos, null, 4);
+            limpiarCamposGrupo();
+        }
+
+        function limpiarCamposGrupo() {
+            document.getElementById("nombreGrupo").value = "";
+            document.getElementById("temaGrupo").value = "";
+            document.getElementById("librosGrupo").value = "";
+        }
+
+        function descargarJSON(nombreArchivo, datos) {
+            const blob = new Blob([JSON.stringify(datos, null, 4)], { type: "application/json" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = nombreArchivo;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+
+</body>
+</html>

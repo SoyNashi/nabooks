@@ -18,6 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("btn-tapa-blanda").href = libro.amazon;
         document.getElementById("btn-kindle").href = libro.amazon;
 
+        // 📌 Mostrar sinopsis si existe
+        let sinopsisElemento = document.getElementById("sinopsis");
+        if (libro.sinopsis) {
+            sinopsisElemento.textContent = libro.sinopsis;
+        } else {
+            sinopsisElemento.style.display = "none"; // 🔹 Ocultar si no hay sinopsis
+        }
+
         // 📌 Mostrar colección si existe
         let grupo = grupos.find(g => g.libros_id.includes(libro.id));
         let coleccionElemento = document.getElementById("coleccion");
