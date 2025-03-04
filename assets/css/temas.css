@@ -1,85 +1,117 @@
-/* Estilos generales para las cajas de libros */
-.libro {
-  padding: 20px;
-  margin: 15px;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  color: #fff;
+/* 🔥 Temas Dinámicos */
+
+/* 🌌 ESPACIO - Efecto de estrellas */
+.tema-espacio {
+    background: radial-gradient(circle, #000428, #004e92);
+    color: #ffffff;
+}
+.tema-espacio::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 10%);
+    opacity: 0.3;
+    pointer-events: none;
 }
 
-/* Tema medieval */
-.tema-medieval {
-  background-color: #3e2723; /* Marrón oscuro */
-  border: 5px solid #d7ccc8; /* Beige claro */
+/* ⚠️ RADIOACTIVO - Partículas verdes brillantes */
+.tema-radioactivo {
+    background: #1a1a1a;
+    color: #0f0;
+}
+.tema-radioactivo::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.3) 5%, transparent 20%);
+    opacity: 0.2;
+    pointer-events: none;
 }
 
-.tema-medieval::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  border: 2px solid #fff;
-  border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><line x1="0" y1="50" x2="100" y2="50" stroke="white" stroke-width="10"/><line x1="50" y1="0" x2="50" y2="100" stroke="white" stroke-width="10"/></svg>') 10;
-  pointer-events: none;
+/* ❄️ NIEVE - Pequeñas partículas cayendo */
+.tema-nieve {
+    background: #1e3a5f;
+    color: #fff;
+}
+.tema-nieve::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    animation: nieve 5s linear infinite;
+    pointer-events: none;
+}
+@keyframes nieve {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100px); }
 }
 
-/* Tema japonés */
-.tema-japones {
-  background-color: #1b5e20; /* Verde oscuro */
-  border: 5px solid #a5d6a7; /* Verde claro */
-}
-
-.tema-japones::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  border: 2px solid #fff;
-  border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><line x1="0" y1="50" x2="100" y2="50" stroke="white" stroke-width="10"/><line x1="50" y1="0" x2="50" y2="100" stroke="white" stroke-width="10"/></svg>') 10;
-  pointer-events: none;
-}
-
-/* Efecto de partículas de humo */
+/* 🌫 HUMO - Neblina estática */
 .tema-humo {
-  background-color: #212121; /* Gris oscuro */
+    background: #1a1a1a;
+    color: white;
 }
-
 .tema-humo::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(255,255,255,0));
-  animation: humo 5s infinite;
-  pointer-events: none;
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0.5;
+    pointer-events: none;
 }
 
-@keyframes humo {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.1); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+/* 🏰 MEDIEVAL - Bordes dorados con efecto de pergamino */
+.tema-medieval {
+    background: linear-gradient(to bottom, #4b3621, #1a1a1a);
+    color: #e4c16f;
+    border: 5px solid gold;
+}
+.tema-medieval::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 10px, transparent 20px);
+    opacity: 0.2;
+    pointer-events: none;
 }
 
-/* Efecto glitch */
+/* 🎴 JAPONÉS - Bordes rojos con textura de papel antiguo */
+.tema-japones {
+    background: #f4e2c8;
+    color: #b71c1c;
+    border: 5px solid red;
+}
+.tema-japones::before {
+    content: "⛩";
+    font-size: 4rem;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: rgba(255, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+/* 🔺 GLITCH - Distorsión RGB */
 .tema-glitch {
-  background-color: #000;
-  color: #fff;
-  text-shadow: 2px 0 red, -2px 0 cyan;
-  animation: glitch 1s infinite;
+    background: black;
+    color: white;
+    text-shadow: 2px 0 red, -2px 0 cyan;
+    animation: glitch 0.5s infinite;
 }
-
 @keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+    0% { transform: skewX(0deg); }
+    20% { transform: skewX(5deg); }
+    40% { transform: skewX(-5deg); }
+    60% { transform: skewX(5deg); }
+    80% { transform: skewX(-5deg); }
+    100% { transform: skewX(0deg); }
 }

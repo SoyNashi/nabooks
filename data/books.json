@@ -9,7 +9,7 @@
     "amazon": "https://amazon.com/reino-perdido",
     "coleccion": "Saga de los Reinos",
     "palabras_clave": ["medieval", "espadas", "aventura"],
-    "tema": "medieval"
+    "tema": "espacio"
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "amazon": "https://amazon.com/samurai-amanecer",
     "coleccion": "Leyendas del Sol Naciente",
     "palabras_clave": ["japones", "samurai", "batallas"],
-    "tema": "japones"
+    "tema": "radioactivo"
   },
   {
     "id": 3,
@@ -33,7 +33,7 @@
     "amazon": "https://amazon.com/samurai-amanecer",
     "coleccion": "Leyendas del Sol Naciente",
     "palabras_clave": ["japones", "samurai", "batallas"],
-    "tema": "humo"
+    "tema": "nieve"
   },
   {
     "id": 4,
@@ -45,7 +45,7 @@
     "amazon": "https://amazon.com/samurai-amanecer",
     "coleccion": "Leyendas del Sol Naciente",
     "palabras_clave": ["japones", "samurai", "batallas"],
-    "tema": "glitch"
+    "tema": "humo"
   },
   {
     "id": 6,
@@ -61,6 +61,42 @@
   },
   {
     "id": 5,
+    "titulo": "El Reino Perdido",
+    "subtitulo": "Una aventura medieval épica",
+    "autor": "J. R. Smith",
+    "precio": "14.99",
+    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
+    "amazon": "https://amazon.com/reino-perdido",
+    "coleccion": "Saga de los Reinos",
+    "palabras_clave": ["medieval", "espadas", "aventura"],
+    "tema": "medieval"
+  },
+  {
+    "id": 15,
+    "titulo": "El Reino Perdido",
+    "subtitulo": "Una aventura medieval épica",
+    "autor": "J. R. Smith",
+    "precio": "14.99",
+    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
+    "amazon": "https://amazon.com/reino-perdido",
+    "coleccion": "Saga de los Reinos",
+    "palabras_clave": ["medieval", "espadas", "aventura"],
+    "tema": "glitch"
+  },
+  {
+    "id": 25,
+    "titulo": "El Reino Perdido",
+    "subtitulo": "Una aventura medieval épica",
+    "autor": "J. R. Smith",
+    "precio": "14.99",
+    "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY466_.jpg",
+    "amazon": "https://amazon.com/reino-perdido",
+    "coleccion": "Saga de los Reinos",
+    "palabras_clave": ["medieval", "espadas", "aventura"],
+    "tema": "medieval"
+  },
+  {
+    "id": 35,
     "titulo": "El Reino Perdido",
     "subtitulo": "Una aventura medieval épica",
     "autor": "J. R. Smith",
