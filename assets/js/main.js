@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const bookItem = document.createElement("div");
             bookItem.classList.add("book");
             bookItem.innerHTML = `
-                <img src="assets/img/${book.imagen}" alt="${book.titulo}">
+                <img src="${book.imagen}" alt="${book.titulo}">
                 <h2>${book.titulo}</h2>
                 <p>${book.subtitulo}</p>
                 <p><strong>$${book.precio}</strong></p>
