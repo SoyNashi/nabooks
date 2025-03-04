@@ -260,35 +260,77 @@ footer a:hover {
     color: #00b3a4;
 }
 
-/* 📱 Ajustes para móviles */
+/* 📱 Diseño para pantallas pequeñas */
 @media screen and (max-width: 768px) {
     body {
         text-align: center;
         padding: 10px;
     }
 
+    /* 📌 Contenedor de la página de detalles */
     .detalle-container {
+        display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        padding-top: 80px; /* Evita que la imagen quede pegada al header */
+    }
+
+    /* 📌 Imagen del libro arriba y ajustada */
+    .detalle-imagen {
+        order: -1; /* Mueve la imagen arriba */
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     .detalle-imagen img {
-        width: 90%; /* 📌 La imagen ocupa el 90% de la pantalla */
+        width: 90%; /* 📌 Imagen ocupa casi todo el ancho */
         max-width: 300px;
+        border-radius: 10px;
     }
 
+    /* 📌 Sección de información del libro */
     .detalle-info {
         width: 100%;
         padding: 10px;
+        text-align: center;
     }
 
+    .detalle-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .detalle-info p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    /* 📌 Botones de compra */
     .detalle-botones {
+        display: flex;
         flex-direction: column;
+        align-items: center;
         width: 100%;
+        margin-top: 15px;
     }
 
     .detalle-botones a {
         width: 80%;
+        max-width: 300px;
         margin-bottom: 10px; /* 📌 Espacio entre botones */
+        padding: 12px;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    /* 📌 Botón de volver mejorado */
+    .btn-volver {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        padding: 10px 15px;
+        font-size: 1rem;
     }
 }
+
