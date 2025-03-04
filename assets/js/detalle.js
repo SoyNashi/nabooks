@@ -2,46 +2,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const libroId = parseInt(urlParams.get("id"));
 
-    fetch("data/books.json")
-        .then(response => response.json())
-        .then(libros => {
-            const libro = libros.find(l => l.id === libroId);
-            if (!libro) return;
+    Promise.all([
+        fetch("data/books.json").then(response => response.json()),
+        fetch("data/grupos.json").then(response => response.json())
+    ])
+    .then(([libros, grupos]) => {
+        const libro = libros.find(l => l.id === libroId);
+        if (!libro) return;
 
-            document.body.className = `tema-${libro.tema} detalle`;
+        document.getElementById("portada").src = libro.imagen;
+        document.getElementById("titulo").textContent = libro.titulo;
+        document.getElementById("subtitulo").textContent = libro.subtitulo;
+        document.getElementById("descripcion").textContent = libro.descripcion;
+        document.getElementById("precio").textContent = `Precio: $${libro.precio}`;
+        document.getElementById("btn-tapa-blanda").href = libro.amazon;
+        document.getElementById("btn-kindle").href = libro.amazon;
 
-            // 📌 Cargar detalles del libro
-            document.getElementById("portada").src = libro.imagen;
-            document.getElementById("titulo").textContent = libro.titulo;
-            document.getElementById("subtitulo").textContent = libro.subtitulo || "";
-            document.getElementById("descripcion").textContent = libro.descripcion || "Descripción no disponible.";
-            document.getElementById("precio").textContent = `Precio: $${libro.precio}`;
-            document.getElementById("btn-tapa-blanda").href = libro.amazon;
-            document.getElementById("btn-kindle").href = libro.amazon;
-
-            // 📌 Extraer color de portada y aplicarlo como fondo
-            const img = document.getElementById("portada");
-            img.src = libro.imagen;
-            img.crossOrigin = "anonymous"; // 🔹 SOLUCIÓN para el error de CORS
-            img.onload = function () {
-                try {
-                    const colorThief = new ColorThief();
-                    const color = colorThief.getColor(img);
-                    const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                    document.body.style.backgroundColor = rgbColor;
-                    document.body.style.boxShadow = `inset 0px 0px 100px ${rgbColor}`;
-                } catch (error) {
-                    console.error("Error al extraer color con Color Thief:", error);
-                }
-            };
-
-            // 📌 Aplicar efecto dinámico
-            aplicarEfecto(libro.efecto);
-            // 📌 Cargar libros relacionados
-            cargarLibrosRelacionados(libro);
-
-        });
+        // 📌 Encontrar la colección a la que pertenece
+        let grupo = grupos.find(g => g.libros_id.includes(libro.id));
+        if (grupo) {
+            document.getElementById("coleccion").innerHTML = 
+                `Colección: <a href="grupos.html">${grupo.nombre}</a>`;
+        } else {
+            document.getElementById("coleccion").textContent = "Colección: Independiente";
+        }
+    })
+    .catch(error => console.error("Error al cargar los datos:", error));
 });
+
 
 // 📌 Función para efectos visuales según el tipo de libro
 function aplicarEfecto(efecto) {

@@ -1,49 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
+    Promise.all([
+        fetch("data/books.json").then(response => response.json()),
+        fetch("data/grupos.json").then(response => response.json())
+    ])
+    .then(([libros, grupos]) => {
+        mostrarLibros(libros, grupos);
+    })
+    .catch(error => console.error("Error al cargar datos:", error));
+});
+
+// 📌 Mostrar libros en `index.html`
+function mostrarLibros(libros, grupos) {
     const bookList = document.getElementById("book-list");
-    const searchInput = document.getElementById("search");
-    const filterSelect = document.getElementById("filter");
+    bookList.innerHTML = "";
 
-    let books = [];
+    libros.forEach(book => {
+        // Encontrar la colección a la que pertenece el libro
+        let grupo = grupos.find(g => g.libros_id.includes(book.id));
+        let coleccionNombre = grupo ? grupo.nombre : "Independiente";
 
-    // Cargar libros desde books.json
-    fetch("data/books.json")
-        .then(response => response.json())
-        .then(data => {
-            books = data;
-            displayBooks(books);
-        });
-
-    // Mostrar libros en la página
-  function displayBooks(bookArray) {
-        bookList.innerHTML = ""; // Limpiar lista antes de mostrar
-        bookArray.forEach(book => {
-            const bookItem = document.createElement("div");
-                bookItem.classList.add("book", `tema-${book.tema}`);
-            bookItem.innerHTML = `
-                <img src="${book.imagen}" alt="${book.titulo}" class="portada">
-                <h2>${book.titulo}</h2>
-                <p>${book.subtitulo}</p>
-                <p><strong>$${book.precio}</strong></p>
-                <a href="detalle.html?id=${book.id}">Ver más</a>
-            `;
-            bookList.appendChild(bookItem);
-
-            // 📌 Aplicar color de portada
-                           const img = bookItem.querySelector(".portada");
-                img.crossOrigin = "anonymous"; // 🔹 SOLUCIÓN para evitar CORS
-                img.onload = function () {
-                    try {
-                        const colorThief = new ColorThief();
-                        const color = colorThief.getColor(img);
-                        const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                        bookItem.style.backgroundColor = rgbColor;
-                        bookItem.style.boxShadow = `0px 0px 10px ${rgbColor}`;
-                    } catch (error) {
-                        console.error("Error al extraer color con Color Thief:", error);
-                    }
-                };
-        });
-    }
+        const bookItem = document.createElement("div");
+        bookItem.classList.add("book", `tema-${book.tema}`);
+        bookItem.innerHTML = `
+            <img src="${book.imagen}" alt="${book.titulo}" class="portada">
+            <h2>${book.titulo}</h2>
+            <p>${book.subtitulo}</p>
+            <p><strong>$${book.precio}</strong></p>
+            <p class="coleccion">Colección: ${coleccionNombre}</p>
+            <a href="detalle.html?id=${book.id}">Ver más</a>
+        `;
+        bookList.appendChild(bookItem);
+    });
+}
 
     // Filtros de búsqueda
     searchInput.addEventListener("input", () => {
@@ -67,4 +55,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         displayBooks(sortedBooks);
     });
-});
+

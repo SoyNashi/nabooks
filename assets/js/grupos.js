@@ -1,45 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("data/books.json")
-        .then(response => response.json())
-        .then(libros => {
-            const colecciones = agruparPorColeccion(libros);
-            mostrarColecciones(colecciones);
-        })
-        .catch(error => console.error("Error al cargar libros:", error));
+    Promise.all([
+        fetch("data/books.json").then(response => response.json()),
+        fetch("data/grupos.json").then(response => response.json())
+    ])
+    .then(([libros, grupos]) => {
+        mostrarGrupos(libros, grupos);
+    })
+    .catch(error => console.error("Error al cargar datos:", error));
 });
 
-// 📌 Agrupar libros por colección
-function agruparPorColeccion(libros) {
-    const colecciones = {};
-    libros.forEach(libro => {
-        if (!colecciones[libro.coleccion]) {
-            colecciones[libro.coleccion] = { 
-                nombre: libro.coleccion, 
-                tema: libro.tema,
-                libros: [] 
-            };
-        }
-        colecciones[libro.coleccion].libros.push(libro);
-    });
-    return Object.values(colecciones);
-}
-
-// 📌 Mostrar colecciones en grupos.html
-function mostrarColecciones(colecciones) {
+// 📌 Mostrar Grupos en `grupos.html`
+function mostrarGrupos(libros, grupos) {
     const contenedor = document.getElementById("colecciones-container");
     contenedor.innerHTML = "";
 
-    colecciones.forEach(coleccion => {
+    grupos.forEach(grupo => {
         let coleccionHTML = document.createElement("div");
-        coleccionHTML.classList.add("coleccion", coleccion.tema);
+        coleccionHTML.classList.add("coleccion", `tema-${grupo.tema}`);
         coleccionHTML.innerHTML = `
-            <h2>${coleccion.nombre}</h2>
+            <h2>${grupo.nombre}</h2>
             <div class="coleccion-libros">
-                ${coleccion.libros.map(libro => `
-                    <a href="detalle.html?id=${libro.id}">
+                ${grupo.libros_id.map(id => {
+                    let libro = libros.find(l => l.id === id);
+                    return libro ? `<a href="detalle.html?id=${libro.id}">
                         <img src="${libro.imagen}" alt="${libro.titulo}" title="${libro.titulo}">
-                    </a>
-                `).join("")}
+                    </a>` : "";
+                }).join("")}
             </div>
         `;
         contenedor.appendChild(coleccionHTML);
