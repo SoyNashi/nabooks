@@ -318,6 +318,24 @@ footer a:hover {
 
 
 
+/* 📌 Enlace de la colección en index.html */
+.coleccion-link {
+    font-size: 0.9rem;
+    color: #00ffea;
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.coleccion-link:hover {
+    text-decoration: underline;
+    color: #00b7c3;
+}
+
+
+
 
 
 

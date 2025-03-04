@@ -21,7 +21,7 @@ function mostrarLibros(libros, grupos) {
         // Encontrar la colección a la que pertenece el libro
         let grupo = grupos.find(g => g.libros_id.includes(book.id));
         let coleccionHTML = grupo 
-            ? `<a class="coleccion" href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>` 
+            ? `<a class="coleccion-link" href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>` 
             : "";
 
         // 📌 Crear la tarjeta del libro
