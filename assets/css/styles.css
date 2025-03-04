@@ -7,6 +7,8 @@
 }
 
 body {
+        overflow: auto !important; /* 🔹 Permitir desplazamiento */
+
     background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
     color: white;
     display: flex;
