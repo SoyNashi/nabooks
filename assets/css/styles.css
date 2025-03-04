@@ -340,6 +340,24 @@ footer a:hover {
     max-width: 900px;
     margin-top: 20px;
 }
+/* 📌 Diseño de la colección en detalle.html */
+#coleccion {
+    font-size: 1rem;
+    color: #00ffea;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#coleccion a {
+    color: #00ffea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#coleccion a:hover {
+    text-decoration: underline;
+}
+
 
 /* 📕 Cada libro */
 .book {
@@ -395,27 +413,21 @@ footer a:hover {
 
 
 /* 📌 Texto de la colección */
+/* 📌 Enlace de la colección en index.html */
 .book .coleccion {
     font-size: 0.9rem;
     color: #00ffea;
     margin-top: 5px;
-    width: 80%;
+    display: block;
     text-align: center;
-    color: rgba(0, 0, 0, 0.0);
 }
 
 .book .coleccion a {
     color: #00ffea;
     text-decoration: none;
     font-weight: bold;
-        width: 80%;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.0);
 }
 
 .book .coleccion a:hover {
     text-decoration: underline;
-        width: 80%;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.0);
 }
