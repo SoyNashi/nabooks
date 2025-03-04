@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Libro</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/detalle.js"></script>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-button">← Volver</a>
+        <h1 id="book-title">Cargando...</h1>
+    </header>
+
+    <main id="book-detail">
+        <div class="book-info">
+            <img id="book-image" src="" alt="Portada del libro">
+            <div class="book-text">
+                <h2 id="book-subtitle"></h2>
+                <p id="book-description"></p>
+                <p><strong>Precio:</strong> $<span id="book-price"></span></p>
+                <div class="buy-buttons">
+                    <a id="buy-paperback" href="#" target="_blank">Comprar Tapa Blanda</a>
+                    <a id="buy-kindle" href="#" target="_blank">Comprar Kindle</a>
+                </div>
+            </div>
+        </div>
+
+        <section id="related-books">
+            <h3>Libros Relacionados</h3>
+            <div id="related-list"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biblioteca del Autor | <a href="legal.html">Aviso Legal</a></p>
+    </footer>
+</body>
+</html>

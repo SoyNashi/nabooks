@@ -32,7 +32,7 @@ header h1 {
     text-shadow: 0px 0px 10px #00ffea;
 }
 
-input, select {
+input {
     padding: 10px;
     margin: 10px;
     background: rgba(255, 255, 255, 0.1);
@@ -42,6 +42,21 @@ input, select {
     border-radius: 5px;
 }
 
+select {
+    padding: 10px;
+    margin: 10px;
+    background: rgba(20, 20, 20, 0.9); /* 📌 Fondo oscuro */
+    color: #00ffea; /* 📌 Texto en color neón */
+    border: 1px solid #00ffea;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+option {
+    background: #0d0d0d; /* 📌 Fondo oscuro para opciones */
+    color: white;
+}
+
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
@@ -49,7 +64,8 @@ input::placeholder {
 /* 💠 Contenedor de libros */
 main {
     flex-grow: 1;
-    padding: 100px 20px 20px;
+    padding: 20px;
+    margin-top: 80px; /* 📌 Espacio igual al header */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -76,7 +92,8 @@ main {
 
 .book:hover {
     transform: scale(1.05);
-    box-shadow: 0px 0px 20px rgba(0, 255, 234, 0.7);
+    box-shadow: 0px 0px 25px rgba(0, 255, 234, 0.7); /* 📌 Más brillo */
+    background: rgba(0, 255, 234, 0.15); /* 📌 Un poco de neón pero sin blur */
 }
 
 .book img {
@@ -137,4 +154,85 @@ footer a {
 footer a:hover {
     color: #00b3a4;
     text-decoration: underline;
+}
+
+
+/* 💠 Contenedor Principal */
+#book-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px;
+}
+
+/* 💠 Información del Libro */
+.book-info {
+    display: flex;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 255, 234, 0.3);
+}
+
+.book-info img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.book-text {
+    padding-left: 20px;
+}
+
+.buy-buttons a {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    background: #00ffea;
+    color: black;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.buy-buttons a:hover {
+    background: #00b3a4;
+}
+
+/* 💠 Libros Relacionados */
+#related-books {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#related-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px;
+}
+
+.related-book {
+    min-width: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.related-book img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.related-book a {
+    display: block;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #00ffea;
+}
+
+.related-book a:hover {
+    color: #00b3a4;
 }
