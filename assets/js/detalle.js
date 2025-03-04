@@ -18,17 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("btn-tapa-blanda").href = libro.amazon;
         document.getElementById("btn-kindle").href = libro.amazon;
 
-        // 📌 Encontrar la colección a la que pertenece
+        // 📌 Encontrar la colección a la que pertenece el libro
         let grupo = grupos.find(g => g.libros_id.includes(libro.id));
         if (grupo) {
             document.getElementById("coleccion").innerHTML = 
-                `Colección: <a href="grupos.html">${grupo.nombre}</a>`;
+                `Colección: <a href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>`;
         } else {
             document.getElementById("coleccion").textContent = "Colección: Independiente";
         }
     })
     .catch(error => console.error("Error al cargar los datos:", error));
 });
+
 
 
 // 📌 Función para efectos visuales según el tipo de libro

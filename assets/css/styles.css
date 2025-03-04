@@ -389,3 +389,23 @@ footer a:hover {
     color: #00ffea;
     border: 2px solid #00ffea;
 }
+
+
+
+
+/* 📌 Texto de la colección */
+.book .coleccion {
+    font-size: 0.9rem;
+    color: #00ffea;
+    margin-top: 5px;
+}
+
+.book .coleccion a {
+    color: #00ffea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.book .coleccion a:hover {
+    text-decoration: underline;
+}

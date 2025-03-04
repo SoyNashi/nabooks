@@ -17,7 +17,9 @@ function mostrarLibros(libros, grupos) {
     libros.forEach(book => {
         // Encontrar la colección a la que pertenece el libro
         let grupo = grupos.find(g => g.libros_id.includes(book.id));
-        let coleccionNombre = grupo ? grupo.nombre : "Independiente";
+        let coleccionHTML = grupo 
+            ? `<p class="coleccion">Colección: <a href="grupos.html?id=${grupo.id}">${grupo.nombre}</a></p>` 
+            : "";
 
         const bookItem = document.createElement("div");
         bookItem.classList.add("book", `tema-${book.tema}`);
@@ -26,7 +28,7 @@ function mostrarLibros(libros, grupos) {
             <h2>${book.titulo}</h2>
             <p>${book.subtitulo}</p>
             <p><strong>$${book.precio}</strong></p>
-            <p class="coleccion">Colección: ${coleccionNombre}</p>
+            ${coleccionHTML}  <!-- Solo se muestra si hay colección -->
             <a href="detalle.html?id=${book.id}">Ver más</a>
         `;
         bookList.appendChild(bookItem);
