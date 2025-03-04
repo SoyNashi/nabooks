@@ -67,34 +67,50 @@ function aplicarEfecto(efecto) {
 
 
 
-    function cargarLibrosRelacionados(libro) {
-        fetch("data/books.json")
-            .then(response => response.json())
-            .then(libros => {
-                const relacionados = libros.filter(l => 
-                    (l.coleccion === libro.coleccion || libro.palabras_clave.some(k => l.palabras_clave.includes(k))) &&
-                    l.id !== libro.id // 🔹 Evita mostrar el mismo libro
-                );
+function cargarLibrosRelacionados(libro) {
+    fetch("data/books.json")
+        .then(response => response.json())
+        .then(libros => {
+            const relacionados = libros.filter(l => 
+                (l.coleccion === libro.coleccion || libro.palabras_clave.some(k => l.palabras_clave.includes(k))) &&
+                l.id !== libro.id // 🔹 Evita mostrar el mismo libro
+            );
 
-                const contenedor = document.querySelector(".relacionados-container");
-                contenedor.innerHTML = ""; // 🔹 Limpia antes de agregar nuevos
+            const contenedor = document.querySelector(".relacionados-container");
+            contenedor.innerHTML = ""; // 🔹 Limpia antes de agregar nuevos
 
-                if (relacionados.length === 0) {
-                    contenedor.innerHTML = "<p>No hay libros relacionados.</p>";
-                    return;
-                }
+            if (relacionados.length === 0) {
+                contenedor.innerHTML = "<p>No hay libros relacionados.</p>";
+                return;
+            }
 
-                relacionados.forEach(lib => {
-                    let libroHTML = `
-                        <div class="libro-relacionado">
-                            <a href="detalle.html?id=${lib.id}">
-                                <img src="${lib.imagen}" alt="${lib.titulo}">
-                                <p>${lib.titulo}</p>
-                            </a>
-                        </div>
-                    `;
-                    contenedor.innerHTML += libroHTML;
-                });
-            })
-            .catch(error => console.error("Error al cargar los libros relacionados:", error));
-    }
+            relacionados.forEach(lib => {
+                let libroHTML = document.createElement("div");
+                libroHTML.classList.add("book", `tema-${lib.tema}`); // 🔹 Aplica el tema
+                libroHTML.innerHTML = `
+                    <img src="${lib.imagen}" alt="${lib.titulo}" class="portada">
+                    <h2>${lib.titulo}</h2>
+                    <p>${lib.subtitulo}</p>
+                    <p><strong>$${lib.precio}</strong></p>
+                    <a href="detalle.html?id=${lib.id}">Ver más</a>
+                `;
+                contenedor.appendChild(libroHTML);
+
+                // 📌 Extraer color de la portada y aplicarlo como fondo
+                const img = libroHTML.querySelector(".portada");
+                img.crossOrigin = "anonymous"; // 🔹 Solución para evitar CORS
+                img.onload = function () {
+                    try {
+                        const colorThief = new ColorThief();
+                        const color = colorThief.getColor(img);
+                        const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                        libroHTML.style.backgroundColor = rgbColor;
+                        libroHTML.style.boxShadow = `0px 0px 10px ${rgbColor}`;
+                    } catch (error) {
+                        console.error("Error al extraer color con Color Thief:", error);
+                    }
+                };
+            });
+        })
+        .catch(error => console.error("Error al cargar los libros relacionados:", error));
+}

@@ -253,12 +253,36 @@ footer a:hover {
     margin-top: 40px;
 }
 
+/* 📚 Contenedor de libros relacionados */
 .relacionados-container {
     display: flex;
-    justify-content: center;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
 }
+
+/* 📖 Diseño de cada libro relacionado */
+.relacionados-container .book {
+    width: 220px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0px 0px 10px rgba(0, 255, 234, 0.3);
+}
+
+.relacionados-container .book:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(0, 255, 234, 0.7);
+}
+
+/* 📕 Imagen dentro de libros relacionados */
+.relacionados-container .book img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
 
 /* 📱 Ajustes Responsive */
 @media screen and (max-width: 768px) {
