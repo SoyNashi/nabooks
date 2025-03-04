@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bookList.innerHTML = ""; // Limpiar lista antes de mostrar
         bookArray.forEach(book => {
             const bookItem = document.createElement("div");
-            bookItem.classList.add("book");
+                bookItem.classList.add("book", `tema-${book.tema}`);
             bookItem.innerHTML = `
                 <img src="${book.imagen}" alt="${book.titulo}" class="portada">
                 <h2>${book.titulo}</h2>

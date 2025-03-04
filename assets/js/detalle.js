@@ -6,11 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(libros => {
             const libro = libros.find(l => l.id === libroId);
+            if (!libro) return;
 
-            if (!libro) {
-                document.querySelector("#detalle-container").innerHTML = "<h1>Libro no encontrado</h1>";
-                return;
-            }
+            document.body.className = `tema-${libro.tema} detalle`;
 
             // 📌 Cargar detalles del libro
             document.getElementById("portada").src = libro.imagen;

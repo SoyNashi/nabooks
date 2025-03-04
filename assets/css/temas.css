@@ -1,0 +1,65 @@
+/* 🌿 MEDIEVAL - Espadas en los bordes */
+.tema-medieval .book, .tema-medieval .relacionado {
+    border: 4px solid gold;
+    border-image: url('../img/borde-espadas.svg') 30 stretch;
+    background: linear-gradient(to bottom, #3b2f2f, #1a1a1a);
+    color: white;
+}
+
+.tema-medieval.detalle {
+    background: radial-gradient(circle, #4b3621 30%, #1a1a1a 80%);
+    border: 5px solid gold;
+}
+
+/* 🎴 JAPONÉS - Bordes de katanas */
+.tema-japones .book, .tema-japones .relacionado {
+    border: 3px solid red;
+    background: white;
+    color: black;
+    position: relative;
+}
+.tema-japones .book::after {
+    content: "⛩";
+    font-size: 2rem;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* 🔥 ESPACIO - Partículas flotantes */
+.tema-espacio .book, .tema-espacio .relacionado {
+    background: black;
+    color: #00ffea;
+    position: relative;
+    overflow: hidden;
+}
+.tema-espacio .book::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 234, 0.3) 10%, transparent 80%);
+    animation: particulas 5s infinite alternate;
+}
+
+@keyframes particulas {
+    from { transform: translateY(-10px); }
+    to { transform: translateY(10px); }
+}
+
+/* ☢️ NUCLEAR - Efecto glitch */
+.tema-nuclear .book, .tema-nuclear .relacionado {
+    background: black;
+    color: #ff0;
+    border: 2px solid #ff0;
+    text-shadow: 2px 2px #ff0;
+    animation: glitch 0.2s infinite;
+}
+@keyframes glitch {
+    0% { transform: skewX(0deg); }
+    20% { transform: skewX(5deg); }
+    40% { transform: skewX(-5deg); }
+    60% { transform: skewX(5deg); }
+    80% { transform: skewX(-5deg); }
+    100% { transform: skewX(0deg); }
+}
