@@ -30,8 +30,8 @@ function mostrarLibros(libros, grupos) {
         bookItem.innerHTML = `
             <img src="${book.imagen}" alt="${book.titulo}" class="portada">
             <h2>${book.titulo}</h2>
-            ${coleccionHTML}  <!-- Solo se muestra si hay colección -->
             <p>${book.subtitulo}</p>
+            ${coleccionHTML}  <!-- Solo se muestra si hay colección -->
             <p><strong>$${book.precio}</strong></p>
             <a href="detalle.html?id=${book.id}" class="btn-ver-mas">Ver más</a>
         `;

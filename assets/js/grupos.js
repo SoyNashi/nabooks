@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // 📌 Generar fondo de colores basado en las portadas
         generarFondoDePortadas(grupo.libros_id, libros);
 
-        // 📌 Mostrar los libros de la colección
-        mostrarGrupo(grupo, libros);
+        // 📌 Mostrar los libros del grupo
+        mostrarLibrosGrupo(grupo, libros);
     })
     .catch(error => console.error("Error al cargar datos:", error));
 });
@@ -46,8 +46,8 @@ function generarFondoDePortadas(librosId, libros) {
     });
 }
 
-// 📌 Mostrar solo los libros del grupo seleccionado
-function mostrarGrupo(grupo, libros) {
+// 📌 Mostrar los libros de la colección en `grupos.html`
+function mostrarLibrosGrupo(grupo, libros) {
     const contenedor = document.getElementById("colecciones-container");
     contenedor.innerHTML = `<h2>${grupo.nombre}</h2>`;
 
@@ -57,12 +57,32 @@ function mostrarGrupo(grupo, libros) {
     grupo.libros_id.forEach(id => {
         let libro = libros.find(l => l.id === id);
         if (libro) {
-            let libroHTML = `
+            let libroHTML = document.createElement("div");
+            libroHTML.classList.add("book");
+            libroHTML.innerHTML = `
                 <a href="detalle.html?id=${libro.id}">
                     <img src="${libro.imagen}" alt="${libro.titulo}" title="${libro.titulo}">
                 </a>
+                <h3>${libro.titulo}</h3>
+                <p>${libro.subtitulo}</p>
             `;
-            librosHTML.innerHTML += libroHTML;
+
+            librosHTML.appendChild(libroHTML);
+
+            // 📌 Aplicar `Color Thief` para cambiar el fondo del libro
+            const img = libroHTML.querySelector("img");
+            img.crossOrigin = "anonymous";
+            img.onload = function () {
+                try {
+                    const colorThief = new ColorThief();
+                    const color = colorThief.getColor(img);
+                    const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                    libroHTML.style.backgroundColor = rgbColor;
+                    libroHTML.style.boxShadow = `0px 0px 10px ${rgbColor}`;
+                } catch (error) {
+                    console.error("Error al extraer color con Color Thief:", error);
+                }
+            };
         }
     });
 
