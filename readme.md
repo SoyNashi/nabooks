@@ -20,47 +20,36 @@
 
 
 ✅ Diseño Futurista + Animaciones
-
 Uso de CSS con efectos de neón, glassmorphism y transiciones suaves.
 Animaciones con GSAP y efectos hover dinámicos.
+
 ✅ Detección de colores de las portadas
-
 Usaremos JavaScript + la librería "Color Thief" para extraer los colores principales de la portada y aplicar un esquema de colores dinámico a cada libro.
+
 ✅ Búsqueda, Filtros y Ordenación en index.html
-
 Buscador en tiempo real.
-Filtros por colección, autor, género.
+Filtros por nombre o titulo
 Ordenación (por fecha, título, etc.).
-✅ Libros relacionados en detalle.html
 
+✅ Libros relacionados en detalle.html
 Se mostrarán los de la misma colección.
 También por palabras clave desde books.json.
-✅ grupos.html con diseño sobrepuesto y atractivo
 
+✅ grupos.html con diseño sobrepuesto y atractivo
 Libros apilados de forma dinámica, con animaciones al pasar el mouse.
 Posible uso de CSS Grid y efectos Parallax para hacerlo más llamativo.
-✅ Mobile Friendly (Responsive Design)
 
+✅ Mobile Friendly (Responsive Design)
 Diseño adaptable a móviles.
 Navegación optimizada para pantallas táctiles.
-✅ Pie de Página
 
+✅ Pie de Página
 Enlaces a redes sociales, contacto y archivos legales.
 
+todo tendra animaciones, todos los contenedores de los libros cojeran los colores de la portada y tendran el mismo tamaño de forma uniforme, todo estara decorado de forma uniforme y que coincida
 
-🛠️ Sistema de Temas Dinámicos (Ambientación por Libro)
-Cada libro tendrá un "tema" en books.json, por ejemplo:
+asimismo todo se ajustara automaticamente y usara tipos de letra futuristas que queden bien, todos los colores de la pagina detalle, neones etc cambiaran de color dependiendo de la portada, 
+en cada celda la letra se adaptara a los colores de la portada por si es muy clara o muy oscura.
 
-Medieval → Colores oscuros, fuentes góticas, texturas de pergamino.
-Japonés → Colores rojos/blancos, pinceladas tipo sumi-e.
-Espacio → Fondo con estrellas, neón azul, efecto de galaxia.
-Vikingos → Madera, runas, colores tierra.
-Amor → Tonos pastel, transiciones suaves, brillos.
-Nuclear → Verdes y amarillos neón, glitch, partículas radioactivas.
-Supervivencia → Naturaleza, verdes oscuros, efectos de desgaste.
-📌 Cómo funcionará:
 
-En books.json, cada libro tendrá una propiedad "tema" con su categoría.
-JS usará CSS dinámico para cambiar el diseño según el libro seleccionado.
-Se usará Color Thief para tomar el color predominante de la portada y hacer ajustes automáticos.
-Algunas animaciones específicas para cada tema.
+
