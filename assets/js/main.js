@@ -129,9 +129,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Eventos
     buscador.addEventListener("input", filtrarLibros);
-    filtroColeccion.addEventListener("change", filtrarLibros);
-    filtroAutor.addEventListener("change", filtrarLibros);
-    filtroPalabras.addEventListener("change", filtrarLibros);
+
     ordenar.addEventListener("change", filtrarLibros);
 
     // Iniciar carga
