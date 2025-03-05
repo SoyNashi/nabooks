@@ -1,29 +1,28 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    console.log("🚀 Cargando libros...");
+    
     const librosContainer = document.getElementById("libros-container");
     const buscador = document.getElementById("buscador");
     const filtroColeccion = document.getElementById("filtro-coleccion");
     const filtroAutor = document.getElementById("filtro-autor");
     const filtroPalabras = document.getElementById("filtro-palabras");
     const ordenar = document.getElementById("ordenar");
-    const loader = document.createElement("div");
-    loader.id = "loader";
-    loader.innerHTML = "Cargando libros...";
-    document.body.appendChild(loader);
-    
+
     let libros = [];
 
     // ✅ 1️⃣ Cargar libros desde books.json
     async function cargarLibros() {
         try {
-            loader.style.display = "block"; // Mostramos el loader
             const response = await fetch("data/books.json");
+            if (!response.ok) throw new Error("Error al cargar JSON");
+            
             libros = await response.json();
+            console.log("📚 Libros cargados correctamente:", libros);
+
             mostrarLibros(libros);
             llenarFiltros();
         } catch (error) {
             console.error("❌ Error al cargar los libros:", error);
-        } finally {
-            loader.style.display = "none"; // Ocultamos el loader
         }
     }
 
@@ -36,24 +35,30 @@ document.addEventListener("DOMContentLoaded", async () => {
             libroDiv.classList.add("libro");
             libroDiv.innerHTML = `
                 <img src="${libro.imagen}" alt="${libro.titulo}" class="portada">
-                <h2>${libro.titulo}</h2>
-                <p>${libro.autor}</p>
-                <p><strong>$${libro.precio}</strong></p>
+                <div class="contenido-libro">
+                    <h2>${libro.titulo}</h2>
+                    <p>${libro.autor}</p>
+                    <p><strong>$${libro.precio}</strong></p>
+                </div>
                 <a href="detalle.html?id=${libro.id}" class="boton-detalle">Ver Detalles</a>
             `;
             librosContainer.appendChild(libroDiv);
+
+            // ✅ Animación con GSAP
+            gsap.fromTo(libroDiv, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, delay: index * 0.1 });
         });
 
-        aplicarColores(); // Aplicamos los colores después de cargar los libros
+        aplicarColores(); // Aplicamos colores después de cargar los libros
     }
 
-    // ✅ 3️⃣ Extraer color con Color Thief SIN CORS
+    // ✅ 3️⃣ Extraer color con Color Thief sin CORS
     function aplicarColores() {
         const colorThief = new ColorThief();
         const imagenes = document.querySelectorAll(".portada");
 
         imagenes.forEach(img => {
-            img.crossOrigin = "Anonymous"; // Permite la carga en CORS
+            img.crossOrigin = "Anonymous"; // Evita problemas de CORS
+            
             if (img.complete) {
                 extraerColor(img, colorThief);
             } else {
