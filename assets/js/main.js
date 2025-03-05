@@ -8,6 +8,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let libros = [];
 
+
+
+    const loader = document.getElementById("loader");
+
+    async function cargarLibros() {
+        try {
+            loader.style.display = "block"; // Mostramos el loader
+            const response = await fetch("data/books.json");
+            libros = await response.json();
+            mostrarLibros(libros);
+            llenarFiltros();
+        } catch (error) {
+            console.error("Error al cargar los libros:", error);
+        } finally {
+            loader.style.display = "none"; // Ocultamos el loader
+        }
+    }
+
+
     // Cargar libros desde books.json
     async function cargarLibros() {
         try {
@@ -23,7 +42,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Mostrar libros en la página
     function mostrarLibros(librosFiltrados) {
         librosContainer.innerHTML = "";
-        librosFiltrados.forEach(libro => {
+    
+        librosFiltrados.forEach((libro, index) => {
             const libroDiv = document.createElement("div");
             libroDiv.classList.add("libro");
             libroDiv.innerHTML = `
@@ -34,8 +54,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <a href="detalle.html?id=${libro.id}" class="boton-detalle">Ver Detalles</a>
             `;
             librosContainer.appendChild(libroDiv);
+    
+            // Aplicar animación con GSAP
+            gsap.fromTo(libroDiv, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, delay: index * 0.1 });
         });
+    
+        aplicarColores(); // Aplicamos los colores después de cargar los libros
     }
+    
 
     // Llenar opciones de filtros dinámicamente
     function llenarFiltros() {
