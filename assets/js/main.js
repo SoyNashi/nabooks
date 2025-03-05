@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         let filtrados = libros.filter(libro => {
             const coincideBusqueda = libro.titulo.toLowerCase().includes(buscador.value.toLowerCase());
 
-            return coincideBusqueda && coincideColeccion && coincideAutor && coincidePalabras;
+            return coincideBusqueda;
         });
 
         // Ordenar libros
