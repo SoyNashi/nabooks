@@ -120,3 +120,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Iniciar carga
     cargarLibros();
 });
+document.addEventListener("DOMContentLoaded", () => {
+    gsap.to(".libro", {
+        y: -5,
+        duration: 1,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+    });
+});
