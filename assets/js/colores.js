@@ -1,25 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
     const colorThief = new ColorThief();
-    const imagenes = document.querySelectorAll(".portada");
 
-    imagenes.forEach(img => {
-        if (img.complete) {
-            aplicarColor(img);
-        } else {
-            img.addEventListener("load", () => aplicarColor(img));
-        }
-    });
+    function aplicarColores() {
+        const imagenes = document.querySelectorAll(".portada");
 
-    function aplicarColor(img) {
+        imagenes.forEach(img => {
+            if (img.complete) {
+                extraerColor(img);
+            } else {
+                img.addEventListener("load", () => extraerColor(img));
+            }
+        });
+    }
+
+    function extraerColor(img) {
         try {
             const color = colorThief.getColor(img);
             const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-
-            const libroDiv = img.closest(".libro");
-            libroDiv.style.background = `linear-gradient(to bottom, ${rgbColor}, #000)`;
-            libroDiv.style.border = `1px solid ${rgbColor}`;
+            img.closest(".libro").style.background = `linear-gradient(135deg, ${rgbColor}, #000)`;
         } catch (error) {
-            console.error("Error al extraer color:", error);
+            console.warn("No se pudo extraer el color de la imagen:", img.src);
         }
     }
+
+    aplicarColores();
 });
