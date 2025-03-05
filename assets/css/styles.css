@@ -1,467 +1,55 @@
-/* 💠 Reset General */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Orbitron', sans-serif;
-}
-
 body {
-        overflow: auto !important; /* 🔹 Permitir desplazamiento */
-
-    background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #0e0e0e;
+    color: #fff;
+    text-align: center;
 }
 
-/* 💠 Encabezado */
 header {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-}
-
-header h1 {
-    font-size: 2rem;
-    color: #00ffea;
-    text-shadow: 0px 0px 10px #00ffea;
-}
-
-input {
-    padding: 10px;
-    margin: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: white;
-    outline: none;
-    border-radius: 5px;
-}
-
-select {
-    padding: 10px;
-    margin: 10px;
-    background: rgba(20, 20, 20, 0.9); /* 📌 Fondo oscuro */
-    color: #00ffea; /* 📌 Texto en color neón */
-    border: 1px solid #00ffea;
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-}
-option {
-    background: #0d0d0d; /* 📌 Fondo oscuro para opciones */
-    color: white;
-}
-
-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* 💠 Contenedor de libros */
-main {
-    flex-grow: 1;
     padding: 20px;
-    margin-top: 80px; /* 📌 Espacio igual al header */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
-/* 💠 Diseño de cada libro */
-.book {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    margin: 15px;
-    border-radius: 15px;
-    text-align: center;
-    width: 220px;
-    height: fit-content;  /* 📌 Tamaño fijo */
-    transition: 0.3s;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 0px 15px rgba(0, 255, 234, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* 📌 Hace que el botón quede abajo */
-    align-items: center;
-}
-
-.book:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 25px rgba(0, 255, 234, 0.7); /* 📌 Más brillo */
-    background: rgba(0, 255, 234, 0.15); /* 📌 Un poco de neón pero sin blur */
-}
-
-.book img {
-    width: 100%;
-    height: auto;  /* 📌 Imagen ocupa el 60% de la tarjeta */
-    object-fit: cover; /* 📌 Evita deformaciones */
-    border-radius: 10px;
-}
-
-.book h2 {
-    font-size: 1rem;
-    margin: 5px 0;
-    color: #00ffea;
-    height: 40px;  /* 📌 Altura fija para evitar saltos */
-    overflow: hidden;
-}
-
-.book p {
-    font-size: 0.8rem;
-    color: #ccc;
-    height: auto;  /* 📌 Altura fija */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.book a .xd {
-    display: inline-block;
-    padding: 10px 15px;
-    background: #00ffea;
-    color: black;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: 0.3s;
-    margin-top: auto; /* 📌 Siempre abajo */
-}
-.book a {
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.book a:hover {
-    background: #00b3a4;
-    color: white;
-}
-
-/* 💠 Footer (Siempre visible) */
-footer {
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    text-align: center;
-    padding: 15px;
-    position: relative;
-    margin-top: auto;
-}
-
-footer a {
-    color: #00ffea;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: #00b3a4;
-    text-decoration: underline;
-}
-
-
-
-
-
-/* 📌 Contenedor Principal */
-#detalle-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
-}
-
-/* 📕 Imagen del Libro */
-.detalle-imagen {
-    width: 100%;
-    text-align: center;
-}
-
-.detalle-imagen img {
+#buscador {
     width: 80%;
-    max-width: 250px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 255, 234, 0.5);
-    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
-/* 📖 Info del Libro */
-.detalle-info {
-    text-align: center;
+#libros-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
     padding: 20px;
 }
 
-.detalle-info h1 {
-    font-size: 1.8rem;
-    color: #00ffea;
-}
-
-.detalle-info p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    color: #cccccc;
-}
-
-/* 🛒 Botones de Compra */
-.detalle-botones {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.detalle-botones a {
-    display: block;
-    width: 200px;
-    padding: 10px;
-    margin: 10px auto;
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-    background: #00ffea;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.detalle-botones a:hover {
-    background: #009f99;
-    color: white;
-}
-
-/* 📌 Botón de Volver */
-.btn-volver {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    padding: 10px 15px;
-    color: #00ffea;
-    border: 1px solid #00ffea;
-    background: rgba(0, 255, 234, 0.2);
-    border-radius: 6px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn-volver:hover {
-    background: #00ffea;
-    color: black;
-}
-
-/* 📚 Libros Relacionados */
-#libros-relacionados {
-    margin-top: 40px;
-}
-
-/* 📚 Contenedor de libros relacionados */
-.relacionados-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-}
-
-/* 📖 Diseño de cada libro relacionado */
-.relacionados-container .book {
-    width: 220px;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0px 0px 10px rgba(0, 255, 234, 0.3);
-}
-
-.relacionados-container .book:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 15px rgba(0, 255, 234, 0.7);
-}
-
-/* 📕 Imagen dentro de libros relacionados */
-.relacionados-container .book img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-
-/* 📱 Ajustes Responsive */
-@media screen and (max-width: 768px) {
-    #detalle-container {
-        flex-direction: column;
-        padding: 15px;
-        width: 95%;
-    }
-
-    .detalle-imagen img {
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .detalle-info {
-        padding: 10px;
-    }
-
-    .btn-volver {
-        top: 10px;
-        left: 10px;
-        padding: 8px 12px;
-        font-size: 0.9rem;
-    }
-}
-
-
-
-
-
-
-
-
-/* 📌 Enlace de la colección en index.html */
-.coleccion-link {
-    font-size: 0.9rem;
-    color: #00ffea;
-    display: block;
-    margin-top: 5px;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.coleccion-link:hover {
-    text-decoration: underline;
-    color: #00b7c3;
-}
-
-
-/* 📌 Sinopsis del libro */
-#sinopsis {
-    font-size: 1rem;
-    color: #ddd;
-    text-align: justify;
-    margin-top: 15px;
-    padding: 10px;
+.libro {
     background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.libro:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px cyan;
+}
+
+.portada {
+    width: 100%;
     border-radius: 5px;
 }
 
-
-
-
-
-
-/* 📚 Contenedor de la colección */
-#colecciones-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* 📖 Contenedor de libros en grupos.html */
-.coleccion-libros {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-    max-width: 900px;
-    margin-top: 20px;
-}
-/* 📌 Diseño de la colección en detalle.html */
-#coleccion {
-    font-size: 1rem;
-    color: #00ffea;
-    margin-top: 10px;
-    text-align: center;
-}
-
-#coleccion a {
-    color: #00ffea;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#coleccion a:hover {
-    text-decoration: underline;
-}
-
-
-/* 📕 Cada libro */
-.book {
-    background: rgba(20, 20, 20, 0.9);
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-    overflow: hidden;
-}
-
-.book:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 0px 15px rgba(0, 255, 234, 0.7);
-}
-
-/* 📌 Imagen de los libros */
-.book img {
-    width: 100%;
-    border-radius: 10px;
-    transition: 0.3s;
-}
-
-/* 📌 Hover sobre la imagen */
-.book img:hover {
-    transform: scale(1.05);
-}
-
-/* 📌 Título y subtítulo */
-.book h3 {
-    font-size: 1rem;
-    margin: 10px 0 5px;
-    color: white;
-}
-
-.book p {
-    font-size: 0.9rem;
-    color: #bbb;
-}
-
-/* 🎨 Fondo dinámico */
-#fondo-dinamico {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transition: background 1s ease-in-out;
-}
-
-
-
-
-/* 📌 Texto de la colección */
-/* 📌 Enlace de la colección en index.html */
-.book .coleccion {
-    font-size: 0.9rem;
-    color: #00ffea;
-    margin-top: 5px;
+.boton-detalle {
     display: block;
-    text-align: center;
-}
-
-.book .coleccion a {
-    color: #00ffea;
+    margin-top: 10px;
+    padding: 5px;
+    background: cyan;
+    color: #000;
     text-decoration: none;
-    font-weight: bold;
-}
-
-.book .coleccion a:hover {
-    text-decoration: underline;
+    border-radius: 5px;
 }

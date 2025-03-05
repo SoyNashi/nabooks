@@ -1,84 +1,96 @@
-let books = [];
-let grupos = [];
+document.addEventListener("DOMContentLoaded", async () => {
+    const librosContainer = document.getElementById("libros-container");
+    const buscador = document.getElementById("buscador");
+    const filtroColeccion = document.getElementById("filtro-coleccion");
+    const filtroAutor = document.getElementById("filtro-autor");
+    const filtroPalabras = document.getElementById("filtro-palabras");
+    const ordenar = document.getElementById("ordenar");
 
-document.addEventListener("DOMContentLoaded", () => {
-    Promise.all([
-        fetch("data/books.json").then(response => response.json()),
-        fetch("data/grupos.json").then(response => response.json())
-    ])
-    .then(([libros, gruposData]) => {
-        books = libros;
-        grupos = gruposData;
-        mostrarLibros(books, grupos);
-    })
-    .catch(error => console.error("Error al cargar datos:", error));
-});
+    let libros = [];
 
-// 📌 Mostrar libros en `index.html`
-function mostrarLibros(libros, grupos) {
-    const bookList = document.getElementById("book-list");
-    if (!bookList) return; // 🔹 Evita errores si `book-list` no existe
-    bookList.innerHTML = "";
-
-    libros.forEach(book => {
-        let grupo = grupos.find(g => g.libros_id.includes(book.id));
-        let coleccionHTML = grupo 
-            ? `<a class="coleccion-link" href="grupos.html?id=${grupo.id}">${grupo.nombre}</a>` 
-            : "";
-
-        const bookItem = document.createElement("div");
-        bookItem.classList.add("book", `tema-${book.tema}`);
-        bookItem.innerHTML = `
-            <img src="${book.imagen}" alt="${book.titulo}" class="portada">
-            <h2>${book.titulo}</h2>
-            ${coleccionHTML}
-            <p>${book.subtitulo}</p>
-            <p><strong>$${book.precio}</strong></p>
-            <a href="detalle.html?id=${book.id}" class="btn-ver-mas xd">Ver más</a>
-        `;
-        bookList.appendChild(bookItem);
-
-
-
-        // 📌 Aplicar `Color Thief` después de que la imagen cargue
-        const img = bookItem.querySelector(".portada");
-        img.crossOrigin = "anonymous";
-        img.onload = function () {
-            try {
-                const colorThief = new ColorThief();
-                const color = colorThief.getColor(img);
-                const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-                bookItem.style.backgroundColor = rgbColor;
-                bookItem.style.boxShadow = `0px 0px 10px ${rgbColor}`;
-            } catch (error) {
-                console.error("Error al extraer color con Color Thief:", error);
-            }
-        };
-    });
-}
-
-// 📌 Buscar libros en tiempo real
-document.getElementById("search").addEventListener("input", () => {
-    const query = document.getElementById("search").value.toLowerCase();
-    const filteredBooks = books.filter(book => 
-        book.titulo.toLowerCase().includes(query) || 
-        book.subtitulo.toLowerCase().includes(query)
-    );
-    mostrarLibros(filteredBooks, grupos); // 🔹 Se pasa `grupos` correctamente
-});
-
-// 📌 Ordenar libros
-document.getElementById("filter").addEventListener("change", () => {
-    const sortedBooks = [...books]; // Copia del array original
-    const filterValue = document.getElementById("filter").value;
-    
-    if (filterValue === "titulo") {
-        sortedBooks.sort((a, b) => a.titulo.localeCompare(b.titulo));
-    } else if (filterValue === "precio") {
-        sortedBooks.sort((a, b) => parseFloat(a.precio) - parseFloat(b.precio));
-    } else {
-        sortedBooks.sort((a, b) => b.id - a.id); // Orden por fecha (ID)
+    // Cargar libros desde books.json
+    async function cargarLibros() {
+        try {
+            const response = await fetch("data/books.json");
+            libros = await response.json();
+            mostrarLibros(libros);
+            llenarFiltros();
+        } catch (error) {
+            console.error("Error al cargar los libros:", error);
+        }
     }
-    
-    mostrarLibros(sortedBooks, grupos); // 🔹 Se pasa `grupos` correctamente
+
+    // Mostrar libros en la página
+    function mostrarLibros(librosFiltrados) {
+        librosContainer.innerHTML = "";
+        librosFiltrados.forEach(libro => {
+            const libroDiv = document.createElement("div");
+            libroDiv.classList.add("libro");
+            libroDiv.innerHTML = `
+                <img src="${libro.imagen}" alt="${libro.titulo}" class="portada">
+                <h2>${libro.titulo}</h2>
+                <p>${libro.autor}</p>
+                <p><strong>$${libro.precio}</strong></p>
+                <a href="detalle.html?id=${libro.id}" class="boton-detalle">Ver Detalles</a>
+            `;
+            librosContainer.appendChild(libroDiv);
+        });
+    }
+
+    // Llenar opciones de filtros dinámicamente
+    function llenarFiltros() {
+        const colecciones = new Set();
+        const autores = new Set();
+        const palabras = new Set();
+
+        libros.forEach(libro => {
+            if (libro.coleccion) colecciones.add(libro.coleccion);
+            autores.add(libro.autor);
+            libro.palabras_clave.forEach(palabra => palabras.add(palabra));
+        });
+
+        agregarOpciones(filtroColeccion, colecciones);
+        agregarOpciones(filtroAutor, autores);
+        agregarOpciones(filtroPalabras, palabras);
+    }
+
+    function agregarOpciones(select, opciones) {
+        opciones.forEach(opcion => {
+            const opt = document.createElement("option");
+            opt.value = opcion;
+            opt.textContent = opcion;
+            select.appendChild(opt);
+        });
+    }
+
+    // Filtrar y ordenar libros
+    function filtrarLibros() {
+        let filtrados = libros.filter(libro => {
+            const coincideBusqueda = libro.titulo.toLowerCase().includes(buscador.value.toLowerCase());
+            const coincideColeccion = filtroColeccion.value === "" || libro.coleccion === filtroColeccion.value;
+            const coincideAutor = filtroAutor.value === "" || libro.autor === filtroAutor.value;
+            const coincidePalabras = filtroPalabras.value === "" || libro.palabras_clave.includes(filtroPalabras.value);
+
+            return coincideBusqueda && coincideColeccion && coincideAutor && coincidePalabras;
+        });
+
+        // Ordenar libros
+        if (ordenar.value === "titulo") {
+            filtrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
+        } else if (ordenar.value === "precio") {
+            filtrados.sort((a, b) => parseFloat(a.precio) - parseFloat(b.precio));
+        }
+
+        mostrarLibros(filtrados);
+    }
+
+    // Eventos
+    buscador.addEventListener("input", filtrarLibros);
+    filtroColeccion.addEventListener("change", filtrarLibros);
+    filtroAutor.addEventListener("change", filtrarLibros);
+    filtroPalabras.addEventListener("change", filtrarLibros);
+    ordenar.addEventListener("change", filtrarLibros);
+
+    // Iniciar carga
+    cargarLibros();
 });

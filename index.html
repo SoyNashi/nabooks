@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca del Autor</title>
+    <title>Biblioteca Digital</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="stylesheet" href="assets/css/temas.css">
-
-    <script defer src="assets/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.min.js"></script>
-
+    <link rel="stylesheet" href="assets/css/temas.css">
+    <link rel="stylesheet" href="assets/css/animaciones.css">
 </head>
 <body>
     <header>
-        <h1>Biblioteca del Autor</h1>
-        <input type="text" id="search" placeholder="Buscar libros...">
-        <select id="filter">
-            <option value="fecha">Ordenar por Fecha</option>
+        <h1>📚 Biblioteca Digital</h1>
+        <input type="text" id="buscador" placeholder="Buscar libros...">
+    </header>
+
+    <section id="filtros">
+        <select id="filtro-coleccion">
+            <option value="">Todas las Colecciones</option>
+        </select>
+        <select id="filtro-autor">
+            <option value="">Todos los Autores</option>
+        </select>
+        <select id="filtro-palabras">
+            <option value="">Todos los Géneros</option>
+        </select>
+        <select id="ordenar">
             <option value="titulo">Ordenar por Título</option>
             <option value="precio">Ordenar por Precio</option>
         </select>
-    </header>
-    <br>  <br>
+    </section>
 
-    <main id="book-list">
-        <!-- Aquí se insertarán los libros dinámicamente -->
-    </main>
+    <section id="libros-container"></section>
 
-    <footer>
-        <p>&copy; 2024 Biblioteca del Autor | <a href="legal.html">Aviso Legal</a></p>
-    </footer>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/colores.js"></script>
 </body>
 </html>
