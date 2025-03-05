@@ -113,9 +113,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     function filtrarLibros() {
         let filtrados = libros.filter(libro => {
             const coincideBusqueda = libro.titulo.toLowerCase().includes(buscador.value.toLowerCase());
-            const coincideColeccion = filtroColeccion.value === "" || libro.coleccion === filtroColeccion.value;
-            const coincideAutor = filtroAutor.value === "" || libro.autor === filtroAutor.value;
-            const coincidePalabras = filtroPalabras.value === "" || libro.palabras_clave.includes(filtroPalabras.value);
 
             return coincideBusqueda && coincideColeccion && coincideAutor && coincidePalabras;
         });
