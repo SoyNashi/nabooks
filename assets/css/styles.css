@@ -21,6 +21,11 @@ body {
     box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.3);
     transition: transform 0.3s, box-shadow 0.3s;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el botón al final */
+    height: 100%; /* Asegura que todos los contenedores tengan la misma altura */
+    padding-bottom: 15px;
 }
 
 .libro:hover {
@@ -55,8 +60,9 @@ body {
 }
 
 .boton-detalle {
+    margin-top: auto; /* Lo empuja hacia abajo */
+    align-self: center; /* Centrado horizontal */
     display: inline-block;
-    margin-top: 10px;
     padding: 8px 15px;
     background: cyan;
     color: black;

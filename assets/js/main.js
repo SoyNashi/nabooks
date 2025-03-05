@@ -5,13 +5,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const filtroAutor = document.getElementById("filtro-autor");
     const filtroPalabras = document.getElementById("filtro-palabras");
     const ordenar = document.getElementById("ordenar");
+    const loader = document.getElementById("loader");
+    const colorThief = new ColorThief();
 
     let libros = [];
 
-
-
-    const loader = document.getElementById("loader");
-
+    // Cargar libros desde books.json
     async function cargarLibros() {
         try {
             loader.style.display = "block"; // Mostramos el loader
@@ -26,23 +25,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-
-    // Cargar libros desde books.json
-    async function cargarLibros() {
-        try {
-            const response = await fetch("data/books.json");
-            libros = await response.json();
-            mostrarLibros(libros);
-            llenarFiltros();
-        } catch (error) {
-            console.error("Error al cargar los libros:", error);
-        }
-    }
-
     // Mostrar libros en la página
     function mostrarLibros(librosFiltrados) {
         librosContainer.innerHTML = "";
-    
+
         librosFiltrados.forEach((libro, index) => {
             const libroDiv = document.createElement("div");
             libroDiv.classList.add("libro");
@@ -54,14 +40,48 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <a href="detalle.html?id=${libro.id}" class="boton-detalle">Ver Detalles</a>
             `;
             librosContainer.appendChild(libroDiv);
-    
+
             // Aplicar animación con GSAP
             gsap.fromTo(libroDiv, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, delay: index * 0.1 });
         });
-    
+
         aplicarColores(); // Aplicamos los colores después de cargar los libros
     }
-    
+
+    // Extraer color de la imagen con Color Thief
+    function aplicarColores() {
+        const imagenes = document.querySelectorAll(".portada");
+
+        imagenes.forEach(img => {
+            if (img.complete) {
+                extraerColor(img);
+            } else {
+                img.addEventListener("load", () => extraerColor(img));
+            }
+        });
+    }
+
+    function extraerColor(img) {
+        try {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const proxyImg = new Image();
+            proxyImg.crossOrigin = "Anonymous";
+            proxyImg.src = img.src;
+
+            proxyImg.onload = function () {
+                canvas.width = proxyImg.width;
+                canvas.height = proxyImg.height;
+                ctx.drawImage(proxyImg, 0, 0);
+
+                const color = colorThief.getColor(canvas);
+                const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                img.closest(".libro").style.background = `linear-gradient(135deg, ${rgbColor}, #000)`;
+            };
+        } catch (error) {
+            console.warn("No se pudo extraer el color de la imagen:", img.src);
+        }
+    }
 
     // Llenar opciones de filtros dinámicamente
     function llenarFiltros() {
@@ -119,13 +139,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Iniciar carga
     cargarLibros();
-});
-document.addEventListener("DOMContentLoaded", () => {
-    gsap.to(".libro", {
-        y: -5,
-        duration: 1,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1
-    });
 });
