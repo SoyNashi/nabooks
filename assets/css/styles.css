@@ -73,7 +73,8 @@ input:focus, select:focus {
     padding: 40px;
     justify-content: center; /* Centra los libros */
     width: auto;
-    min-width: max-content;
+    min-width: fit-content;
+    max-width: min-content;
     margin: 0 auto; /* Centra todo */
 }
 
