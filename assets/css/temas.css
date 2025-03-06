@@ -7,133 +7,129 @@
     height: 100%;
     pointer-events: none;
     z-index: -1;
-    overflow: hidden; /* Evita que las partículas salgan fuera */
+    overflow: hidden;
 }
 
-/* 🪐 Espacio - Efecto de estrellas */
+/* ==================== */
+/* 🪐 Espacio - Efecto de estrellas random y suaves */
 .espacio .particles {
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 2%, transparent 80%);
-    animation: moveStars 30s linear infinite;
-    filter: blur(1px);
-    background-size: 200% 200%; /* Hacemos que sea más dinámico */
-}
-
-@keyframes moveStars {
-    0% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-20px) translateX(10px); }
-    100% { transform: translateY(0) translateX(0); }
-}
-
-/* Añadimos estrellas adicionales */
-.espacio .particles::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 1%, transparent 70%) repeat;
-    background-size: 10px 10px;
-    animation: starsMovement 60s linear infinite;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-@keyframes starsMovement {
-    from { transform: translate(-50%, -50%); }
-    to { transform: translate(50%, 50%); }
-}
-
-/* ❄️ Nieve - Copos flotando */
-.nieve .particles::before {
-    content: none; /* Eliminamos el antiguo método de emojis */
-}
-
-/* Generamos copos flotantes */
-.nieve .particles::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, white 2px, transparent 4px),
-                      radial-gradient(circle, white 2px, transparent 4px);
-    background-size: 30px 30px;
-    animation: snowFall 10s linear infinite;
-    pointer-events: none;
-    opacity: 0.8;
-    filter: blur(0.5px);
-}
-
-@keyframes snowFall {
-    0% { background-position: 0 0, 15px 15px; }
-    100% { background-position: 10px 100vh, 25px calc(100vh + 15px); }
-}
-
-/* ☢️ Nuclear - Efecto de radiación */
-.nuclear .particles {
-    background: radial-gradient(circle, rgba(255, 255, 0, 0.15), transparent);
-    animation: flicker 1.5s infinite alternate;
-    background-size: 150% 150%;
-    filter: blur(2px);
-}
-
-@keyframes flicker {
-    0% { filter: brightness(1) blur(2px); }
-    100% { filter: brightness(1.3) blur(4px); }
-}
-
-/* Añadimos partículas radiantes */
-.nuclear .particles::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 0, 0.3) 2%, transparent 80%) repeat;
-    background-size: 20px 20px;
-    animation: nuclearParticlesMove 10s linear infinite;
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-@keyframes nuclearParticlesMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-20px, -20px); }
-}
-
-/* 🔮 Cyberpunk - Glitch digital */
-.cyberpunk .particles {
-    animation: glitch 1.5s infinite alternate;
-    filter: hue-rotate(20deg);
     background: none;
 }
 
-@keyframes glitch {
-    0% { transform: skewX(0deg); filter: brightness(1); }
-    50% { transform: skewX(-5deg); filter: brightness(1.3); }
-    100% { transform: skewX(5deg); filter: brightness(1); }
-}
-
-/* Añadimos interferencias */
-.cyberpunk .particles::after {
-    content: '';
+.espacio .particles span {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(rgba(255, 0, 255, 0.4) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.3) 1px, transparent 1px);
-    background-size: 15px 15px;
-    animation: glitchParticlesMove 5s linear infinite;
-    opacity: 0.7;
-    pointer-events: none;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: var(--size, 3px);
+    height: var(--size, 3px);
+    animation: moveStar var(--duration, 12s) linear infinite;
+    opacity: 0.8;
+    top: var(--startY, 0%);
+    left: var(--startX, 0%);
+    filter: blur(1px);
 }
 
-@keyframes glitchParticlesMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-15px, -15px); }
+@keyframes moveStar {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--moveX, 50vw), var(--moveY, 50vh));
+        opacity: 0;
+    }
+}
+
+/* ==================== */
+/* ❄️ Nieve - Copos random, menos cantidad y más naturales */
+.nieve .particles {
+    background: none;
+}
+
+.nieve .particles span {
+    position: absolute;
+    font-size: var(--size, 16px);
+    color: white;
+    opacity: var(--opacity, 0.7);
+    animation: fallSnow var(--duration, 10s) linear infinite;
+    filter: drop-shadow(0 0 4px white);
+    top: var(--startY, -5%);
+    left: var(--startX, 50%);
+}
+
+@keyframes fallSnow {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(var(--driftX, 20px)) translateY(110vh);
+        opacity: 0;
+    }
+}
+
+/* ==================== */
+/* ☢️ Nuclear - Partículas radiactivas pulsantes y random */
+.nuclear .particles {
+    background: none;
+}
+
+.nuclear .particles span {
+    position: absolute;
+    background: rgba(255, 255, 0, 0.6);
+    border-radius: 50%;
+    width: var(--size, 5px);
+    height: var(--size, 5px);
+    top: var(--startY, 0%);
+    left: var(--startX, 0%);
+    animation: nuclearFloat var(--duration, 5s) ease-in-out infinite;
+    filter: blur(2px);
+    opacity: var(--opacity, 0.8);
+}
+
+@keyframes nuclearFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(var(--driftX, 15px), var(--driftY, 15px)) scale(1.5);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(var(--moveX, 30px), var(--moveY, 30px)) scale(1);
+        opacity: 0;
+    }
+}
+
+/* ==================== */
+/* 🔮 Cyberpunk - Nuevo glitch simplificado y claro */
+.cyberpunk .particles {
+    background: none;
+}
+
+.cyberpunk .particles span {
+    position: absolute;
+    background: rgba(255, 0, 255, 0.6);
+    width: var(--size, 4px);
+    height: var(--size, 4px);
+    animation: cyberFloat var(--duration, 8s) linear infinite;
+    filter: hue-rotate(180deg) brightness(1.2);
+    top: var(--startY, 0%);
+    left: var(--startX, 0%);
+    opacity: var(--opacity, 0.9);
+}
+
+@keyframes cyberFloat {
+    0% {
+        transform: translate(0, 0);
+    }
+    33% {
+        transform: translate(var(--driftX, 10px), var(--driftY, 10px)) skewX(5deg);
+    }
+    66% {
+        transform: translate(var(--moveX, 20px), var(--moveY, 20px)) skewX(-5deg);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
