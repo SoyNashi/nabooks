@@ -52,6 +52,10 @@ input, select {
     color: var(--color-texto);
     backdrop-filter: blur(var(--glass-blur));
 }
+option {
+    color: white;
+    background-color: black;
+}
 
 input::placeholder {
     color: rgba(255, 255, 255, 0.6);
@@ -71,6 +75,7 @@ input:focus, select:focus {
 
 /* 📚 Tarjetas de Libros */
 .book-card {
+    vertical-align: middle;
     max-width: fit-content;
     display: flex;
     flex-direction: column;
