@@ -244,13 +244,17 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     padding: 40px;
+    justify-content: center; /* Centra los elementos */
+    align-items: start; /* Evita que se desajusten verticalmente */
+    max-width: 1000px; /* Limita el ancho máximo para evitar espacios vacíos */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 /* 📚 Estilo de recomendados igual a `index.html` */
 .relacionado-card {
     vertical-align: middle;
-    max-width: fit-content;
-    display: flex;
+    width: 100%; /* Ajuste dinámico según el grid */
+    max-width: 300px; /* Evita que se expandan demasiado */    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -360,6 +364,10 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     padding: 40px;
+    justify-content: center; /* Centra los elementos */
+    align-items: start; /* Evita que se desajusten verticalmente */
+    max-width: 1000px; /* Limita el ancho máximo para evitar espacios vacíos */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 /* 📌 Botón de volver atrás */
