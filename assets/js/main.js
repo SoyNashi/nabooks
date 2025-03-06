@@ -46,7 +46,7 @@ const idiomasMap = {
     "Japonés": { clase: "jp", bandera: "🇯🇵" },
     "Chino": { clase: "cn", bandera: "🇨🇳" },
     "Coreano": { clase: "kr", bandera: "🇰🇷" },
-    "Ruso": { clase: "ru", bandera: "🇷🇺" }
+    "Ruso": { clase: "ru", bandera: "🇷🇺" },
     "Vikingo": { clase: "vk", bandera: "🪓" }  // ¡Épico! 🪓
 
 };
