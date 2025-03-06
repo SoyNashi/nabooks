@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(libros => {
             mostrarLibros(libros);
 
-            // Filtro de búsqueda en tiempo real
             searchInput.addEventListener("input", () => filtrarLibros(libros));
             filterLanguage.addEventListener("change", () => filtrarLibros(libros));
         })
@@ -20,21 +19,38 @@ document.addEventListener("DOMContentLoaded", function () {
             const bookElement = document.createElement("div");
             bookElement.classList.add("book-card");
 
-            // Solo agrega la clase si `libro.decoracion` tiene un valor válido
             if (libro.decoracion && libro.decoracion.trim() !== "") {
                 bookElement.classList.add(libro.decoracion);
             }
 
-            bookElement.id = `book-${libro.id}`;
+            // 📌 Determinar precios
+            const precioKindle = libro.preciokindle === "0" ? "Gratis" : `$${libro.preciokindle}`;
+            const precioTapa = libro.preciotapablanda === "0" ? "Gratis" : `$${libro.preciotapablanda}`;
+
+            // 📌 Idioma dinámico con color
+            const idiomaColor = libro.idioma === "Español" ? "🇪🇸 #FF4D4D" : "🇬🇧 #4D79FF";
+
             bookElement.innerHTML = `
-                <h2>${libro.titulo}</h2>
-                <img src="${libro.imagen}" alt="Portada de ${libro.titulo}">
-                <p>${libro.autor}</p>
+                <a href="detalle.html?id=${libro.id}" class="book-link">
+                    <h2>${libro.titulo}</h2>
+                    <img src="${libro.imagen}" alt="Portada de ${libro.titulo}">
+                    <div class="book-info">
+                        <span class="idioma" style="background-color: ${idiomaColor.split(" ")[1]};">
+                            ${idiomaColor.split(" ")[0]}
+                        </span>
+                        <div class="precios">
+                            <p>📖 Kindle: ${precioKindle}</p>
+                            <p>📚 Tapa blanda: ${precioTapa}</p>
+                        </div>
+                    </div>
+                </a>
             `;
             booksContainer.appendChild(bookElement);
-        });
-    }   
 
+            // 🖌 Aplicar Color Thief
+            aplicarColores(libro.imagen, bookElement);
+        });
+    }
 
     function filtrarLibros(libros) {
         const query = searchInput.value.toLowerCase();
@@ -46,3 +62,23 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarLibros(librosFiltrados);
     }
 });
+
+/* 🔥 Color Thief: Extraer color de portada */
+function aplicarColores(imagenUrl, contenedor) {
+    const img = document.createElement("img");
+    img.crossOrigin = "Anonymous";
+    img.src = imagenUrl;
+
+    img.onload = function () {
+        const colorThief = new ColorThief();
+        const color = colorThief.getColor(img);
+        const textColor = getContrastingColor(color);
+
+        contenedor.style.backgroundColor = `rgb(${color.join(",")})`;
+        contenedor.style.color = textColor;
+    };
+}
+
+function getContrastingColor([r, g, b]) {
+    return (r * 299 + g * 587 + b * 114) / 1000 > 125 ? "#000" : "#fff";
+}
