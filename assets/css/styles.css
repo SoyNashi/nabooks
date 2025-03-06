@@ -74,7 +74,6 @@ input:focus, select:focus {
     justify-content: center; /* Centra los libros */
     width: auto;
     min-width: max-content;
-    max-width: fit-content; /* Evita que se expandan demasiado en pantallas grandes */
     margin: 0 auto; /* Centra todo */
 }
 
