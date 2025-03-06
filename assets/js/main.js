@@ -18,7 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
         booksContainer.innerHTML = "";
         libros.forEach(libro => {
             const bookElement = document.createElement("div");
-            bookElement.classList.add("book-card", libro.decoracion);
+            bookElement.classList.add("book-card");
+
+            // Solo agrega la clase si `libro.decoracion` tiene un valor válido
+            if (libro.decoracion && libro.decoracion.trim() !== "") {
+                bookElement.classList.add(libro.decoracion);
+            }
+
             bookElement.id = `book-${libro.id}`;
             bookElement.innerHTML = `
                 <h2>${libro.titulo}</h2>
@@ -27,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             booksContainer.appendChild(bookElement);
         });
-    }
+    }   
+
 
     function filtrarLibros(libros) {
         const query = searchInput.value.toLowerCase();
