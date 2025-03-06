@@ -29,7 +29,7 @@
         "idioma": "Ingles",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "", 
+        "decoracion": "nieve", 
         "imagen": "https://m.media-amazon.com/images/I/81P4FGAQt+L._SY425_.jpg",
         "coleccion": "",
         "palabras_clave": [
@@ -87,7 +87,7 @@
         "idioma": "Español",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "espacio",
         "imagen": "https://m.media-amazon.com/images/I/81LjT3RzquL._SY425_.jpg",
         "coleccion": "Odisea Estelar",
         "palabras_clave": [
@@ -107,7 +107,7 @@
         "idioma": "Español",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "espacio",
         "imagen": "https://m.media-amazon.com/images/I/81ZY2ZrkJLL._SY425_.jpg",
         "coleccion": "Odisea Estelar",
         "palabras_clave": [
@@ -128,7 +128,7 @@
         "idioma": "Español",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "cyberpunk",
         "imagen": "https://m.media-amazon.com/images/I/81yLiw5GEoL._SY425_.jpg",
         "coleccion": "ShadowCaster Destiny",
         "palabras_clave": [
@@ -152,7 +152,7 @@
         "idioma": "Español",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "cyberpunk",
         "imagen": "https://m.media-amazon.com/images/I/81V8hd9L+gL._SY425_.jpg",
         "coleccion": "ShadowCaster Destiny",
         "palabras_clave": [
@@ -172,7 +172,7 @@
         "idioma": "Ingles",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "nuclear",
         "imagen": "https://m.media-amazon.com/images/I/81WCV-YiqkL._SY425_.jpg",
         "coleccion": "After The Ash",
         "palabras_clave": [
@@ -193,7 +193,7 @@
         "idioma": "Español",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "cyberpunk",
         "imagen": "https://m.media-amazon.com/images/I/81WzBt-nr0L._SY425_.jpg",
         "coleccion": "Shadow",
         "palabras_clave": [
@@ -237,7 +237,7 @@
         "amazontapablanda": "",
         "decoracion": "",
         "imagen": "https://m.media-amazon.com/images/I/71ZI4P7NVTL._SY425_.jpg",
-        "coleccion": "",
+        "coleccion": "nuclear",
         "palabras_clave": [
             "supervivencia",
             "amor",
@@ -259,7 +259,7 @@
         "amazontapablanda": "",
         "decoracion": "",
         "imagen": "https://m.media-amazon.com/images/I/81LuDFLMrtL._SY425_.jpg",
-        "coleccion": "",
+        "coleccion": "nieve",
         "palabras_clave": [
             "misterio",
             "crimen",
@@ -299,7 +299,7 @@
         "idioma": "Ingles",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "nuclear",
         "imagen": "https://m.media-amazon.com/images/I/71uDt7fIZeL._SY425_.jpg",
         "coleccion":"" ,
         "palabras_clave": [
@@ -321,7 +321,7 @@
         "amazontapablanda": "",
         "decoracion": "",
         "imagen": "https://m.media-amazon.com/images/I/81-mC6X0E2L._SY425_.jpg",
-        "coleccion":"" ,
+        "coleccion":"nieve" ,
         "palabras_clave": [
             "aventura",
             "japon",
@@ -342,7 +342,7 @@
         "idioma": "Ingles",
         "amazonkindle": "",
         "amazontapablanda": "",
-        "decoracion": "",
+        "decoracion": "espacio",
                 "imagen": "https://m.media-amazon.com/images/I/81rZW6Y0YyL._SY425_.jpg",
         "coleccion":"" ,
         "palabras_clave": [

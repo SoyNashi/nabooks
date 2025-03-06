@@ -1,15 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const booksContainer = document.getElementById("books-container");
-    const searchInput = document.getElementById("search");
-    const filterLanguage = document.getElementById("filter-language");
 
     fetch("data/books.json")
         .then(response => response.json())
         .then(libros => {
             mostrarLibros(libros);
-
-            searchInput.addEventListener("input", () => filtrarLibros(libros));
-            filterLanguage.addEventListener("change", () => filtrarLibros(libros));
         })
         .catch(error => console.error("Error cargando libros:", error));
 
@@ -19,28 +14,30 @@ document.addEventListener("DOMContentLoaded", function () {
             const bookElement = document.createElement("div");
             bookElement.classList.add("book-card");
 
+            // ✅ Aplicar clase de decoración si existe
             if (libro.decoracion && libro.decoracion.trim() !== "") {
                 bookElement.classList.add(libro.decoracion);
             }
 
-            // 📌 Determinar precios
-            const precioKindle = libro.preciokindle === "0" ? "Gratis" : `$${libro.preciokindle}`;
-            const precioTapa = libro.preciotapablanda === "0" ? "Gratis" : `$${libro.preciotapablanda}`;
+            // ✅ Crear div para partículas
+            let particulas = document.createElement("div");
+            particulas.classList.add("particles");
+            bookElement.appendChild(particulas);
 
-            // 📌 Idioma dinámico con color
-            const idiomaColor = libro.idioma === "Español" ? "🇪🇸 #FF4D4D" : "🇬🇧 #4D79FF";
+            // ✅ Idioma (Bolita de color)
+            const idiomaClase = libro.idioma === "Español" ? "es" : "en";
 
-            bookElement.innerHTML = `
+            bookElement.innerHTML += `
                 <a href="detalle.html?id=${libro.id}" class="book-link">
                     <h2>${libro.titulo}</h2>
                     <img src="${libro.imagen}" alt="Portada de ${libro.titulo}">
                     <div class="book-info">
-                        <span class="idioma" style="background-color: ${idiomaColor.split(" ")[1]};">
-                            ${idiomaColor.split(" ")[0]}
+                        <span class="idioma ${idiomaClase}">
+                            ${libro.idioma === "Español" ? "🇪🇸" : "🇬🇧"}
                         </span>
                         <div class="precios">
-                            <p>📖 Kindle: ${precioKindle}</p>
-                            <p>📚 Tapa blanda: ${precioTapa}</p>
+                            <p>📖 Kindle: ${libro.preciokindle === "0" ? "Gratis" : `$${libro.preciokindle}`}</p>
+                            <p>📚 Tapa blanda: ${libro.preciotapablanda === "0" ? "Gratis" : `$${libro.preciotapablanda}`}</p>
                         </div>
                     </div>
                 </a>
@@ -51,19 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
             aplicarColores(libro.imagen, bookElement);
         });
     }
-
-    function filtrarLibros(libros) {
-        const query = searchInput.value.toLowerCase();
-        const idioma = filterLanguage.value;
-        const librosFiltrados = libros.filter(libro =>
-            libro.titulo.toLowerCase().includes(query) &&
-            (idioma === "all" || libro.idioma === idioma)
-        );
-        mostrarLibros(librosFiltrados);
-    }
 });
 
-/* 🔥 Color Thief: Extraer color de portada */
+/* 🎨 Color Thief */
 function aplicarColores(imagenUrl, contenedor) {
     const img = document.createElement("img");
     img.crossOrigin = "Anonymous";
