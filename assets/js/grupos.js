@@ -112,4 +112,12 @@ function obtenerIdiomasHTML(idiomaTexto) {
                 </span>`;
     }).join(' ');
 }
- 
+document.addEventListener("DOMContentLoaded", function () {
+    const btnVolver = document.getElementById("volver-atras");
+
+    if (btnVolver) {
+        btnVolver.addEventListener("click", function () {
+            window.history.back();
+        });
+    }
+});

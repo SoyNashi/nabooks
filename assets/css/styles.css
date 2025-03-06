@@ -71,7 +71,9 @@ input:focus, select:focus {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     padding: 40px;
-    width: fit-content;
+    justify-content: center; /* Centra los libros */
+    max-width: 900px; /* Evita que se expandan demasiado en pantallas grandes */
+    margin: 0 auto; /* Centra todo */
 }
 
 /* 📚 Tarjetas de Libros */
