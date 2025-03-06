@@ -71,17 +71,17 @@ input:focus, select:focus {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     padding: 40px;
-    justify-content: center; /* Centra los libros */
-    width: min-content;
-    min-width: fit-content;
-    max-width: auto;
-    margin: 0 auto; /* Centra todo */
+    justify-content: center; /* Centra los elementos */
+    align-items: start; /* Evita que se desajusten verticalmente */
+    max-width: 1000px; /* Limita el ancho máximo para evitar espacios vacíos */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 /* 📚 Tarjetas de Libros */
 .book-card {
     vertical-align: middle;
-    max-width: fit-content;
+    width: 100%; /* Ajuste dinámico según el grid */
+    max-width: 300px; /* Evita que se expandan demasiado */
     display: flex;
     flex-direction: column;
     justify-content: center;
