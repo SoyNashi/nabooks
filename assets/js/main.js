@@ -95,16 +95,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 📌 Filtrar libros según la búsqueda y el idioma
     function filtrarLibros(libros) {
-        const query = searchInput.value.toLowerCase();
-        const idioma = filterLanguage.value;
+        const query = searchInput.value.toLowerCase(); // Obtiene la consulta de búsqueda
+        const idioma = filterLanguage.value; // Obtiene el valor seleccionado en el filtro de idioma
 
-        const librosFiltrados = libros.filter(libro =>
-            libro.titulo.toLowerCase().includes(query) &&
-            (idioma === "all" || libro.idioma === idioma)
-        );
+        const librosFiltrados = libros.filter(libro => {
+            // Filtrar por título
+            const coincidenciaTitulo = libro.titulo.toLowerCase().includes(query);
 
-        mostrarLibros(librosFiltrados);
+            // Filtrar por idioma
+            const idiomasLibro = libro.idioma.split('-'); // Dividir el campo 'idioma' si hay más de uno
+            const coincidenciaIdioma = idioma === "all" || idiomasLibro.includes(idioma);
+
+            return coincidenciaTitulo && coincidenciaIdioma; // Ambos filtros deben coincidir
+        });
+
+        mostrarLibros(librosFiltrados); // Mostrar los libros filtrados
     }
+
 });
 
 /* 🎨 Color Thief: Extraer colores de la portada */
