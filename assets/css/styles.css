@@ -335,3 +335,47 @@ footer {
 .btn-grupo:hover {
     box-shadow: 0px 0px 10px var(--color-secundario);
 }
+
+
+
+/* 📚 Contenedor de grupo */
+#grupo-descripcion {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 80%;
+    text-align: center;
+    border-radius: 15px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* 📖 Contenedor de libros */
+#libros-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+/* 📌 Botón de volver atrás */
+.btn-volver {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: var(--color-primario);
+    color: black;
+    transition: 0.3s;
+    text-align: center;
+    box-shadow: 0px 0px 10px var(--color-primario);
+}
+
+.btn-volver:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px var(--color-primario);
+}
