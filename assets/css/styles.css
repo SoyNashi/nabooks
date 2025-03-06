@@ -71,6 +71,7 @@ input:focus, select:focus {
 
 /* 📚 Tarjetas de Libros */
 .book-card {
+    max-width: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -88,8 +89,7 @@ input:focus, select:focus {
 }
 
 .book-card img {
-    width: 100%;
-    height: 100%;
+    width: 80%;
     max-height: auto; /* Controla el tamaño de la imagen */
     object-fit: cover; /* Ajusta la imagen sin deformarla */
     border-radius: 10px;
