@@ -112,3 +112,4 @@ function obtenerIdiomasHTML(idiomaTexto) {
                 </span>`;
     }).join(' ');
 }
+ 
