@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // 📌 Aplicar Color Thief para cambiar colores del fondo
-            aplicarColores(libro.imagen);
+            aplicarColores(libro.imagen, document.body);
 
             // 📌 Cargar libros relacionados
             mostrarRelacionados(libro, libros);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* 🎨 Color Thief: Aplicar colores */
-function aplicarColores(imagenUrl) {
+function aplicarColores(imagenUrl, elemento) {
     const img = document.createElement("img");
     img.crossOrigin = "Anonymous";
     img.src = imagenUrl;
@@ -61,11 +61,12 @@ function aplicarColores(imagenUrl) {
     img.onload = function () {
         const colorThief = new ColorThief();
         const color = colorThief.getColor(img);
-        document.body.style.backgroundColor = `rgb(${color.join(",")})`;
+        elemento.style.backgroundColor = `rgb(${color.join(",")})`;
+        elemento.style.color = getContrastingColor(color);
     };
 }
 
-/* 📚 Mostrar libros relacionados */
+/* 📚 Mostrar libros relacionados con colores de portada */
 function mostrarRelacionados(libro, libros) {
     const contenedor = document.getElementById("relacionados-container");
     contenedor.innerHTML = "";
@@ -75,17 +76,25 @@ function mostrarRelacionados(libro, libros) {
         (l.coleccion === libro.coleccion || l.palabras_clave.some(p => libro.palabras_clave.includes(p)))
     );
 
-    relacionados.forEach(libro => {
+    relacionados.forEach(libroRelacionado => {
         const card = document.createElement("div");
         card.classList.add("relacionado-card");
 
         card.innerHTML = `
-            <a href="detalle.html?id=${libro.id}">
-                <h3>${libro.titulo}</h3>
-                <img src="${libro.imagen}" alt="Portada de ${libro.titulo}">
+            <a href="detalle.html?id=${libroRelacionado.id}">
+                <h3>${libroRelacionado.titulo}</h3>
+                <img src="${libroRelacionado.imagen}" alt="Portada de ${libroRelacionado.titulo}">
             </a>
         `;
 
         contenedor.appendChild(card);
+
+        // Aplicar colores de la portada a la tarjeta relacionada
+        aplicarColores(libroRelacionado.imagen, card);
     });
+}
+
+/* 📌 Función para obtener color de texto adecuado */
+function getContrastingColor([r, g, b]) {
+    return (r * 299 + g * 587 + b * 114) / 1000 > 125 ? "#000" : "#fff";
 }
