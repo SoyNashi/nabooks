@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // 📌 Mostrar botones de compra si hay enlaces
             document.getElementById("link-kindle").style.display = libro.amazonkindle ? "inline-block" : "none";
             document.getElementById("link-tapa").style.display = libro.amazontapablanda ? "inline-block" : "none";
+            mostrarGrupo(libro);
 
             // 📌 Aplicar Color Thief para cambiar colores del fondo
             aplicarColores(libro.imagen, document.body);
@@ -107,7 +108,22 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error cargando el libro:", error));
 });
+/* 📌 Mostrar Grupo del Libro */
+function mostrarGrupo(libro) {
+    fetch("data/grupos.json")
+        .then(response => response.json())
+        .then(grupos => {
+            const grupo = grupos.find(g => g.libros_id.includes(parseInt(libro.id)));
 
+            if (grupo) {
+                document.getElementById("grupo-container").innerHTML = `
+                    <h3>Pertenece a la colección:</h3>
+                    <a href="grupos.html?id=${grupo.id}" class="btn-grupo">${grupo.nombre}</a>
+                `;
+            }
+        })
+        .catch(error => console.error("Error cargando el grupo:", error));
+}
 /* 🎨 Color Thief: Aplicar colores */
 function aplicarColores(imagenUrl, elemento) {
     const img = new Image();
