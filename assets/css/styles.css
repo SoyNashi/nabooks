@@ -1,36 +1,100 @@
-/* 📚 Estilos de la tarjeta del libro */
-.book-card {
-    border-radius: 15px;
-    padding: 15px;
-    transition: all 0.3s ease-in-out;
+/* 🔥 Estilos Globales */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --color-primario: #0ff; /* Cyan Neón */
+    --color-secundario: #ff00ff; /* Magenta */
+    --color-fondo: #0a0a1a;
+    --color-texto: #fff;
+    --glass-blur: 10px;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
     text-align: center;
-    overflow: hidden;
+}
+
+/* 🔹 Header */
+header {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(var(--glass-blur));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    text-shadow: 0px 0px 10px var(--color-primario);
+    flex: 1;
+}
+
+input, select {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    background: var(--glass-bg);
+    color: var(--color-texto);
+    backdrop-filter: blur(var(--glass-blur));
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus, select:focus {
+    box-shadow: 0px 0px 10px var(--color-primario);
+}
+
+/* 🔹 Contenedor de Libros */
+#books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+/* 📚 Tarjetas de Libros */
+.book-card {
     position: relative;
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+    backdrop-filter: blur(var(--glass-blur));
+    background: var(--glass-bg);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .book-card:hover {
     transform: scale(1.05);
-    box-shadow: 0px 0px 20px cyan;
+    box-shadow: 0px 0px 20px var(--color-primario);
 }
 
-/* 📌 Imagen del libro */
+/* 📌 Imagen del Libro */
 .book-card img {
     width: 100%;
     border-radius: 10px;
 }
 
-/* 📌 Enlace de la tarjeta */
-.book-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-/* 📌 Info del libro */
+/* 📌 Información Adicional */
 .book-info {
     display: flex;
     justify-content: space-between;
@@ -38,7 +102,7 @@
     padding: 10px 0;
 }
 
-/* 📌 Precio */
+/* 🏷️ Precio */
 .precios {
     font-size: 14px;
     text-align: left;
@@ -48,7 +112,7 @@
     margin: 5px 0;
 }
 
-/* 📌 Idioma (pequeña bolita de color) */
+/* 🌎 Idioma (Pequeña bolita de color) */
 .idioma {
     width: 30px;
     height: 30px;
@@ -59,4 +123,24 @@
     font-size: 14px;
     font-weight: bold;
     color: #fff;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* 🌐 Colores de idioma */
+.idioma.es { background-color: #FF4D4D; }  /* Español - Rojo */
+.idioma.en { background-color: #4D79FF; }  /* Inglés - Azul */
+
+/* 🔗 Enlace de la tarjeta */
+.book-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* 🚀 Pie de Página */
+footer {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.7);
 }
