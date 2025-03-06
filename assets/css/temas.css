@@ -1,4 +1,4 @@
-/* 🎇 Base para las partículas */
+/* 🔥 Base para las partículas animadas */
 .particles {
     position: absolute;
     top: 0;
@@ -9,48 +9,51 @@
     z-index: -1;
 }
 
-/* 🪐 Espacio */
+/* 🪐 Espacio - Efecto de estrellas */
 .espacio .particles {
-    background: url("../img/particulas/estrellas.png");
-    animation: moveStars 20s linear infinite;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 2%, transparent 80%);
+    animation: moveStars 10s linear infinite;
+    filter: blur(1px);
 }
 
 @keyframes moveStars {
-    from { background-position: 0 0; }
-    to { background-position: 100% 100%; }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
 }
 
-/* ❄️ Nieve */
-.nieve .particles {
-    background: url("../img/particulas/nieve.png");
-    animation: fallSnow 15s linear infinite;
+/* ❄️ Nieve - Copos flotando */
+.nieve .particles::before {
+    content: "❄️ ❄️ ❄️";
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.5;
+    animation: snowFall 5s linear infinite;
 }
 
-@keyframes fallSnow {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(100%); }
+@keyframes snowFall {
+    0% { transform: translateY(-100%); opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
 }
 
-/* ☢️ Nuclear */
+/* ☢️ Nuclear - Efecto de radiación */
 .nuclear .particles {
-    background: url("../img/particulas/radiacion.png");
-    animation: flicker 2s infinite alternate;
+    background: radial-gradient(circle, rgba(255, 255, 0, 0.2), transparent);
+    animation: flicker 1.5s infinite alternate;
 }
 
 @keyframes flicker {
-    0% { opacity: 0.8; }
-    100% { opacity: 0.3; }
+    0% { filter: blur(1px) brightness(1.1); }
+    100% { filter: blur(3px) brightness(1.5); }
 }
 
-/* 🔮 Cyberpunk */
+/* 🔮 Cyberpunk - Glitch digital */
 .cyberpunk .particles {
-    background: url("../img/particulas/digital.png");
-    animation: glitch 1.5s infinite;
+    animation: glitch 1s infinite;
+    filter: hue-rotate(20deg);
 }
 
 @keyframes glitch {
-    0% { transform: skewX(0deg); }
-    25% { transform: skewX(5deg); }
-    50% { transform: skewX(-5deg); }
-    100% { transform: skewX(0deg); }
+    0% { transform: skewX(0deg); filter: brightness(1); }
+    50% { transform: skewX(-5deg); filter: brightness(1.3); }
+    100% { transform: skewX(5deg); filter: brightness(1); }
 }
