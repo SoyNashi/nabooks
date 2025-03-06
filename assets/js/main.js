@@ -35,28 +35,40 @@ document.addEventListener("DOMContentLoaded", function () {
             const precioTapa = libro.preciotapablanda === "0" ? "Gratis" : `$${libro.preciotapablanda}`;
 
             // ✅ Idioma (Bolita de color)
-const idiomasMap = {
-    "Español": { clase: "es", bandera: "🇪🇸" },
-    "Ingles": { clase: "en", bandera: "🇬🇧" },
-    "Catalán": { clase: "ca", bandera: "🇨🇦" },  // Puedes cambiar por la correcta 🇨🇦 es Canadá (solo como ejemplo)
-    "Alemán": { clase: "de", bandera: "🇩🇪" },
-    "Francés": { clase: "fr", bandera: "🇫🇷" },
-    "Italiano": { clase: "it", bandera: "🇮🇹" },
-    "Portugués": { clase: "pt", bandera: "🇵🇹" },
-    "Japonés": { clase: "jp", bandera: "🇯🇵" },
-    "Chino": { clase: "cn", bandera: "🇨🇳" },
-    "Coreano": { clase: "kr", bandera: "🇰🇷" },
-    "Ruso": { clase: "ru", bandera: "🇷🇺" },
-    "Vikingo": { clase: "vk", bandera: "🪓" }  // ¡Épico! 🪓
+            const idiomasMap = {
+                "Español": { clase: "es", bandera: "🇪🇸" },
+                "Ingles": { clase: "en", bandera: "🇬🇧" },
+                "Catalán": { clase: "ca", bandera: "🇨🇦" },  // Puedes cambiar por la correcta 🇨🇦 es Canadá (solo como ejemplo)
+                "Alemán": { clase: "de", bandera: "🇩🇪" },
+                "Francés": { clase: "fr", bandera: "🇫🇷" },
+                "Italiano": { clase: "it", bandera: "🇮🇹" },
+                "Portugués": { clase: "pt", bandera: "🇵🇹" },
+                "Japonés": { clase: "jp", bandera: "🇯🇵" },
+                "Chino": { clase: "cn", bandera: "🇨🇳" },
+                "Coreano": { clase: "kr", bandera: "🇰🇷" },
+                "Ruso": { clase: "ru", bandera: "🇷🇺" },
+                "Vikingo": { clase: "vk", bandera: "🪓" }  // ¡Épico! 🪓
 
-};
+            };
 
-// Extraer datos (con fallback en caso de idioma desconocido)
-const idiomaData = idiomasMap[libro.idioma] || { clase: "desconocido", bandera: "🌐" };
+            // Función para manejar los idiomas y devolver sus clases y banderas
+            function obtenerIdiomaData(idiomas) {
+                const idiomasArray = idiomas.split('-');  // Separamos los idiomas si vienen juntos
+                return idiomasArray.map(idioma => {
+                    return idiomasMap[idioma] || { clase: "desconocido", bandera: "🌐" };
+                });
+            }
 
-// Usar así
-const idiomaClase = idiomaData.clase;
-const bandera = idiomaData.bandera;
+            // Supongamos que el campo libro.idioma es un string con uno o dos idiomas
+            const idiomaDataArray = obtenerIdiomaData(libro.idioma);
+
+            // Generamos los spans con las banderas y clases
+            let idiomasHTML = idiomaDataArray.map(idiomaData => {
+                return `<span class="idioma ${idiomaData.clase}">
+                            ${idiomaData.bandera}
+                        </span>`;
+            }).join(' ');
+
 
             // ✅ Estructura de la tarjeta del libro
             bookElement.innerHTML += `
@@ -64,9 +76,9 @@ const bandera = idiomaData.bandera;
                     <h2>${libro.titulo}</h2>
                     <img src="${libro.imagen}" alt="Portada de ${libro.titulo}">
                     <div class="book-info">
-                        <span class="idioma ${idiomaClase}">
-                            ${bandera}
-                        </span>
+                        <div class="idiomas">
+                            ${idiomasHTML}  <!-- Aquí se añaden los spans de los idiomas -->
+                        </div>
                         <div class="precios">
                             <p>📖 Kindle: ${precioKindle}</p>
                             <p>📚 Tapa blanda: ${precioTapa}</p>
