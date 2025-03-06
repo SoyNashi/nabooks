@@ -143,30 +143,29 @@ input:focus, select:focus {
 
 /* 🌐 Colores de idioma */
 /* 🌎 Colores de idioma */
-.idioma.es { background-color: #FF4D4D; }  /* Español - Rojo */
-.idioma.en { background-color: #4D79FF; }  /* Inglés - Azul */
-.idioma.ca { background-color: #FFCC00; }  /* Catalán - Amarillo */
-.idioma.de { background-color: #000000; color: white; }  /* Alemán - Negro */
-.idioma.fr { background-color: #0055A4; }  /* Francés - Azul Oscuro */
-.idioma.it { background-color: #008C45; }  /* Italiano - Verde */
-.idioma.pt { background-color: #009B3A; }  /* Portugués - Verde Brasil */
-.idioma.jp { background-color: #BC002D; color: white; }  /* Japonés - Rojo */
-.idioma.cn { background-color: #FFDE00; color: #DE2910; }  /* Chino - Amarillo */
-.idioma.kr { background-color: #0033A0; }  /* Coreano - Azul Corea */
-.idioma.ru { background-color: #D52B1E; }  /* Ruso - Rojo */
-.idioma.ar { background-color: #007A3D; }  /* Árabe - Verde */
-.idioma.gr { background-color: #0D5EAF; }  /* Griego - Azul Grecia */
-.idioma.nl { background-color: #21468B; }  /* Holandés - Azul */
-.idioma.sv { background-color: #006AA7; }  /* Sueco - Azul Suecia */
-.idioma.no { background-color: #BA0C2F; }  /* Noruego - Rojo Noruega */
-.idioma.dk { background-color: #C8102E; }  /* Danés - Rojo Dinamarca */
-.idioma.pl { background-color: #DC143C; }  /* Polaco - Rojo Polonia */
-.idioma.tr { background-color: #E30A17; }  /* Turco - Rojo Turquía */
-.idioma.kr { background-color: #0033A0; }  /* Coreano - Azul Corea */
-.idioma.hu { background-color: #436F4D; }  /* Húngaro - Verde Hungría */
-.idioma.cz { background-color: #11457E; }  /* Checo - Azul Chequia */
-.idioma.il { background-color: #0038B8; }  /* Hebreo - Azul Israel */
-.idioma.fi { background-color: #003580; }  /* Finlandés - Azul Finlandia */
+.idioma.es { background: linear-gradient(to right, #FF4D4D, #FFD700); } /* Español */
+.idioma.en { background: linear-gradient(to right, #4D79FF, #FFFFFF, #CC0000); } /* Inglés */
+.idioma.ca { background: linear-gradient(to right, #FFCC00, #DA121A, #004C99); } /* Catalán */
+.idioma.de { background: linear-gradient(to right, #000000, #DD0000, #FFCC00); color: white; } /* Alemán */
+.idioma.fr { background: linear-gradient(to right, #0055A4, #FFFFFF, #EF4135); } /* Francés */
+.idioma.it { background: linear-gradient(to right, #008C45, #FFFFFF, #CD212A); } /* Italiano */
+.idioma.pt { background: linear-gradient(to right, #009B3A, #FFFFFF, #FF0000); } /* Portugués */
+.idioma.jp { background: linear-gradient(to right, #FFFFFF, #BC002D); color: black; } /* Japonés */
+.idioma.cn { background: linear-gradient(to right, #FFDE00, #DE2910); color: black; } /* Chino */
+.idioma.kr { background: linear-gradient(to right, #FFFFFF, #0033A0, #C8102E); color: black; } /* Coreano */
+.idioma.ru { background: linear-gradient(to right, #D52B1E, #FFFFFF, #0039A6); } /* Ruso */
+.idioma.ar { background: linear-gradient(to right, #007A3D, #FFFFFF, #CE1126); } /* Árabe */
+.idioma.gr { background: linear-gradient(to right, #0D5EAF, #FFFFFF, #0D5EAF); } /* Griego */
+.idioma.nl { background: linear-gradient(to right, #21468B, #FFFFFF, #AE1C28); } /* Holandés */
+.idioma.sv { background: linear-gradient(to right, #006AA7, #FECC00); } /* Sueco */
+.idioma.no { background: linear-gradient(to right, #BA0C2F, #FFFFFF, #00205B); } /* Noruego */
+.idioma.dk { background: linear-gradient(to right, #C8102E, #FFFFFF, #C8102E); } /* Danés */
+.idioma.pl { background: linear-gradient(to right, #DC143C, #FFFFFF); } /* Polaco */
+.idioma.tr { background: linear-gradient(to right, #E30A17, #FFFFFF); } /* Turco */
+.idioma.hu { background: linear-gradient(to right, #436F4D, #FFFFFF, #CD212A); } /* Húngaro */
+.idioma.cz { background: linear-gradient(to right, #11457E, #FFFFFF, #DC143C); } /* Checo */
+.idioma.il { background: linear-gradient(to right, #0038B8, #FFFFFF, #0038B8); } /* Hebreo */
+.idioma.fi { background: linear-gradient(to right, #003580, #FFFFFF); } /* Finlandés */
 .idioma.vk { background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(77,121,9,1) 50%, rgba(0,212,255,1) 100%); }  /* Finlandés - Azul Finlandia */
 
 /* Idioma desconocido o genérico */
