@@ -3,15 +3,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("search");
     const filterLanguage = document.getElementById("filter-language");
 
-    // 📌 Cargar libros desde el JSON
-    fetch("data/books.json")
-        .then(response => response.json())
-        .then(libros => {
-            mostrarLibros(libros);
-            searchInput.addEventListener("input", () => filtrarLibros(libros));
-            filterLanguage.addEventListener("change", () => filtrarLibros(libros));
-        })
-        .catch(error => console.error("Error cargando libros:", error));
+    // 📌 Función para mezclar los libros con el algoritmo de Fisher-Yates
+function mezclarLibros(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Intercambia posiciones
+    }
+}
+
+// 📌 Cargar libros desde el JSON
+fetch("data/books.json")
+    .then(response => response.json())
+    .then(libros => {
+        mezclarLibros(libros); // Mezclar antes de mostrar
+        mostrarLibros(libros);
+        searchInput.addEventListener("input", () => filtrarLibros(libros));
+        filterLanguage.addEventListener("change", () => filtrarLibros(libros));
+    })
+    .catch(error => console.error("Error cargando libros:", error));
+
 
     // 📌 Mostrar libros en la página
     function mostrarLibros(libros) {
@@ -132,4 +142,31 @@ function aplicarColores(imagenUrl, contenedor) {
 
 function getContrastingColor([r, g, b]) {
     return (r * 299 + g * 587 + b * 114) / 1000 > 125 ? "#000" : "#fff";
+}
+
+
+/* 🌍 Sección de traducciones */
+.traducciones-detalle {
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    background: var(--glass-bg);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* 📌 Enlaces de traducción */
+.traduccion-link {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    background: var(--color-secundario);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.traduccion-link:hover {
+    box-shadow: 0px 0px 10px var(--color-secundario);
 }

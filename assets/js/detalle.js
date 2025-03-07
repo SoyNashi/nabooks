@@ -105,6 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // 📌 Cargar libros relacionados con estilo de `index.html`
             mostrarRelacionados(libro, libros);
+            mostrarTraducciones(libro, libros);
+
         })
         .catch(error => console.error("Error cargando el libro:", error));
 });
@@ -124,6 +126,35 @@ function mostrarGrupo(libro) {
         })
         .catch(error => console.error("Error cargando el grupo:", error));
 }
+
+
+/* 📌 Mostrar otras traducciones */
+function mostrarTraducciones(libro, libros) {
+    const contenedor = document.getElementById("traducciones-container");
+
+    if (!libro.traducciones || libro.traducciones.length === 0) {
+        contenedor.style.display = "none";
+        return;
+    }
+
+    const traducciones = libros.filter(l => libro.traducciones.includes(l.id));
+
+    contenedor.innerHTML = `<h3>🌍 Otros idiomas disponibles</h3>`;
+    traducciones.forEach(traduccion => {
+        const idiomaHTML = obtenerIdiomasHTML(traduccion.idioma);
+
+        contenedor.innerHTML += `
+            <a href="detalle.html?id=${traduccion.id}" class="traduccion-link">
+                ${traduccion.titulo} ${idiomaHTML}
+            </a>
+        `;
+    });
+
+    contenedor.style.display = "block";
+}
+
+
+
 /* 🎨 Color Thief: Aplicar colores */
 function aplicarColores(imagenUrl, elemento) {
     const img = new Image();
