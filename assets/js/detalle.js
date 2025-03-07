@@ -139,19 +139,33 @@ function mostrarTraducciones(libro, libros) {
 
     const traducciones = libros.filter(l => libro.traducciones.includes(l.id));
 
-    contenedor.innerHTML = `<h3>🌍 Otros idiomas disponibles</h3>`;
+    contenedor.innerHTML = `<h3>🌍 Otros idiomas disponibles</h3><div class="traducciones-grid"></div>`;
+    const grid = contenedor.querySelector(".traducciones-grid");
+
     traducciones.forEach(traduccion => {
         const idiomaHTML = obtenerIdiomasHTML(traduccion.idioma);
+        const precioKindle = traduccion.preciokindle === "0" ? "Gratis" : `$${traduccion.preciokindle}`;
+        const precioTapa = traduccion.preciotapablanda === "0" ? "Gratis" : `$${traduccion.preciotapablanda}`;
 
-        contenedor.innerHTML += `
+        const card = document.createElement("div");
+        card.classList.add("traduccion-card");
+
+        card.innerHTML = `
             <a href="detalle.html?id=${traduccion.id}" class="traduccion-link">
-                ${traduccion.titulo} ${idiomaHTML}
+                <img src="${traduccion.imagen}" alt="Portada de ${traduccion.titulo}">
+                <h4>${traduccion.titulo} ${idiomaHTML}</h4>
+                <p>📖 Kindle: ${precioKindle}</p>
+                <p>📚 Tapa blanda: ${precioTapa}</p>
             </a>
         `;
+
+        grid.appendChild(card);
+        aplicarColores(traduccion.imagen, card);
     });
 
     contenedor.style.display = "block";
 }
+
 
 
 

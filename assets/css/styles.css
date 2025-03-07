@@ -393,28 +393,51 @@ footer {
 }
  
 
-/* 🌍 Sección de traducciones */
+/* 🌍 Contenedor de traducciones */
 .traducciones-detalle {
     margin-top: 20px;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
     background: var(--glass-bg);
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
 }
 
-/* 📌 Enlaces de traducción */
-.traduccion-link {
-    display: block;
-    margin: 10px;
-    padding: 10px;
-    background: var(--color-secundario);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
+/* 📌 Grid de traducciones */
+.traducciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding-top: 10px;
+}
+
+/* 📚 Tarjetas de traducción */
+.traduccion-card {
+    border-radius: 10px;
+    padding: 15px;
+    backdrop-filter: blur(var(--glass-blur));
+    background: var(--glass-bg);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    text-align: center;
     transition: 0.3s;
 }
 
-.traduccion-link:hover {
-    box-shadow: 0px 0px 10px var(--color-secundario);
+.traduccion-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px var(--color-secundario);
+}
+
+/* 📖 Imagen en la traducción */
+.traduccion-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* 📌 Enlace de traducción */
+.traduccion-link {
+    text-decoration: none;
+    color: white;
+    display: block;
 }
