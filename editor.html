@@ -3,110 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor de JSON (Libros y Grupos)</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #121212; color: white; text-align: center; }
-        input, button, textarea { margin: 5px; padding: 8px; border-radius: 5px; border: none; }
-        button { cursor: pointer; background: #00ffea; color: black; }
-        button:hover { background: #00b7c3; }
-        textarea { width: 80%; height: 150px; background: #222; color: #00ffea; }
-        .container { display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; }
-        .section { width: 45%; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-        @media (max-width: 768px) { .section { width: 90%; margin-bottom: 20px; } }
-    </style>
+    <title>Editor de Libros y Grupos</title>
+    <link rel="stylesheet" href="assets/css/editor.css">
+    <script defer src="assets/js/editor.js"></script>
 </head>
 <body>
 
-    <h1>📚 Editor de `books.json` y `grupos.json`</h1>
+    <header>
+        <h1>📚 Editor de Libros y Grupos</h1>
+        <button id="export-json">📥 Generar JSON</button>
+    </header>
 
-    <!-- 📖 Sección de Libros -->
-    <div class="container">
-        <div class="section">
-            <h2>Añadir Libro</h2>
-            <input type="text" id="titulo" placeholder="Título">
-            <input type="text" id="subtitulo" placeholder="Subtítulo">
-            <input type="text" id="precio" placeholder="Precio (Ej: 14.99)">
-            <input type="text" id="imagen" placeholder="URL de la imagen">
-            <input type="text" id="amazon" placeholder="URL de Amazon">
-            <input type="text" id="coleccion" placeholder="Colección (Opcional)">
-            <input type="text" id="palabras" placeholder="Palabras clave (Ej: aventura, magia)">
-            <textarea id="sinopsis" placeholder="Sinopsis del libro"></textarea>
-            <button onclick="agregarLibro()">Añadir Libro</button>
-            <h3>📄 books.json</h3>
-            <textarea id="books-json" readonly></textarea>
-            <button onclick="descargarJSON('books.json', books)">Descargar books.json</button>
-        </div>
+    <main>
+        <h2>📖 Libros</h2>
+        <div id="books-container"></div>
 
-        <!-- 📂 Sección de Grupos (Automática) -->
-        <div class="section">
-            <h2>Grupos (Generado Automáticamente)</h2>
-            <h3>📄 grupos.json</h3>
-            <textarea id="grupos-json" readonly></textarea>
-            <button onclick="descargarJSON('grupos.json', generarGrupos())">Descargar grupos.json</button>
-        </div>
-    </div>
+        <h2>📂 Grupos</h2>
+        <div id="grupos-container"></div>
+    </main>
 
-    <script>
-        let books = [];
-        let autor = "Na Books"; // 🔹 Autor siempre es el mismo
-
-        function agregarLibro() {
-            let nuevoLibro = {
-                id: books.length + 1,
-                titulo: document.getElementById("titulo").value,
-                subtitulo: document.getElementById("subtitulo").value,
-                autor: autor,
-                precio: document.getElementById("precio").value,
-                imagen: document.getElementById("imagen").value,
-                amazon: document.getElementById("amazon").value,
-                coleccion: document.getElementById("coleccion").value || null,
-                palabras_clave: document.getElementById("palabras").value.split(",").map(p => p.trim()),
-                sinopsis: document.getElementById("sinopsis").value
-            };
-            books.push(nuevoLibro);
-            document.getElementById("books-json").value = JSON.stringify(books, null, 4);
-            document.getElementById("grupos-json").value = JSON.stringify(generarGrupos(), null, 4);
-            limpiarCamposLibro();
-        }
-
-        function limpiarCamposLibro() {
-            document.getElementById("titulo").value = "";
-            document.getElementById("subtitulo").value = "";
-            document.getElementById("precio").value = "";
-            document.getElementById("imagen").value = "";
-            document.getElementById("amazon").value = "";
-            document.getElementById("coleccion").value = "";
-            document.getElementById("palabras").value = "";
-            document.getElementById("sinopsis").value = "";
-        }
-
-        function generarGrupos() {
-            let colecciones = {};
-            books.forEach(libro => {
-                if (libro.coleccion) {
-                    if (!colecciones[libro.coleccion]) {
-                        colecciones[libro.coleccion] = { 
-                            id: Object.keys(colecciones).length + 1, 
-                            nombre: libro.coleccion, 
-                            libros_id: []
-                        };
-                    }
-                    colecciones[libro.coleccion].libros_id.push(libro.id);
-                }
-            });
-            return Object.values(colecciones);
-        }
-
-        function descargarJSON(nombreArchivo, datos) {
-            const blob = new Blob([JSON.stringify(datos, null, 4)], { type: "application/json" });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = nombreArchivo;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+    <footer>
+        <p>© 2025 Biblioteca Futurista | <a href="legal.html">Legal</a></p>
+    </footer>
 
 </body>
 </html>
