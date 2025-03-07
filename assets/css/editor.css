@@ -11,12 +11,6 @@ h1, h2 {
     color: #ffcc00;
 }
 
-/* 📌 Contenedores */
-#libros-container, #grupos-container {
-    margin: 20px auto;
-    max-width: 900px;
-}
-
 /* 📖 Tarjeta de libro */
 .libro-card {
     display: flex;
@@ -26,38 +20,37 @@ h1, h2 {
     border-radius: 10px;
     margin-bottom: 10px;
     gap: 10px;
+    max-width: 800px;
+    margin: 0 auto 15px auto;
 }
 
 .libro-card img {
-    width: 80px;
-    height: 100px;
+    width: 100px;
+    height: 140px;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.libro-card input {
-    background: #444;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-/* 📚 Tarjeta de grupo */
-.grupo-card {
-    background: #333;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.grupo-card textarea {
+.libro-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     width: 100%;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffcc00;
+}
+
+input {
     background: #444;
     color: white;
     border: none;
     padding: 5px;
     border-radius: 5px;
+    width: 100%;
 }
 
 /* 📌 Botones */

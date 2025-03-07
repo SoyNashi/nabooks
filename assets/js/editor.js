@@ -28,11 +28,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
             div.innerHTML = `
                 <img src="${libro.imagen}" alt="Portada">
-                <input type="text" value="${libro.titulo}" class="titulo">
-                <input type="text" value="${libro.idioma}" class="idioma">
-                <input type="number" value="${libro.preciokindle}" class="precio-kindle">
-                <input type="number" value="${libro.preciotapablanda}" class="precio-tapa">
-                <button class="editar" data-index="${index}">✏️ Editar</button>
+                <div class="libro-info">
+                    <label>Título:</label>
+                    <input type="text" value="${libro.titulo}" class="titulo">
+                    
+                    <label>Idioma:</label>
+                    <input type="text" value="${libro.idioma}" class="idioma">
+
+                    <label>Precio Kindle:</label>
+                    <input type="number" value="${libro.preciokindle}" class="precio-kindle">
+
+                    <label>Precio Tapa Blanda:</label>
+                    <input type="number" value="${libro.preciotapablanda}" class="precio-tapa">
+
+                    <label>Colección:</label>
+                    <input type="text" value="${libro.coleccion}" class="coleccion">
+
+                    <label>Traducciones (IDs separados por coma):</label>
+                    <input type="text" value="${libro.traducciones ? libro.traducciones.join(", ") : ""}" class="traducciones">
+
+                    <button class="editar" data-index="${index}">✏️ Editar</button>
+                </div>
             `;
 
             contenedor.appendChild(div);
@@ -55,6 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
         libro.idioma = inputs[1].value;
         libro.preciokindle = inputs[2].value;
         libro.preciotapablanda = inputs[3].value;
+        libro.coleccion = inputs[4].value;
+        libro.traducciones = inputs[5].value.split(",").map(id => parseInt(id.trim())).filter(id => !isNaN(id));
 
         alert("📌 Libro actualizado.");
     }
@@ -69,8 +87,12 @@ document.addEventListener("DOMContentLoaded", function () {
             div.classList.add("grupo-card");
 
             div.innerHTML = `
+                <label>Nombre del Grupo:</label>
                 <input type="text" value="${grupo.nombre}" class="grupo-nombre">
-                <textarea class="grupo-libros">${grupo.libros_id.join(", ")}</textarea>
+
+                <label>Libros en este Grupo (IDs separados por coma):</label>
+                <input type="text" value="${grupo.libros_id.join(", ")}" class="grupo-libros">
+
                 <button class="editar-grupo" data-index="${index}">✏️ Editar</button>
             `;
 
@@ -88,10 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // 📌 Editar un grupo
     function editarGrupo(index) {
         const grupo = grupos[index];
-        const inputs = document.querySelectorAll(`.grupo-card:nth-child(${index + 1}) input, .grupo-card:nth-child(${index + 1}) textarea`);
+        const inputs = document.querySelectorAll(`.grupo-card:nth-child(${index + 1}) input`);
 
         grupo.nombre = inputs[0].value;
-        grupo.libros_id = inputs[1].value.split(",").map(id => parseInt(id.trim()));
+        grupo.libros_id = inputs[1].value.split(",").map(id => parseInt(id.trim())).filter(id => !isNaN(id));
 
         alert("📌 Grupo actualizado.");
     }
