@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let libros = [];
     let grupos = [];
 
-    // 📌 Cargar datos desde los JSON
+    // 📌 Cargar datos de los archivos JSON
     fetch("data/books.json")
         .then(response => response.json())
         .then(data => {
@@ -17,82 +17,90 @@ document.addEventListener("DOMContentLoaded", function () {
             mostrarGrupos();
         });
 
-    // 📖 Mostrar libros con opciones editables
+    // 📌 Mostrar Libros en la Interfaz
     function mostrarLibros() {
-        const container = document.getElementById("books-container");
-        container.innerHTML = "";
+        const contenedor = document.getElementById("lista-libros");
+        contenedor.innerHTML = "";
+        
+        libros.forEach((libro, index) => {
+            const div = document.createElement("div");
+            div.classList.add("libro-card");
 
-        libros.forEach(libro => {
-            const card = document.createElement("div");
-            card.classList.add("book-card");
-
-            card.innerHTML = `
-                <img src="${libro.imagen}" alt="${libro.titulo}">
-                <input type="text" value="${libro.titulo}" data-id="${libro.id}" class="titulo-input">
-                <input type="text" value="${libro.preciokindle}" data-id="${libro.id}" class="kindle-input">
-                <input type="text" value="${libro.preciotapablanda}" data-id="${libro.id}" class="tapa-input">
-                <input type="text" value="${libro.idioma}" data-id="${libro.id}" class="idioma-input">
+            div.innerHTML = `
+                <img src="${libro.imagen}" alt="Portada">
+                <input type="text" value="${libro.titulo}" class="titulo">
+                <input type="text" value="${libro.idioma}" class="idioma">
+                <input type="number" value="${libro.preciokindle}" class="precio-kindle">
+                <input type="number" value="${libro.preciotapablanda}" class="precio-tapa">
+                <button class="editar" data-index="${index}">✏️ Editar</button>
             `;
 
-            container.appendChild(card);
+            contenedor.appendChild(div);
         });
 
-        // 📌 Detectar cambios
-        document.querySelectorAll(".titulo-input, .kindle-input, .tapa-input, .idioma-input").forEach(input => {
-            input.addEventListener("input", actualizarLibro);
+        document.querySelectorAll(".editar").forEach(btn => {
+            btn.addEventListener("click", function () {
+                const index = this.dataset.index;
+                editarLibro(index);
+            });
         });
     }
 
-    // 📂 Mostrar grupos con opciones editables
+    // 📌 Editar un libro
+    function editarLibro(index) {
+        const libro = libros[index];
+        const inputs = document.querySelectorAll(`.libro-card:nth-child(${index + 1}) input`);
+
+        libro.titulo = inputs[0].value;
+        libro.idioma = inputs[1].value;
+        libro.preciokindle = inputs[2].value;
+        libro.preciotapablanda = inputs[3].value;
+
+        alert("📌 Libro actualizado.");
+    }
+
+    // 📌 Mostrar Grupos en la Interfaz
     function mostrarGrupos() {
-        const container = document.getElementById("grupos-container");
-        container.innerHTML = "";
+        const contenedor = document.getElementById("lista-grupos");
+        contenedor.innerHTML = "";
 
-        grupos.forEach(grupo => {
-            const card = document.createElement("div");
-            card.classList.add("book-card");
+        grupos.forEach((grupo, index) => {
+            const div = document.createElement("div");
+            div.classList.add("grupo-card");
 
-            card.innerHTML = `
-                <h3>${grupo.nombre}</h3>
-                <input type="text" value="${grupo.nombre}" data-id="${grupo.id}" class="grupo-input">
+            div.innerHTML = `
+                <input type="text" value="${grupo.nombre}" class="grupo-nombre">
+                <textarea class="grupo-libros">${grupo.libros_id.join(", ")}</textarea>
+                <button class="editar-grupo" data-index="${index}">✏️ Editar</button>
             `;
 
-            container.appendChild(card);
+            contenedor.appendChild(div);
         });
 
-        document.querySelectorAll(".grupo-input").forEach(input => {
-            input.addEventListener("input", actualizarGrupo);
+        document.querySelectorAll(".editar-grupo").forEach(btn => {
+            btn.addEventListener("click", function () {
+                const index = this.dataset.index;
+                editarGrupo(index);
+            });
         });
     }
 
-    // 📝 Actualizar libros al editar
-    function actualizarLibro(event) {
-        const id = parseInt(event.target.dataset.id);
-        const libro = libros.find(l => l.id === id);
+    // 📌 Editar un grupo
+    function editarGrupo(index) {
+        const grupo = grupos[index];
+        const inputs = document.querySelectorAll(`.grupo-card:nth-child(${index + 1}) input, .grupo-card:nth-child(${index + 1}) textarea`);
 
-        if (event.target.classList.contains("titulo-input")) {
-            libro.titulo = event.target.value;
-        } else if (event.target.classList.contains("kindle-input")) {
-            libro.preciokindle = event.target.value;
-        } else if (event.target.classList.contains("tapa-input")) {
-            libro.preciotapablanda = event.target.value;
-        } else if (event.target.classList.contains("idioma-input")) {
-            libro.idioma = event.target.value;
-        }
+        grupo.nombre = inputs[0].value;
+        grupo.libros_id = inputs[1].value.split(",").map(id => parseInt(id.trim()));
+
+        alert("📌 Grupo actualizado.");
     }
 
-    // 📝 Actualizar grupos al editar
-    function actualizarGrupo(event) {
-        const id = parseInt(event.target.dataset.id);
-        const grupo = grupos.find(g => g.id === id);
-        grupo.nombre = event.target.value;
-    }
+    // 📌 Generar los JSON actualizados
+    document.getElementById("generar-json").addEventListener("click", function () {
+        console.log("📜 books.json:\n", JSON.stringify(libros, null, 4));
+        console.log("📜 grupos.json:\n", JSON.stringify(grupos, null, 4));
 
-    // 📥 Exportar los datos en JSON listo para copiar
-    document.getElementById("export-json").addEventListener("click", function () {
-        const booksJSON = JSON.stringify(libros, null, 4);
-        const groupsJSON = JSON.stringify(grupos, null, 4);
-
-        alert("✅ Copia y pega los siguientes JSONs:\n\n📖 books.json:\n" + booksJSON + "\n\n📂 grupos.json:\n" + groupsJSON);
+        alert("📥 JSON generado. Copia desde la consola.");
     });
 });

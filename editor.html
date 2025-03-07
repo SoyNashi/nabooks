@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor de Libros y Grupos</title>
-    <link rel="stylesheet" href="assets/css/editor.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <script defer src="assets/js/editor.js"></script>
 </head>
 <body>
 
     <header>
         <h1>📚 Editor de Libros y Grupos</h1>
-        <button id="export-json">📥 Generar JSON</button>
+        <button id="generar-json">📥 Generar JSON</button>
     </header>
 
     <main>
-        <h2>📖 Libros</h2>
-        <div id="books-container"></div>
+        <section id="libros-container">
+            <h2>📖 Libros</h2>
+            <div id="lista-libros"></div>
+        </section>
 
-        <h2>📂 Grupos</h2>
-        <div id="grupos-container"></div>
+        <section id="grupos-container">
+            <h2>📚 Grupos</h2>
+            <div id="lista-grupos"></div>
+        </section>
     </main>
 
     <footer>
