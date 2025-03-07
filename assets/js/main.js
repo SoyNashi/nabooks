@@ -145,28 +145,4 @@ function getContrastingColor([r, g, b]) {
 }
 
 
-/* 🌍 Sección de traducciones */
-.traducciones-detalle {
-    margin-top: 20px;
-    padding: 15px;
-    text-align: center;
-    background: var(--glass-bg);
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-}
 
-/* 📌 Enlaces de traducción */
-.traduccion-link {
-    display: block;
-    margin: 10px;
-    padding: 10px;
-    background: var(--color-secundario);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.traduccion-link:hover {
-    box-shadow: 0px 0px 10px var(--color-secundario);
-}
