@@ -393,22 +393,23 @@ footer {
 }
  
 
+
+
 /* 🌍 Contenedor de traducciones */
 .traducciones-detalle {
     margin-top: 20px;
     padding: 20px;
     text-align: center;
-    background: var(--glass-bg);
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
 }
 
-/* 📌 Grid de traducciones */
+/* 📌 Grid de traducciones (alineado con index.html) */
 .traducciones-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    padding-top: 10px;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* 📚 Tarjetas de traducción */
@@ -417,22 +418,26 @@ footer {
     padding: 15px;
     backdrop-filter: blur(var(--glass-blur));
     background: var(--glass-bg);
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
     text-align: center;
-    transition: 0.3s;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
-.traduccion-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 15px var(--color-secundario);
-}
-
-/* 📖 Imagen en la traducción */
+/* 📖 Imagen en la traducción (igual que en index) */
 .traduccion-card img {
     width: 100%;
-    height: 150px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
+}
+
+/* 🎨 Hover de la tarjeta */
+.traduccion-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px var(--color-secundario);
 }
 
 /* 📌 Enlace de traducción */
@@ -440,4 +445,15 @@ footer {
     text-decoration: none;
     color: white;
     display: block;
+}
+
+/* 📌 Títulos dentro de traducción */
+.traduccion-card h4 {
+    margin: 10px 0;
+}
+
+/* 📖 Información extra en traducción */
+.traduccion-card p {
+    font-size: 14px;
+    margin: 5px 0;
 }
