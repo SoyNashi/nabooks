@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let libros = [];
     let grupos = [];
 
-    // 📌 Cargar datos de los archivos JSON
+    // 📌 Cargar datos desde los archivos JSON
     fetch("data/books.json")
         .then(response => response.json())
         .then(data => {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function mostrarLibros() {
         const contenedor = document.getElementById("lista-libros");
         contenedor.innerHTML = "";
-        
+
         libros.forEach((libro, index) => {
             const div = document.createElement("div");
             div.classList.add("libro-card");
@@ -35,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <label>Idioma:</label>
                     <input type="text" value="${libro.idioma}" class="idioma">
 
+                    <label>Imagen (URL):</label>
+                    <input type="text" value="${libro.imagen}" class="imagen">
+
                     <label>Precio Kindle:</label>
                     <input type="number" value="${libro.preciokindle}" class="precio-kindle">
 
@@ -47,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <label>Traducciones (IDs separados por coma):</label>
                     <input type="text" value="${libro.traducciones ? libro.traducciones.join(", ") : ""}" class="traducciones">
 
-                    <button class="editar" data-index="${index}">✏️ Editar</button>
+                    <button class="editar" data-index="${index}">💾 Guardar</button>
+                    <button class="eliminar" data-index="${index}">🗑️ Eliminar</button>
                 </div>
             `;
 
@@ -60,6 +64,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 editarLibro(index);
             });
         });
+
+        document.querySelectorAll(".eliminar").forEach(btn => {
+            btn.addEventListener("click", function () {
+                const index = this.dataset.index;
+                libros.splice(index, 1);
+                mostrarLibros();
+            });
+        });
     }
 
     // 📌 Editar un libro
@@ -69,13 +81,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         libro.titulo = inputs[0].value;
         libro.idioma = inputs[1].value;
-        libro.preciokindle = inputs[2].value;
-        libro.preciotapablanda = inputs[3].value;
-        libro.coleccion = inputs[4].value;
-        libro.traducciones = inputs[5].value.split(",").map(id => parseInt(id.trim())).filter(id => !isNaN(id));
+        libro.imagen = inputs[2].value;
+        libro.preciokindle = inputs[3].value;
+        libro.preciotapablanda = inputs[4].value;
+        libro.coleccion = inputs[5].value;
+        libro.traducciones = inputs[6].value.split(",").map(id => parseInt(id.trim())).filter(id => !isNaN(id));
 
         alert("📌 Libro actualizado.");
+        mostrarLibros();
     }
+
+    // 📌 Agregar un nuevo libro
+    document.getElementById("agregar-libro").addEventListener("click", function () {
+        libros.push({
+            id: libros.length + 1,
+            titulo: "Nuevo Libro",
+            imagen: "",
+            idioma: "",
+            preciokindle: 0,
+            preciotapablanda: 0,
+            coleccion: "",
+            traducciones: []
+        });
+
+        mostrarLibros();
+    });
 
     // 📌 Mostrar Grupos en la Interfaz
     function mostrarGrupos() {
@@ -93,7 +123,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <label>Libros en este Grupo (IDs separados por coma):</label>
                 <input type="text" value="${grupo.libros_id.join(", ")}" class="grupo-libros">
 
-                <button class="editar-grupo" data-index="${index}">✏️ Editar</button>
+                <button class="editar-grupo" data-index="${index}">💾 Guardar</button>
+                <button class="eliminar-grupo" data-index="${index}">🗑️ Eliminar</button>
             `;
 
             contenedor.appendChild(div);
@@ -105,18 +136,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 editarGrupo(index);
             });
         });
+
+        document.querySelectorAll(".eliminar-grupo").forEach(btn => {
+            btn.addEventListener("click", function () {
+                const index = this.dataset.index;
+                grupos.splice(index, 1);
+                mostrarGrupos();
+            });
+        });
     }
 
-    // 📌 Editar un grupo
-    function editarGrupo(index) {
-        const grupo = grupos[index];
-        const inputs = document.querySelectorAll(`.grupo-card:nth-child(${index + 1}) input`);
+    // 📌 Agregar un nuevo grupo
+    document.getElementById("agregar-grupo").addEventListener("click", function () {
+        grupos.push({
+            id: grupos.length + 1,
+            nombre: "Nuevo Grupo",
+            libros_id: []
+        });
 
-        grupo.nombre = inputs[0].value;
-        grupo.libros_id = inputs[1].value.split(",").map(id => parseInt(id.trim())).filter(id => !isNaN(id));
-
-        alert("📌 Grupo actualizado.");
-    }
+        mostrarGrupos();
+    });
 
     // 📌 Generar los JSON actualizados
     document.getElementById("generar-json").addEventListener("click", function () {
