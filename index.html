@@ -1,39 +1,88 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Futurista</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/temas.css">
-    <link rel="stylesheet" href="assets/css/animaciones.css">
-    <script defer src="assets/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
-    <script defer src="assets/js/colores.js"></script>
-
+    <title>Bastet Project</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+        img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        .code-display {
+            font-weight: bold;
+            color: #00ff00;
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <img src="logo.png" alt="Bastet Project Logo">
+        <h1>Bastet Project</h1>
+        <div id="content">
+            <p>Loading...</p>
+        </div>
+    </div>
+    <script>
+        async function loadContent() {
+            try {
+                // Fetch the codes from codes.json
+                const response = await fetch('codes.json');
+                const codes = await response.json();
 
-    <header>
-    <h1>📚 Na Books</h1>
-    <input type="text" id="search" placeholder="🔎 Buscar libros...">
-    <select id="filter-language">
-        <option value="all">Todos los Idiomas</option>
-        <option value="Español">Español</option>
-        <option value="Ingles">Inglés</option>
-        <option value="Japonés">Japonés</option>
-        <option value="Vikingo">Vikingo</option>
-    </select>
-</header>
+                // Get the code from URL query parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const code = urlParams.get('code')?.toUpperCase();
 
-<main>
-    <div id="books-container"></div>
-</main>
+                const contentDiv = document.getElementById('content');
 
+                if (code && codes[code]) {
+                    // Display the specific code and its description
+                    contentDiv.innerHTML = `
+                        <p class="code-display">${code}</p>
+                        <p>${codes[code].description}</p>
+                        <p>This code grants you early access to the Bastet Project!</p>
+                    `;
+                } else {
+                    // Redirect to bastetproject.com if no valid code is provided
+                    window.location.href = 'https://bastetproject.com';
+                }
+            } catch (error) {
+                console.error('Error loading codes:', error);
+                // Redirect to bastetproject.com on error
+                window.location.href = 'https://bastetproject.com';
+            }
+        }
 
-    <footer>
-        <p>© 2025 Na Books | <a href="legal.html">Legal</a></p>
-    </footer>
-
+        // Load content when the page loads
+        window.onload = loadContent;
+    </script>
 </body>
 </html>
