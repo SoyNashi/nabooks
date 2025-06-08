@@ -40,6 +40,19 @@
             font-size: 1.5em;
             margin: 20px 0;
         }
+        button {
+            background-color: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #00cc00;
+        }
     </style>
 </head>
 <body>
@@ -64,11 +77,12 @@
                 const contentDiv = document.getElementById('content');
 
                 if (code && codes[code]) {
-                    // Display the specific code and its description
+                    // Display the specific code, its description, and a button
                     contentDiv.innerHTML = `
                         <p class="code-display">${code}</p>
                         <p>${codes[code].description}</p>
                         <p>This code grants you early access to the Bastet Project!</p>
+                        <button onclick="window.location.href='https://bastetproject.com'">Go to Bastet Project</button>
                     `;
                 } else {
                     // Redirect to bastetproject.com if no valid code is provided
