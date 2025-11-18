@@ -1,0 +1,14 @@
+{
+  "icons": {
+    "folder": "📁",
+    "file": "📄",
+    "md": "📝",
+    "html": "🌐",
+    "css": "🎨",
+    "js": "🟨",
+    "img": "🖼️",
+    "default": "📦"
+  },
+  "fileButtonClass": "my-file-btn",
+  "folderButtonClass": "my-folder-btn"
+}
