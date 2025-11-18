@@ -8,7 +8,10 @@ const treeEl = document.getElementById("tree");
 const previewArea = document.getElementById("previewArea");
 const currentPathEl = document.getElementById("currentPath");
 
-// LISTAR CONTENIDOS DE CARPETA
+// ARCHIVOS A OCULTAR
+const HIDE_EXT = ["json", "js", "css"];
+
+// LISTAR CONTENIDOS DE CARPETA --------------------------------------
 async function listDir(path) {
   const apiUrl =
     `https://api.github.com/repos/${OWNER}/${REPO}/contents/` +
@@ -19,19 +22,34 @@ async function listDir(path) {
 
   const arr = await res.json();
 
-  return arr.map(item => ({
-    type: item.type,
-    name: item.name,
-    path: item.path,
-    raw: item.download_url
-  }));
+  return arr
+    // FILTRAR ARCHIVOS NO MOSTRADOS
+    .filter(item => {
+      if (item.type === "dir") return true;
+      const ext = item.name.split(".").pop().toLowerCase();
+      return !HIDE_EXT.includes(ext);
+    })
+    .map(item => ({
+      type: item.type,
+      name: item.name,
+      displayName: removeExtension(item.name),
+      path: item.path,
+      raw: item.download_url
+    }));
 }
 
-// CREAR NODO DEL ÁRBOL
+// QUITAR EXTENSIÓN EN EL MENÚ
+function removeExtension(filename) {
+  const idx = filename.lastIndexOf(".");
+  if (idx === -1) return filename;
+  return filename.substring(0, idx);
+}
+
+// CREAR NODO DEL ÁRBOL -----------------------------------------------
 function makeNode(item) {
   const li = document.createElement("li");
   li.classList.add(item.type === "dir" ? "folder" : "file");
-  li.textContent = item.name;
+  li.textContent = item.displayName;
 
   if (item.type === "dir") {
     li.addEventListener("click", async (ev) => {
@@ -64,7 +82,7 @@ function makeNode(item) {
   return li;
 }
 
-// MOSTRAR ARCHIVO
+// MOSTRAR ARCHIVO -----------------------------------------------------
 async function openFile(item) {
   currentPathEl.textContent = item.path;
   previewArea.innerHTML = "";
@@ -109,7 +127,7 @@ async function openFile(item) {
   }
 }
 
-// IFRAMES AISLADOS
+// IFRAMES AISLADOS ----------------------------------------------------
 function sandboxFrame(html) {
   const iframe = document.createElement("iframe");
   iframe.setAttribute("sandbox", "allow-scripts allow-forms");
@@ -117,13 +135,18 @@ function sandboxFrame(html) {
   return iframe;
 }
 
-// CARGAR RAÍZ
-(async function init(){
+// CARGAR RAÍZ Y ABRIR INICIO.MD AUTOMÁTICAMENTE ----------------------
+async function init(){
   const children = await listDir(ROOT_PATH);
 
   const rootUl = document.createElement("ul");
   children.sort((a,b)=> a.type===b.type ? a.name.localeCompare(b.name) : a.type==="dir"? -1:1);
   children.forEach(child => rootUl.appendChild(makeNode(child)));
-
   treeEl.appendChild(rootUl);
-})();
+
+  // ABRIR AUTOMÁTICAMENTE INICIO.md
+  const inicio = children.find(f => f.name.toLowerCase() === "inicio.md");
+  if (inicio) openFile(inicio);
+}
+
+init();
