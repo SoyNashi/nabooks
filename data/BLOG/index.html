@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mi Blog</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main id="app">
+<h1>Mi Blog</h1>
+<div id="posts"></div>
+</main>
+
+
+<script>
+async function loadPosts() {
+try {
+const res = await fetch('posts.json');
+if (!res.ok) throw new Error('No se pudo cargar posts.json');
+const data = await res.json();
+renderPosts(data.posts || []);
+} catch (e) {
+document.getElementById('posts').innerText = 'Error cargando entradas: ' + e.message;
+}
+}
+
+
+function renderPosts(posts) {
+const container = document.getElementById('posts');
+if (!posts.length) {
+container.innerHTML = '<p>No hay entradas aún.</p>';
+return;
+}
+
+
+posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+container.innerHTML = '';
+posts.forEach(p => {
+const article = document.createElement('article');
+article.className = 'post';
+article.innerHTML = `
+<h2>${escapeHtml(p.title)}</h2>
+<div class="meta">${new Date(p.date).toLocaleString()}</div>
+<div class="content">${markdownToHtml(escapeHtml(p.content))}</div>
+`;
+container.appendChild(article);
+});
+}
+
+
+// Muy simple conversor Markdown -> HTML (solo párrafos y saltos)
+function markdownToHtml(md) {
+const paragraphs = md.split(/\n{2,}/).map(p => p.replace(/\n/g, '<br/>'));
+return paragraphs.map(p => `<p>${p}</p>`).join('\n');
+}
+
+
+function escapeHtml(str) {
+return String(str)
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/"/g, '&quot;')
+.replace(/'/g, '&#039;');
+}
+
+
+loadPosts();
+</script>
+</body>
+</html>
