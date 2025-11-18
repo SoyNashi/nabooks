@@ -1,27 +1,19 @@
 {
 "posts": [
-{
+  {
 "id": "welcome-1",
 "title": "Primera entrada",
 "date": "2025-10-18T10:00:00Z",
 "content": "Bienvenido a mi blog. Escribe tus entradas con el editor en Java.",
 "tags": ["intro"]
-}
-]
 },
-{
-"posts": [
 {
 "id": "welcome-2",
 "title": "Primera entrada",
 "date": "2024-11-18T10:00:00Z",
 "content": "Bienvenido a mi blog. Escribe tus entradas con el editor en Java.",
 "tags": ["intro"]
-}
-]
 },
-{
-"posts": [
 {
 "id": "welcome-3",
 "title": "Primera entrada",
