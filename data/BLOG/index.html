@@ -16,7 +16,7 @@
 <script>
 async function loadPosts() {
 try {
-const res = await fetch('https://github.com/SoyNashi/nabooks/blob/main/data/BLOG/posts.json');
+const res = await fetch("posts.json");
 if (!res.ok) throw new Error('No se pudo cargar posts.json');
 const data = await res.json();
 renderPosts(data.posts || []);
