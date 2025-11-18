@@ -1,40 +1,25 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Explorador estático — Plantilla</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nabooks Data Viewer</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Marked (markdown) + DOMPurify desde CDN (puedes sustituir por locales si lo prefieres) -->
+
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js"></script>
 </head>
 <body>
   <div id="app">
-    <header>
-      <h1 id="title">Repositorio — Explorador</h1>
-      <div id="controls">
-        <input id="repoInput" placeholder="owner/repo (ej: usuario/mi-repo)" />
-        <button id="loadRepo">Cargar (GitHub API)</button>
-        <button id="useManifest">Usar files.json</button>
-      </div>
-    </header>
+    <header><h1>Nabooks — Data Explorer</h1></header>
 
     <main>
       <nav id="tree"></nav>
-
       <section id="viewer">
-        <div id="viewer-toolbar">
-          <span id="currentPath">/</span>
-          <div id="fileActions"></div>
-        </div>
-        <div id="previewArea">Selecciona un archivo para ver</div>
+        <div id="viewer-toolbar"><span id="currentPath">/</span></div>
+        <div id="previewArea">Selecciona un archivo</div>
       </section>
     </main>
-
-    <footer>
-      <small>Plantilla simple — diseñada para GitHub Pages</small>
-    </footer>
   </div>
 
   <script src="app.js"></script>
