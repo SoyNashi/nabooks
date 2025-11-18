@@ -62,23 +62,30 @@ function makeNode(item) {
   return li;
 }
 
-// ---------- LÓGICA DE CARPETA: ABRIR INDEX.HTML SI ES ÚNICO ----------
+// ---------- LÓGICA DE CARPETA: ABRIR INDEX.HTML SI EXISTE ----------
 async function onFolderClick(li, item) {
-  // ya cargada → solo toggle
-  if (li._loaded) {
-    li._children.style.display = li._children.style.display === "none" ? "block" : "none";
-    return;
-  }
-
+  // obtener contenido de la carpeta
   const children = await listDir(item.path);
 
-  // si la carpeta solo tiene 1 archivo y es index.html → abrir directamente
-  if (children.length === 1 && children[0].name.toLowerCase() === "index.html") {
-    openFile(children[0]);
+  // buscar index.html aunque haya más archivos
+  const indexFile = children.find(
+    f => f.name.toLowerCase() === "index.html"
+  );
+
+  // si existe index.html → lo abrimos directamente
+  if (indexFile) {
+    openFile(indexFile);
     return;
   }
 
-  // caso normal: expandir carpeta
+  // si ya estaba cargada → toggle de visibilidad
+  if (li._loaded) {
+    li._children.style.display =
+      li._children.style.display === "none" ? "block" : "none";
+    return;
+  }
+
+  // expandir carpeta normalmente
   const ul = document.createElement("ul");
   li.appendChild(ul);
   li._children = ul;
@@ -91,7 +98,6 @@ async function onFolderClick(li, item) {
   children.forEach(child => ul.appendChild(makeNode(child)));
   li._loaded = true;
 }
-
 // --------------- MOSTRAR ARCHIVO -------------------------
 async function openFile(item) {
   currentPathEl.textContent = item.path;
