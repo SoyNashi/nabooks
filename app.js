@@ -1,4 +1,4 @@
-// --- CONFIG FIJA PARA TU REPO ---
+// --- CONFIG DE TU REPO ---
 const OWNER = "SoyNashi";
 const REPO = "nabooks";
 const ROOT_PATH = "data";
@@ -8,14 +8,12 @@ const treeEl = document.getElementById("tree");
 const previewArea = document.getElementById("previewArea");
 const currentPathEl = document.getElementById("currentPath");
 
-// ARCHIVOS A OCULTAR
+// OCULTAR EXTENSIONES
 const HIDE_EXT = ["json", "js", "css"];
 
-// LISTAR CONTENIDOS DE CARPETA --------------------------------------
+// ---------------- LISTAR DIRECTORIO ---------------------
 async function listDir(path) {
-  const apiUrl =
-    `https://api.github.com/repos/${OWNER}/${REPO}/contents/` +
-    encodeURIComponent(path);
+  const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/` + encodeURIComponent(path);
 
   const res = await fetch(apiUrl);
   if (!res.ok) return [];
@@ -23,7 +21,6 @@ async function listDir(path) {
   const arr = await res.json();
 
   return arr
-    // FILTRAR ARCHIVOS NO MOSTRADOS
     .filter(item => {
       if (item.type === "dir") return true;
       const ext = item.name.split(".").pop().toLowerCase();
@@ -32,20 +29,19 @@ async function listDir(path) {
     .map(item => ({
       type: item.type,
       name: item.name,
-      displayName: removeExtension(item.name),
+      displayName: removeExt(item.name),
       path: item.path,
       raw: item.download_url
     }));
 }
 
-// QUITAR EXTENSIÓN EN EL MENÚ
-function removeExtension(filename) {
-  const idx = filename.lastIndexOf(".");
-  if (idx === -1) return filename;
-  return filename.substring(0, idx);
+function removeExt(name) {
+  const i = name.lastIndexOf(".");
+  if (i === -1) return name;
+  return name.slice(0, i);
 }
 
-// CREAR NODO DEL ÁRBOL -----------------------------------------------
+// -------------- CREAR NODO DEL ÁRBOL --------------------
 function makeNode(item) {
   const li = document.createElement("li");
   li.classList.add(item.type === "dir" ? "folder" : "file");
@@ -54,26 +50,10 @@ function makeNode(item) {
   if (item.type === "dir") {
     li.addEventListener("click", async (ev) => {
       ev.stopPropagation();
-      if (li._loaded) {
-        li._children.style.display =
-          li._children.style.display === "none" ? "block" : "none";
-        return;
-      }
-
-      const ul = document.createElement("ul");
-      ul.innerHTML = "<li>Cargando...</li>";
-      li.appendChild(ul);
-      li._children = ul;
-
-      const children = await listDir(item.path);
-      ul.innerHTML = "";
-      children.sort((a,b)=> a.type===b.type ? a.name.localeCompare(b.name) : a.type==="dir"? -1:1);
-
-      for (const child of children) ul.appendChild(makeNode(child));
-      li._loaded = true;
+      await onFolderClick(li, item);
     });
   } else {
-    li.addEventListener("click", (ev)=>{
+    li.addEventListener("click", (ev) => {
       ev.stopPropagation();
       openFile(item);
     });
@@ -82,69 +62,91 @@ function makeNode(item) {
   return li;
 }
 
-// MOSTRAR ARCHIVO -----------------------------------------------------
+// ---------- LÓGICA DE CARPETA: ABRIR INDEX.HTML SI ES ÚNICO ----------
+async function onFolderClick(li, item) {
+  // ya cargada → solo toggle
+  if (li._loaded) {
+    li._children.style.display = li._children.style.display === "none" ? "block" : "none";
+    return;
+  }
+
+  const children = await listDir(item.path);
+
+  // si la carpeta solo tiene 1 archivo y es index.html → abrir directamente
+  if (children.length === 1 && children[0].name.toLowerCase() === "index.html") {
+    openFile(children[0]);
+    return;
+  }
+
+  // caso normal: expandir carpeta
+  const ul = document.createElement("ul");
+  li.appendChild(ul);
+  li._children = ul;
+
+  children.sort((a, b) =>
+    a.type === b.type ? a.name.localeCompare(b.name) : a.type === "dir" ? -1 : 1
+  );
+
+  ul.innerHTML = "";
+  children.forEach(child => ul.appendChild(makeNode(child)));
+  li._loaded = true;
+}
+
+// --------------- MOSTRAR ARCHIVO -------------------------
 async function openFile(item) {
   currentPathEl.textContent = item.path;
   previewArea.innerHTML = "";
 
   try {
     const res = await fetch(item.raw);
-    const text = await res.text();
+    const txt = await res.text();
     const ext = item.name.split(".").pop().toLowerCase();
 
     if (ext === "md") {
-      const safe = DOMPurify.sanitize(marked.parse(text));
-      const html = `
-        <html>
-        <head><meta charset="utf-8">
-        <style>
-        body{font-family:sans-serif;padding:15px;line-height:1.6}
-        </style></head>
-        <body>${safe}</body>
-        </html>`;
-      const iframe = sandboxFrame(html);
-      previewArea.appendChild(iframe);
+      const safe = DOMPurify.sanitize(marked.parse(txt));
+      const html = `<html><body style="font-family:sans-serif;padding:20px;line-height:1.6">${safe}</body></html>`;
+      previewArea.appendChild(sandboxFrame(html));
 
     } else if (ext === "html") {
-      const iframe = sandboxFrame(text);
-      previewArea.appendChild(iframe);
+      previewArea.appendChild(sandboxFrame(txt));
 
     } else if (["png","jpg","jpeg","gif","webp","svg"].includes(ext)) {
       const img = document.createElement("img");
       img.src = item.raw;
-      img.style.maxWidth = "100%";
+      img.classList.add("preview-img");
       previewArea.appendChild(img);
 
     } else {
-      const safe = DOMPurify.sanitize(text).replace(/\n/g, "<br>");
-      const html = `
-        <html><body style="font-family:monospace;padding:15px;">${safe}</body></html>`;
-      const iframe = sandboxFrame(html);
-      previewArea.appendChild(iframe);
+      const safe = DOMPurify.sanitize(txt).replace(/\n/g, "<br>");
+      previewArea.appendChild(sandboxFrame(`<html><body>${safe}</body></html>`));
     }
-  } catch (e) {
+
+  } catch (err) {
     previewArea.innerHTML = "Error cargando archivo";
   }
 }
 
-// IFRAMES AISLADOS ----------------------------------------------------
+// ---------------- IFRAME SEGURO --------------------------
 function sandboxFrame(html) {
   const iframe = document.createElement("iframe");
-  iframe.setAttribute("sandbox", "allow-scripts allow-forms");
+  iframe.sandbox = "allow-scripts allow-forms";
   iframe.srcdoc = html;
   return iframe;
 }
 
-// CARGAR RAÍZ Y ABRIR INICIO.MD AUTOMÁTICAMENTE ----------------------
-async function init(){
+// ---------------- INICIO AUTOMÁTICO -----------------------
+async function init() {
   const children = await listDir(ROOT_PATH);
+  const ul = document.createElement("ul");
 
-  const rootUl = document.createElement("ul");
-  children.sort((a,b)=> a.type===b.type ? a.name.localeCompare(b.name) : a.type==="dir"? -1:1);
-  children.forEach(child => rootUl.appendChild(makeNode(child)));
-  treeEl.appendChild(rootUl);
+  children.sort((a, b) =>
+    a.type === b.type ? a.name.localeCompare(b.name) : a.type === "dir" ? -1 : 1
+  );
 
-  // ABRIR AUTOMÁTICAMENTE INICIO.md
+  children.forEach(child => ul.appendChild(makeNode(child)));
+  treeEl.appendChild(ul);
+
+  // Buscar INICIO.md y abrirlo
   const inicio = children.find(f => f.name.toLowerCase() === "inicio.md");
   if (inicio) openFile(inicio);
 }
