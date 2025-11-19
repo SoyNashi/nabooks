@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Corpus Norrœnum — Textos y Estudios</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#c7a77a;--glass: rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#071021 0%, #0b1420 100%);color:#e6eef6;line-height:1.45}
+    .wrap{max-width:900px;margin:48px auto;padding:24px}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+    header img{width:56px;height:56px;object-fit:cover;border-radius:8px;filter:grayscale(10%)}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:20px}
+    .card{background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.7));padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .media{display:flex;gap:12px}
+    .thumb{flex:0 0 110px}
+    .thumb img{width:110px;height:150px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.03)}
+    .info{flex:1}
+    .title{font-weight:700;margin:0 0 6px}
+    .subtitle{font-size:13px;color:var(--accent);margin:0 0 8px}
+    .desc{font-size:14px;color:var(--muted);margin-bottom:10px;white-space:pre-wrap}
+    .price-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+    .price{background:var(--glass);padding:6px 8px;border-radius:8px;font-weight:600;color:var(--accent);font-size:14px}
+    .links{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:600;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dfe9f6;font-size:13px}
+    .btn:focus{outline:2px solid rgba(199,167,122,0.18)}
+    footer{margin-top:22px;color:var(--muted);font-size:13px;text-align:center}
+
+    @media (max-width:420px){.thumb img{width:88px;height:120px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="https://m.media-amazon.com/images/I/71EI2Oe0JgL._SY466_.jpg" alt="Portada ejemplo">
+      <div>
+        <h1>Corpus Norrœnum: Textos y Estudios sobre Religión y Mitología Nórdica</h1>
+        <p class="lead">Selección de títulos publicados en la colección — fichas básicas con descripción, precios y enlaces.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- El Códice del Norte -->
+      <article class="card" aria-labelledby="codice-title">
+        <div class="media">
+          <div class="thumb">
+            <img src="https://m.media-amazon.com/images/I/71EI2Oe0JgL._SY466_.jpg" alt="El Códice del Norte — portada">
+          </div>
+          <div class="info">
+            <h2 id="codice-title" class="title">El Códice del Norte</h2>
+            <div class="subtitle">Colección: Corpus Norrœnum</div>
+            <div class="desc">El Códice del Norte es una puerta a un mundo ancestral donde las leyendas, la poesía y la sabiduría se entrelazan. A través de relatos evocadores, poemas cargados de fuerza y escritos llenos de conocimiento, este libro guía al lector a explorar y vivir según los valores, costumbres y filosofía de vida vikinga. Más que un simple compendio de historias, es un manual espiritual y cultural que invita a reconectar con la naturaleza, la valentía, la honra y la armonía con los antiguos dioses del Norte. Perfecto para quienes desean sumergirse en la riqueza de una tradición que aún inspira fuerza y coraje en la vida cotidiana.</div>
+
+            <div class="price-row">
+              <div class="price">Libro: 17,97 €</div>
+              <div class="price">Kindle: 5,18 €</div>
+            </div>
+
+            <div class="links">
+              <a class="btn" href="https://www.amazon.es/C%C3%B3dice-del-Norte-Corpus-Norr%C5%93num/dp/B0FY28KKVP/" target="_blank" rel="noopener noreferrer">Ver en Amazon</a>
+              <a class="btn" href="https://www.amazon.es/C%C3%B3dice-del-Norte-Pocketsize-Mitolog%C3%ADa/dp/B0FZ39CPW8/ref=tmm_pap_swatch_0" target="_blank" rel="noopener noreferrer">Versión de bolsillo</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Hávamál y la Edda Mayor -->
+      <article class="card" aria-labelledby="havamal-title">
+        <div class="media">
+          <div class="thumb">
+            <img src="https://m.media-amazon.com/images/I/61B+VsQcvkL._SY466_.jpg" alt="Hávamál y la Edda Mayor — portada">
+          </div>
+          <div class="info">
+            <h2 id="havamal-title" class="title">Hávamál y la Edda Mayor</h2>
+            <div class="subtitle">Colección: Corpus Norrœnum</div>
+            <div class="desc">Este libro reúne el Hávamál y la Edda Mayor (Poética), los textos más influyentes de la tradición espiritual nórdica.
+
+El Hávamál, “Las Palabras del Altísimo”, contiene consejos, máximas y reflexiones atribuidas a Odín, transmitiendo enseñanzas sobre ética, honor y sabiduría práctica. Aunque forma parte de la Edda Poética, se presenta aquí de manera destacada por su valor filosófico y espiritual.
+
+La Edda Mayor, colección de poemas antiguos, nos introduce en los mitos de los dioses, héroes y el origen del mundo, preservando la memoria de la cosmovisión nórdica.
+
+Esta edición busca ofrecer a los lectores un acceso integral y respetuoso a estas obras fundamentales, sirviendo como guía, inspiración y fuente de conocimiento para quienes siguen —o desean conocer— el neopaganismo, odinismo, Ásatrú y tradiciones afines.
+
+Que las palabras de Odín iluminen tu camino por los Nueve Mundos.</div>
+
+            <div class="price-row">
+              <div class="price">Libro: 13,43 €</div>
+              <div class="price">Kindle: 0,89 €</div>
+            </div>
+
+            <div class="links">
+              <a class="btn" href="https://www.amazon.es/H%C3%A1vam%C3%A1l-Edda-Po%C3%A9tica-Pocketsize-Mitolog%C3%ADa/dp/B0G24THS8Z" target="_blank" rel="noopener noreferrer">Versión de bolsillo</a>
+              <a class="btn" href="https://www.amazon.es/H%C3%A1vam%C3%A1l-Edda-Mayor-Corpus-Norr%C5%93num/dp/B0G24QCFGX" target="_blank" rel="noopener noreferrer">Ver en Amazon</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</body>
+</html>
