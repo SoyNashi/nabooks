@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Libro — Na Books</title>
+<style>
+  :root{
+    --bg:#f2f2f3;
+    --book-bg: #fff;
+    --accent:#2b2b2b;
+    --muted:#666;
+    --shadow: 0 10px 30px rgba(0,0,0,0.12);
+    --book-width: 720px;
+    --book-height: 520px;
+  }
+  html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{background:var(--bg);display:flex;align-items:center;justify-content:center;gap:20px;padding:24px;box-sizing:border-box;}
+  /* container */
+  .wrap{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:100%;}
+  /* book */
+  .book{
+    width:var(--book-width);
+    height:var(--book-height);
+    background:var(--book-bg);
+    box-shadow:var(--shadow);
+    border-radius:8px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .spine{position:absolute;left:0;top:0;bottom:0;width:32px;background:linear-gradient(180deg,#ddd,#eee);z-index:3}
+  .page-area{flex:1;display:flex;align-items:center;justify-content:center;padding:28px;box-sizing:border-box;position:relative;}
+  .page{width:100%;height:100%;overflow:auto;padding:28px;box-sizing:border-box;background:transparent;transition:transform .42s cubic-bezier(.2,.9,.2,1);transform-origin:left center;}
+  .page-inner{max-width:100%;color:var(--accent);}
+  /* Basic typography */
+  .page h1{font-size:28px;margin:8px 0 18px;}
+  .page h2{font-size:22px;margin:10px 0 14px;}
+  .page p{line-height:1.6;margin:12px 0;}
+  .page img{max-width:100%;height:auto;display:block;margin:12px 0;border-radius:4px;box-shadow:0 4px 10px rgba(0,0,0,.06)}
+  blockquote{margin:12px 0;padding:12px 16px;border-left:4px solid #ddd;background:#fafafa}
+  pre{background:#111;color:#fff;padding:12px;border-radius:6px;overflow:auto;font-family:monospace}
+  ul,ol{margin:8px 0 18px 20px}
+  /* small footer area with page numbers and author */
+  .footer{
+    height:54px;border-top:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-sizing:border-box;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9));
+  }
+  .meta{font-size:13px;color:var(--muted)}
+  .page-number{font-weight:600;color:var(--accent)}
+  /* controls */
+  .controls{display:flex;gap:8px;align-items:center}
+  button.btn{
+    background:transparent;border:1px solid #ddd;padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:600;
+  }
+  button.btn:active{transform:translateY(1px)}
+  .small{font-size:13px;padding:6px 8px}
+  /* large overlay message */
+  .overlay{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.9));z-index:5;backdrop-filter: blur(2px);
+    padding:28px;box-sizing:border-box;text-align:center;
+  }
+  .overlay .msg{max-width:640px;color:var(--accent)}
+  .hidden{display:none}
+  /* responsive */
+  @media (max-width:840px){
+    :root{--book-width:92vw;--book-height:64vh}
+    .spine{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:flex;gap:12px;align-items:center;">
+    <strong style="font-size:18px">Libro interactivo</strong>
+    <span style="color:var(--muted);font-size:13px">— autor: Na Books</span>
+  </div>
+
+  <div class="book" id="book">
+    <div class="spine" aria-hidden="true"></div>
+
+    <div class="page-area">
+      <!-- visually one page at a time -->
+      <div id="page" class="page" aria-live="polite">
+        <div class="page-inner" id="page-inner">Cargando...</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="meta">Na Books</div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="controls">
+          <button id="firstBtn" class="btn small" title="Ir a la portada">Portada</button>
+          <button id="prevBtn" class="btn small" title="Página anterior">◀ Anterior</button>
+          <button id="nextBtn" class="btn small" title="Siguiente página">Siguiente ▶</button>
+          <button id="lastBtn" class="btn small" title="Ir a la contraportada">Contraportada</button>
+        </div>
+        <div class="page-number" id="pageNumber">0 / 0</div>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay hidden">
+      <div class="msg" id="overlayMsg">
+        <!-- messages appear here -->
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;align-items:center;">
+    <input id="urlInput" style="width:420px;padding:8px;border-radius:6px;border:1px solid #ddd" value="https://bynashi.qzz.io/data/ASATRU/LIBRO.md" />
+    <button id="loadBtn" class="btn">Cargar URL</button>
+    <button id="pasteBtn" class="btn small">Pegar MD</button>
+  </div>
+</div>
+
+<script>
+/*
+  Libro interactivo:
+  - descarga markdown desde URL (input por defecto la que pasaste)
+  - divide en páginas por líneas que contengan solo --- (posibles espacios)
+  - parsea markdown a HTML (función mdToHtml básica y razonable)
+  - si una <img> falla, la reemplaza por su texto alternativo
+  - portada = primera página; contraportada = última
+  - botones, teclado y swipe
+  - autor: Na Books
+*/
+
+const DEFAULT_URL = document.getElementById('urlInput').value.trim();
+const pageEl = document.getElementById('page');
+const pageInner = document.getElementById('page-inner');
+const pageNumberEl = document.getElementById('pageNumber');
+const overlay = document.getElementById('overlay');
+const overlayMsg = document.getElementById('overlayMsg');
+
+let pages = []; // array de HTML strings
+let current = 0;
+
+function showOverlay(text){
+  overlayMsg.innerHTML = text;
+  overlay.classList.remove('hidden');
+}
+function hideOverlay(){
+  overlay.classList.add('hidden');
+}
+
+// utility: safely escape HTML
+function escHtml(s){
+  return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+}
+
+// Very small markdown -> HTML converter.
+// Covers: headings (#..), images ![alt](url), links [text](url), bold **, italic *, lists -, numbered lists, code blocks ``` , inline code ``, blockquote >, paragraphs
+function mdToHtml(md){
+  // Normalize newlines
+  md = md.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+
+  // code blocks
+  md = md.replace(/```([\s\S]*?)```/g, function(m, code){ return '<pre><code>'+escHtml(code)+'</code></pre>'; });
+
+  // split lines for block-level processing
+  const lines = md.split('\n');
+  let out = [];
+  let i = 0;
+  let inList = false;
+  let inOList = false;
+  let listBuffer = [];
+
+  function flushList(){
+    if(inList){
+      out.push('<ul>'+listBuffer.map(li=>'<li>'+li+'</li>').join('')+'</ul>');
+    } else if(inOList){
+      out.push('<ol>'+listBuffer.map(li=>'<li>'+li+'</li>').join('')+'</ol>');
+    }
+    inList = inOList = false;
+    listBuffer = [];
+  }
+
+  while(i<lines.length){
+    let line = lines[i];
+
+    // heading
+    let h = line.match(/^(#{1,6})\s*(.*)$/);
+    if(h){
+      flushList();
+      const level = h[1].length;
+      out.push(`<h${level}>${inlineFormat(h[2].trim())}</h${level}>`);
+      i++; continue;
+    }
+
+    // blockquote
+    let bq = line.match(/^\>\s?(.*)$/);
+    if(bq){
+      flushList();
+      let bqLines = [bq[1]];
+      i++;
+      while(i<lines.length && lines[i].match(/^\>\s?(.*)$/)){
+        bqLines.push(lines[i].replace(/^\>\s?/,''));
+        i++;
+      }
+      out.push('<blockquote>'+inlineFormat(bqLines.join('\n'))+'</blockquote>');
+      continue;
+    }
+
+    // image-only line
+    let imgMatch = line.match(/^\!\[([^\]]*)\]\(([^)]+)\)\s*$/);
+    if(imgMatch){
+      flushList();
+      const alt = imgMatch[1] || 'imagen';
+      const url = imgMatch[2];
+      out.push(`<p><img data-src="${url.trim()}" alt="${escHtml(alt)}" loading="lazy"></p>`);
+      i++; continue;
+    }
+
+    // lists
+    let ul = line.match(/^\s*[-\*]\s+(.*)$/);
+    let ol = line.match(/^\s*\d+\.\s+(.*)$/);
+    if(ul){
+      if(!inList){ flushList(); inList=true; listBuffer=[]; }
+      listBuffer.push(inlineFormat(ul[1]));
+      i++; continue;
+    } else if(ol){
+      if(!inOList){ flushList(); inOList=true; listBuffer=[]; }
+      listBuffer.push(inlineFormat(ol[1]));
+      i++; continue;
+    } else {
+      // non-list line -> paragraph building. We'll gather consecutive non-empty lines into a paragraph.
+      flushList();
+      if(line.trim()===''){
+        i++; continue;
+      }
+      let paraLines = [line];
+      i++;
+      while(i<lines.length && lines[i].trim()!==''){
+        paraLines.push(lines[i]);
+        i++;
+      }
+      // Replace single line breaks within a paragraph with <br>
+      let paragraph = paraLines.join('\n').replace(/\n/g,'<br>');
+      out.push('<p>'+inlineFormat(paragraph)+'</p>');
+      continue;
+    }
+  } // end while
+  flushList();
+  return out.join('\n');
+
+  // inline formatting function
+  function inlineFormat(s){
+    // escape html first
+    s = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+    // images inside line: ![alt](url)
+    s = s.replace(/\!\[([^\]]*)\]\(([^)]+)\)/g, function(m,a,b){
+      return '<img data-src="'+b.trim()+'" alt="'+escHtml(a)+'" loading="lazy">';
+    });
+
+    // links [text](url)
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function(m,a,b){
+      return '<a href="'+b.trim()+'" target="_blank" rel="noopener">'+a+'</a>';
+    });
+
+    // bold **text**
+    s = s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+    // italic *text*
+    s = s.replace(/\*([^*]+)\*/g,'<em>$1</em>');
+    // inline code `code`
+    s = s.replace(/`([^`]+)`/g,'<code>$1</code>');
+    return s;
+  }
+}
+
+// splitting by lines that only contain --- (possibly spaces around)
+function splitPages(mdText){
+  // Split on a line that is only --- (and optional surrounding whitespace)
+  const re = /^\s*---\s*$/m;
+  // We'll use a loop that looks for such lines
+  const parts = mdText.split(/\r\n|\r|\n/);
+  let pages = [];
+  let cur = [];
+  for(let i=0;i<parts.length;i++){
+    if(parts[i].match(/^\s*---\s*$/)){
+      pages.push(cur.join('\n'));
+      cur = [];
+    } else {
+      cur.push(parts[i]);
+    }
+  }
+  pages.push(cur.join('\n'));
+  return pages;
+}
+
+function renderPage(index){
+  if(pages.length===0){
+    pageInner.innerHTML = '<p>No hay contenido.</p>';
+    pageNumberEl.textContent = '0 / 0';
+    return;
+  }
+  index = Math.max(0, Math.min(index, pages.length-1));
+  current = index;
+  pageInner.innerHTML = pages[index];
+
+  // enhance images: convert data-src and handle onerror
+  const imgs = pageInner.querySelectorAll('img[data-src]');
+  imgs.forEach(img=>{
+    const src = img.getAttribute('data-src');
+    img.src = src;
+    img.addEventListener('error', ()=>{
+      // replace image with fallback text (alt)
+      const alt = img.alt || 'Imagen';
+      const span = document.createElement('div');
+      span.style.padding = '20px';
+      span.style.border = '1px dashed #ddd';
+      span.style.borderRadius = '6px';
+      span.style.textAlign = 'center';
+      span.style.fontSize = '14px';
+      span.style.color = '#555';
+      span.textContent = alt + ' (imagen no disponible)';
+      img.replaceWith(span);
+    });
+    // if it loads fine but is huge, limit width (css handles max-width)
+  });
+
+  // update page numbering and footer
+  pageNumberEl.textContent = (current+1) + ' / ' + pages.length;
+
+  // accessibility: focus page
+  page.focus && page.focus();
+}
+
+// navigation functions
+function goNext(){
+  if(current < pages.length-1){
+    renderPage(current+1);
+  }
+}
+function goPrev(){
+  if(current > 0){
+    renderPage(current-1);
+  }
+}
+function goFirst(){ renderPage(0); }
+function goLast(){ renderPage(pages.length-1); }
+
+// fetch markdown from URL and build pages
+async function loadFromUrl(url){
+  showOverlay('Cargando desde URL: <br><strong>'+escHtml(url)+'</strong><br>Si el servidor bloquea peticiones CORS verás un error aquí.');
+  try{
+    const resp = await fetch(url, {cache:'no-store'});
+    if(!resp.ok) throw new Error('Respuesta '+resp.status);
+    const text = await resp.text();
+    hideOverlay();
+    processMarkdown(text);
+  }catch(err){
+    showOverlay('Error al cargar el Markdown desde la URL:<br><strong>'+escHtml(String(err))+'</strong><br><br>Si el servidor no permite CORS, pega el Markdown manualmente (botón "Pegar MD").');
+    console.error(err);
+  }
+}
+
+// if user pastes Markdown manually
+function processMarkdown(mdText){
+  const rawPages = splitPages(mdText);
+  pages = rawPages.map(p => mdToHtml(p));
+  // Ensure at least 1 page
+  if(pages.length===0) pages = ['<p>(vacío)</p>'];
+  // Make first page the portada — add special layout: try to set big title
+  // We'll try to detect first heading in first page to make cover nicer
+  // But keep simple: if first page contains an <h1>, center it large.
+  pages = pages.map((html, idx)=>{
+    if(idx===0){
+      // cover formatting: if contains h1, center it; if contains an image at top keep it.
+      // If no image and no h1, show fallback text 'Portada'
+      const hasImg = /<img[^>]*data-src[^>]*>/i.test(html) || /<img\s+src=/i.test(html);
+      const hasH1 = /<h1[^>]*>/.test(html);
+      if(!hasImg && !hasH1){
+        return '<div style="display:flex;align-items:center;justify-content:center;height:100%"><div><h1 style="text-align:center;font-size:36px;margin-bottom:12px">Portada</h1><div style="text-align:center;color:#666">Na Books</div></div></div>';
+      } else {
+        // if h1 present, enlarge and center
+        if(hasH1){
+          return html.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/i, '<h1 style="text-align:center;margin-top:60px;font-size:36px">$2</h1>');
+        }
+        return html;
+      }
+    } else if(idx===pages.length-1){
+      // contraportada: if no content, add Contraportada text
+      const trimmed = html.replace(/\s+/g,'');
+      if(trimmed.length<20){
+        return '<div style="display:flex;align-items:center;justify-content:center;height:100%"><div><h2 style="text-align:center">Contraportada</h2><p style="text-align:center;color:#666">Na Books</p></div></div>';
+      }
+      return html;
+    } else {
+      return html;
+    }
+  });
+  renderPage(0);
+}
+
+// UI events
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('urlInput').value.trim();
+  if(!url) return;
+  loadFromUrl(url);
+});
+document.getElementById('pasteBtn').addEventListener('click', async ()=>{
+  // try clipboard
+  try{
+    const text = await navigator.clipboard.readText();
+    if(text && text.length>0){
+      processMarkdown(text);
+      hideOverlay();
+    } else {
+      showOverlay('El portapapeles está vacío. Pega el Markdown en el portapapeles y pulsa "Pegar MD" otra vez.');
+    }
+  }catch(e){
+    showOverlay('No se pudo acceder al portapapeles automáticamente. Copia el Markdown y pega aquí manualmente en la URL y pulsa "Cargar URL" o pega en la consola.');
+  }
+});
+document.getElementById('nextBtn').addEventListener('click', goNext);
+document.getElementById('prevBtn').addEventListener('click', goPrev);
+document.getElementById('firstBtn').addEventListener('click', goFirst);
+document.getElementById('lastBtn').addEventListener('click', goLast);
+
+// keyboard navigation
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'ArrowRight' || e.key === 'PageDown') goNext();
+  if(e.key === 'ArrowLeft' || e.key === 'PageUp') goPrev();
+  if(e.key === 'Home') goFirst();
+  if(e.key === 'End') goLast();
+});
+
+// simple touch swipe
+let touchStartX = null;
+pageEl.addEventListener('touchstart', (e)=>{
+  touchStartX = e.touches[0].clientX;
+}, {passive:true});
+pageEl.addEventListener('touchend', (e)=>{
+  if(touchStartX===null) return;
+  const dx = (e.changedTouches[0].clientX - touchStartX);
+  if(Math.abs(dx) > 40){
+    if(dx < 0) goNext(); else goPrev();
+  }
+  touchStartX = null;
+});
+
+// initial load attempt (from default URL)
+loadFromUrl(DEFAULT_URL);
+
+// If overlay clicked, hide it
+overlay.addEventListener('click', ()=>{ hideOverlay(); });
+
+// Accessibility: focusable page
+pageEl.setAttribute('tabindex','0');
+
+</script>
+</body>
+</html>
