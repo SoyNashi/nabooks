@@ -38,9 +38,7 @@ La creación comienza cuando esta tensión se rompe.
 Cuando los soplos helados de Niflheim avanzaron hacia el centro del abismo y se encontraron con las chispas ardientes de Muspelheim, ocurrió la fusión:
 
 - El hielo comenzó a derretirse.
-  
 - El fuego templó la materia congelada.
-  
 - De esa mezcla surgió **agua viva**, vapor y gotas tibias que cayeron y tomaron forma.
   
 
@@ -54,9 +52,7 @@ No era un dios, sino una entidad vasta, poderosa y ambivalente: una forma de vid
 Ymir se alimentaba del vapor cálido que surgía del contacto entre hielo y fuego, y de él surgieron, espontáneamente:
 
 - Más gigantes, nacidos de su sudor.
-  
 - Un ser masculino y otro femenino surgidos de sus axilas.
-  
 - Un hijo de sus piernas, representando lo caótico y prolífico del origen.
   
 
