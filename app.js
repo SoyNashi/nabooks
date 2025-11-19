@@ -9,7 +9,7 @@ const previewArea = document.getElementById("previewArea");
 const currentPathEl = document.getElementById("currentPath");
 
 // OCULTAR EXTENSIONES
-const HIDE_EXT = ["json", "js", "css"];
+const HIDE_EXT = ["json", "js", "css","png","jpg","jpeg","gif","webp","svg"];
 
 // ---------------- LISTAR DIRECTORIO ---------------------
 async function listDir(path) {
@@ -23,6 +23,7 @@ async function listDir(path) {
   return arr
     .filter(item => {
       if (item.type === "dir") return true;
+      if (item.name === "LIBRO.md") return false;
       const ext = item.name.split(".").pop().toLowerCase();
       return !HIDE_EXT.includes(ext);
     })
