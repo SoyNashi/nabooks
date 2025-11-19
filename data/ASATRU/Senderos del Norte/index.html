@@ -154,18 +154,21 @@ function mdToHTML(md){
          .replace(/`([^`]+)`/g,"<code>$1</code>")
          .replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img src="$2" alt="$1">')
          .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1<\/a>');
- // Agrupar <li> consecutivos dentro de <ul>
-  md = md.replace(/(?:<li>.*<\/li>\s*)+/g, m => "<dl>" + m + "</dl>");
 
-  // Crear párrafos sin afectar listas
+           // Agrupar <li> consecutivos dentro de <dl>
+  md = md.replace(/(?:<li>.*<\/li>\s*)+/g, m => "<dl>\n" + m.trim() + "\n</dl>");
+
+  // Procesado final sin añadir <br> en bloques <dl> o con <li>
   md = md
     .split(/\n{2,}/)
-    .map(p =>
-      /^<ul>/.test(p)
-        ? p // no aplicar <br> ni <p> a listas
-        : "<p>" + p.replace(/\n/g,"<br>") + "</p>"
+    .map(p => 
+      /^<dl>/.test(p) || /<li>/.test(p)
+        ? p       // No meter <p> ni <br> en bloques de lista
+        : "<p>" + p.replace(/\n/g, "<br>") + "</p>"
     )
     .join("\n");
+
+
   return md;
 }
 
