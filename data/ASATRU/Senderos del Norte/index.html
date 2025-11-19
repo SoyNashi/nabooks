@@ -155,7 +155,7 @@ function mdToHTML(md){
          .replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img src="$2" alt="$1">')
          .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1<\/a>');
  // Agrupar <li> consecutivos dentro de <ul>
-  md = md.replace(/(?:<li>.*<\/li>\s*)+/g, m => "<dl>\n" + m.trim() + "\n</dl>");
+  md = md.replace(/(?:<li>.*<\/li>\s*)+/g, m => "<dl>" + m + "</dl>");
 
   // Crear párrafos sin afectar listas
   md = md
