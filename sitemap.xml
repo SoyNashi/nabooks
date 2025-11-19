@@ -6,7 +6,7 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  <url>
+  <!--   <url>
     <loc>https://bynashi.qzz.io/</loc>
     <lastmod>2025-11-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -18,5 +18,5 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Puedes añadir más rutas simuladas aquí -->
+Puedes añadir más rutas simuladas aquí -->
 </urlset>
