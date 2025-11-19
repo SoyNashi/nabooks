@@ -147,7 +147,7 @@ function mdToHTML(md){
          .replace(/^## (.*)$/gm, "<h2>$1</h2>")
          .replace(/^### (.*)$/gm, "<h3>$1</h3>")
          .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
-         .replace(/^- (.*)$/gm, "<dl><li>$1</li></dl>")
+         .replace(/^- (.*)$/gm, "<li>$1</li>")
          .replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>")
          .replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")
          .replace(/\*(.*?)\*/g,"<em>$1</em>")
