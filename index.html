@@ -117,6 +117,68 @@
       background: #fafafa;
       border-bottom: 1px solid #ddd;
     }
+    /* Responsive para pantallas medianas */
+@media (max-width: 1024px) {
+  #sidebar {
+    width: 200px;
+  }
+  
+  #header {
+    font-size: 18px;
+  }
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+
+  #sidebar.open {
+    transform: translateX(0);
+  }
+
+  #main {
+    height: auto;
+  }
+
+  #header {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  #tree ul {
+    padding-left: 12px;
+  }
+}
+
+/* Responsive para pantallas muy pequeñas / móviles */
+@media (max-width: 480px) {
+  #header {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  #header img {
+    width: 28px;
+    height: 28px;
+  }
+
+  #currentPath {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+}
   </style>
 
   <!-- Librerías -->
@@ -144,6 +206,7 @@
   <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
