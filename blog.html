@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Redirigiendo...</title>
+<title>Redirigiendo al blog...</title>
+<meta name="robots" content="index, follow">
 <script>
 async function setupMeta() {
     try {
@@ -34,7 +35,10 @@ async function setupMeta() {
         metaKeywords.content = latest.title;
         document.head.appendChild(metaKeywords);
 
-
+        // Mostrar la última entrada de manera visible
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = `<h2>Última entrada: ${latest.title}</h2><p>${latest.content}</p>`;
+        document.body.appendChild(contentDiv);
 
     } catch (error) {
         console.error('Error al cargar el JSON:', error);
@@ -43,18 +47,15 @@ async function setupMeta() {
 
 // Ejecutar al cargar la página
 window.addEventListener('DOMContentLoaded', setupMeta);
+
+// Redirige después de 5 segundos (para que Google lea el contenido)
+setTimeout(function() {
+    window.location.href = "https://bynashi.qzz.io/";
+}, 5000);
 </script>
 </head>
 <body>
 <h1>Redirigiendo al blog principal...</h1>
 <p>Si no se redirige automáticamente, <a href="https://bynashi.qzz.io/">haz clic aquí</a>.</p>
-
-<script>
-// Redirige después de 3 segundos
-setTimeout(function() {
-    window.location.href = "https://bynashi.qzz.io/";
-}, 3000);
-</script>
 </body>
 </html>
-
