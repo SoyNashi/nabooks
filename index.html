@@ -2,186 +2,204 @@
 <html lang="es">
 <head>
 
-<!-- Organización -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Na Books",
-  "url": "https://bynashi.qzz.io/",
-  "logo": "https://bynashi.qzz.io/nalogo.png",
-  "description": "Na Books, escritor anónimo, actualmente enfocado en la búsqueda, recopilación y traducción sobre las antiguas religiones nórdicas (Ásatrú). La página oficial presenta libros, traducciones y recursos para explorar estas tradiciones."
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://bynashi.qzz.io/#organization",
+      "name": "Na Books",
+      "url": "https://bynashi.qzz.io/",
+      "logo": "https://bynashi.qzz.io/nalogo.png",
+      "description": "Na Books, escritor anónimo, enfocado en la búsqueda, recopilación y traducción sobre las antiguas religiones nórdicas (Ásatrú)."
+    },
+    {
+      "@type": "Book",
+      "@id": "https://bynashi.qzz.io/#book-senderos-del-norte",
+      "name": "Senderos del Norte",
+      "author": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "description": "Senderos del Norte nace como una guía inicial para quienes desean adentrarse en el Ásatrú...",
+      "image": "https://bynashi.qzz.io/data/ASATRU/Senderos%20del%20Norte/front.png",
+      "url": "https://bynashi.qzz.io/senderos-del-norte",
+      "mainEntityOfPage": "https://bynashi.qzz.io/senderos-del-norte",
+      "inLanguage": "es",
+      "datePublished": "2025-01-01",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bynashi.qzz.io/senderos-del-norte",
+        "price": "0.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://bynashi.qzz.io/#book-codice-del-norte",
+      "name": "El Códice del Norte",
+      "author": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "description": "El Códice del Norte es una puerta a un mundo ancestral donde las leyendas, la poesía y la sabiduría se entrelazan...",
+      "image": "https://m.media-amazon.com/images/I/71EI2Oe0JgL._SY466_.jpg",
+      "url": "https://bynashi.qzz.io/codice-del-norte",
+      "mainEntityOfPage": "https://bynashi.qzz.io/codice-del-norte",
+      "inLanguage": "es",
+      "datePublished": "2023-05-01",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bynashi.qzz.io/codice-del-norte",
+        "price": "17.97",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://bynashi.qzz.io/#book-havamal-edda",
+      "name": "Hávamál y la Edda Mayor",
+      "author": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "description": "Este libro reúne el Hávamál y la Edda Mayor (Poética), los textos más influyentes de la tradición espiritual nórdica...",
+      "image": "https://m.media-amazon.com/images/I/61B+VsQcvkL._SY466_.jpg",
+      "url": "https://bynashi.qzz.io/havamal-edda-mayor",
+      "mainEntityOfPage": "https://bynashi.qzz.io/havamal-edda-mayor",
+      "inLanguage": "es",
+      "datePublished": "2023-06-15",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bynashi.qzz.io/havamal-edda-mayor",
+        "price": "13.43",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://bynashi.qzz.io/#book-camino-vikingo-1",
+      "name": "El Camino del Vikingo — PRIMERA PARTE: EL IDIOMA Y CÓDIGO DE HONOR",
+      "author": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "description": "En esta primera entrega se aborda el idioma vikingo y el código de honor que guiaba la vida de los guerreros...",
+      "image": "https://m.media-amazon.com/images/I/61DF6cUErML._SY466_.jpg",
+      "url": "https://bynashi.qzz.io/el-camino-del-vikingo-1",
+      "mainEntityOfPage": "https://bynashi.qzz.io/el-camino-del-vikingo-1",
+      "inLanguage": "es",
+      "datePublished": "2023-07-01",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bynashi.qzz.io/el-camino-del-vikingo-1",
+        "price": "17.97",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://bynashi.qzz.io/#book-camino-vikingo-2",
+      "name": "El Camino del Vikingo — SEGUNDA PARTE: RELIGIÓN Y MITOLOGÍA VIKINGA",
+      "author": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "description": "Explora las creencias, rituales y mitos que sustentaban la visión del mundo vikinga...",
+      "image": "https://m.media-amazon.com/images/I/618pYJFVByL._SY466_.jpg",
+      "url": "https://bynashi.qzz.io/el-camino-del-vikingo-2",
+      "mainEntityOfPage": "https://bynashi.qzz.io/el-camino-del-vikingo-2",
+      "inLanguage": "es",
+      "datePublished": "2023-07-15",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bynashi.qzz.io/el-camino-del-vikingo-2",
+        "price": "17.97",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://bynashi.qzz.io/#book-camino-vikingo-3",
+      "name": "El Camino del Vikingo — TERCERA PARTE: CÓMO VIVIR COMO UN VIKINGO HOY",
+      "author": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "description": "Guía práctica que adapta lecciones tradicionales a la vida contemporánea...",
+      "image": "https://m.media-amazon.com/images/I/61hrRWCcESL._SY466_.jpg",
+      "url": "https://bynashi.qzz.io/el-camino-del-vikingo-3",
+      "mainEntityOfPage": "https://bynashi.qzz.io/el-camino-del-vikingo-3",
+      "inLanguage": "es",
+      "datePublished": "2023-08-01",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bynashi.qzz.io/el-camino-del-vikingo-3",
+        "price": "17.97",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://bynashi.qzz.io/#book-camino-vikingo-trilogia",
+      "name": "El Camino del Vikingo — Trilogía Completa",
+      "author": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Na Books"
+      },
+      "description": "Edición que reúne las tres partes en un solo volumen para una lectura continua y completa de la saga...",
+      "image": "https://m.media-amazon.com/images/I/61ENSmkFyyL._SY466_.jpg",
+      "url": "https://bynashi.qzz.io/el-camino-del-vikingo-trilogia",
+      "mainEntityOfPage": "https://bynashi.qzz.io/el-camino-del-vikingo-trilogia",
+      "inLanguage": "es",
+      "datePublished": "2023-08-15",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bynashi.qzz.io/el-camino-del-vikingo-trilogia",
+        "price": "49.99",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
 }
 </script>
 
-<!-- Libro: Senderos del Norte -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "Senderos del Norte",
-  "author": {
-    "@type": "Organization",
-    "name": "Na Books"
-  },
-  "description": "Senderos del Norte nace como una guía inicial para quienes desean adentrarse en el Ásatrú y en las diversas corrientes espirituales paralelas que comparten raíces con las antiguas tradiciones nórdicas...",
-  "image": "https://bynashi.qzz.io/data/ASATRU/Senderos%20del%20Norte/front.png",
-  "url": "https://bynashi.qzz.io/",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Na Books",
-    "url": "https://bynashi.qzz.io/"
-  },
-  "inLanguage": "es",
-  "datePublished": "2025-01-01",
-  "mainEntityOfPage": "https://bynashi.qzz.io/",
-  "offers": {
-    "@type": "Offer",
-    "url": "https://bynashi.qzz.io/",
-    "price": "0.00",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock"
-  }
-}
-</script>
-
-<!-- Libro: El Códice del Norte -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "El Códice del Norte",
-  "author": {
-    "@type": "Organization",
-    "name": "Na Books"
-  },
-  "description": "El Códice del Norte es una puerta a un mundo ancestral donde las leyendas, la poesía y la sabiduría se entrelazan...",
-  "image": "https://m.media-amazon.com/images/I/71EI2Oe0JgL._SY466_.jpg",
-  "url": "https://www.amazon.es/C%C3%B3dice-del-Norte-Corpus-Norr%C5%93num/dp/B0FY28KKVP/",
-  "inLanguage": "es",
-  "datePublished": "2023-05-01",
-  "mainEntityOfPage": "https://bynashi.qzz.io/codice-del-norte",
-  "offers": {
-    "@type": "Offer",
-    "url": "https://www.amazon.es/C%C3%B3dice-del-Norte-Corpus-Norr%C5%93num/dp/B0FY28KKVP/",
-    "price": "17.97",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock"
-  }
-}
-</script>
-
-
-<!-- Libro: Hávamál y la Edda Mayor -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "Hávamál y la Edda Mayor",
-  "author": "Na Books",
-  "description": "Este libro reúne el Hávamál y la Edda Mayor (Poética), los textos más influyentes de la tradición espiritual nórdica. El Hávamál, “Las Palabras del Altísimo”, contiene consejos, máximas y reflexiones atribuidas a Odín, transmitiendo enseñanzas sobre ética, honor y sabiduría práctica. La Edda Mayor, colección de poemas antiguos, nos introduce en los mitos de los dioses, héroes y el origen del mundo.",
-  "image": "https://m.media-amazon.com/images/I/61B+VsQcvkL._SY466_.jpg",
-  "url": "https://www.amazon.es/H%C3%A1vam%C3%A1l-Edda-Mayor-Corpus-Norr%C5%93num/dp/B0G24QCFGX",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "EUR",
-    "price": "13.43",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.amazon.es/H%C3%A1vam%C3%A1l-Edda-Mayor-Corpus-Norr%C5%93num/dp/B0G24QCFGX"
-  },
-  "inLanguage": "es",
-  "datePublished": "2023-06-15",
-  "mainEntityOfPage": "https://www.amazon.es/H%C3%A1vam%C3%A1l-Edda-Mayor-Corpus-Norr%C5%93num/dp/B0G24QCFGX"
-}
-</script>
-
-<!-- Libro: El Camino del Vikingo — PRIMERA PARTE -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "El Camino del Vikingo — PRIMERA PARTE: EL IDIOMA Y CÓDIGO DE HONOR",
-  "author": "Na Books",
-  "description": "En esta primera entrega se aborda el idioma vikingo y el código de honor que guiaba la vida de los guerreros y comunidades. Incluye explicaciones sobre la evolución lingüística y cómo la lengua refleja valores culturales.",
-  "image": "https://m.media-amazon.com/images/I/61DF6cUErML._SY466_.jpg",
-  "url": "https://www.amazon.es/El-Camino-del-Vikingo-PRIMERA/dp/B0DX1T83GW",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.amazon.es/El-Camino-del-Vikingo-PRIMERA/dp/B0DX1T83GW"
-  },
-  "inLanguage": "es",
-  "datePublished": "2023-07-01",
-  "mainEntityOfPage": "https://www.amazon.es/El-Camino-del-Vikingo-PRIMERA/dp/B0DX1T83GW"
-}
-</script>
-
-<!-- Libro: El Camino del Vikingo — SEGUNDA PARTE -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "El Camino del Vikingo — SEGUNDA PARTE: RELIGIÓN Y MITOLOGÍA VIKINGA",
-  "author": "Na Books",
-  "description": "Explora las creencias, rituales y mitos que sustentaban la visión del mundo vikinga. Ideal para quien desea entender la cosmología, los dioses y las prácticas espirituales antiguas.",
-  "image": "https://m.media-amazon.com/images/I/618pYJFVByL._SY466_.jpg",
-  "url": "https://www.amazon.es/El-Camino-del-Vikingo-MITOLOG%C3%8DA/dp/B0DXQH43RM",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.amazon.es/El-Camino-del-Vikingo-MITOLOG%C3%8DA/dp/B0DXQH43RM"
-  },
-  "inLanguage": "es",
-  "datePublished": "2023-07-15",
-  "mainEntityOfPage": "https://www.amazon.es/El-Camino-del-Vikingo-MITOLOG%C3%8DA/dp/B0DXQH43RM"
-}
-</script>
-
-<!-- Libro: El Camino del Vikingo — TERCERA PARTE -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "El Camino del Vikingo — TERCERA PARTE: CÓMO VIVIR COMO UN VIKINGO HOY",
-  "author": "Na Books",
-  "description": "Guía práctica que adapta lecciones tradicionales a la vida contemporánea: costumbres, valores y ejercicios para integrar principios de honor y comunidad en el día a día.",
-  "image": "https://m.media-amazon.com/images/I/61hrRWCcESL._SY466_.jpg",
-  "url": "https://www.amazon.es/El-Camino-del-Vikingo-TERCERA/dp/B0FY19BJV6",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.amazon.es/El-Camino-del-Vikingo-TERCERA/dp/B0FY19BJV6"
-  },
-  "inLanguage": "es",
-  "datePublished": "2023-08-01",
-  "mainEntityOfPage": "https://www.amazon.es/El-Camino-del-Vikingo-TERCERA/dp/B0FY19BJV6"
-}
-</script>
-
-<!-- Libro: El Camino del Vikingo — Trilogía Completa -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "El Camino del Vikingo — Trilogía Completa",
-  "author": "Na Books",
-  "description": "Edición que reúne las tres partes en un solo volumen para una lectura continua y completa de la saga: lenguaje, mitos y práctica contemporánea.",
-  "image": "https://m.media-amazon.com/images/I/61ENSmkFyyL._SY466_.jpg",
-  "url": "https://www.amazon.es/El-Camino-del-Vikingo-Trilogia/dp/B0FY1NGBRC/",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.amazon.es/El-Camino-del-Vikingo-Trilogia/dp/B0FY1NGBRC/"
-  },
-  "inLanguage": "es",
-  "datePublished": "2023-08-15",
-  "mainEntityOfPage": "https://www.amazon.es/El-Camino-del-Vikingo-Trilogia/dp/B0FY1NGBRC/"
-}
-</script>
 
 
 
@@ -392,6 +410,7 @@
   <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
