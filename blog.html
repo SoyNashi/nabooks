@@ -35,6 +35,26 @@ async function setupMeta() {
         metaKeywords.content = latest.title;
         document.head.appendChild(metaKeywords);
 
+        // Insertar datos estructurados JSON-LD
+        const jsonLd = document.createElement('script');
+        jsonLd.type = 'application/ld+json';
+        jsonLd.text = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": latest.title,
+            "description": latest.content,
+            "datePublished": latest.date,
+            "author": {
+                "@type": "Person",
+                "name": "Na Books"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": window.location.href
+            }
+        });
+        document.head.appendChild(jsonLd);
+
         // Mostrar la última entrada de manera visible
         const contentDiv = document.createElement('div');
         contentDiv.innerHTML = `<h2>Última entrada: ${latest.title}</h2><p>${latest.content}</p>`;
