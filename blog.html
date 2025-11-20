@@ -34,8 +34,7 @@ async function setupMeta() {
         metaKeywords.content = latest.title;
         document.head.appendChild(metaKeywords);
 
-        // Redirigir al blog principal
-        window.location.href = "https://bynashi.qzz.io/";
+
 
     } catch (error) {
         console.error('Error al cargar el JSON:', error);
@@ -47,6 +46,15 @@ window.addEventListener('DOMContentLoaded', setupMeta);
 </script>
 </head>
 <body>
-<p>Redirigiendo al blog principal...</p>
+<h1>Redirigiendo al blog principal...</h1>
+<p>Si no se redirige automáticamente, <a href="https://bynashi.qzz.io/">haz clic aquí</a>.</p>
+
+<script>
+// Redirige después de 3 segundos
+setTimeout(function() {
+    window.location.href = "https://bynashi.qzz.io/";
+}, 3000);
+</script>
 </body>
 </html>
+
