@@ -250,8 +250,10 @@ function buildPages(){
 
   /* Índice configurable por el usuario */
   const userTOC = window.userTOC || [
-    {title: "Introducción", page: 1 },
-    {title: "Introducción", page: 1 }
+  { title: "Introducción", page: 1 },
+  { title: "Capítulo 1: Primeros pasos", page: 5 },
+  { title: "Capítulo 2: Conceptos básicos", page: 12 },
+  { title: "Conclusión", page: 30 }
   ];
   // userTOC should be array of {title, page}
   let tocHTML = '<h1>Índice</h1><ul>' + (userTOC.map ? userTOC.map(i=>`<li><a href="#" class="toc-link" data-page="${i.page}">${i.title}</a> — página ${i.page}</li>`).join('') : '') + '</ul>';
